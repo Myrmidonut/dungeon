@@ -3,14 +3,15 @@ A dungeon crawler game.
 
 Snow? Space? Dungeon?
 
-- initiative
+- perception
   - increase with equipment
   - lower with wounds
+  - bonus loot
+  - find traps, monster chest
   
 - fight
   - round based
-  - initiative vs initiative
-    - winner attacks first
+  - player attacks first
   - attack
     - strength vs stamina
     - dodge
@@ -46,6 +47,7 @@ Snow? Space? Dungeon?
     - health
   - agility
     - dodge chance
+    - disable trap, monster chest
     
 - backpack
   - equipment
