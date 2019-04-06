@@ -88,3 +88,8 @@ A dungeon crawler game.
     - treasure chest
       - loot
       - monster chest
+
+- tech
+  - express?
+  - react?
+  - sql?
