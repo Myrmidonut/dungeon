@@ -1,13 +1,26 @@
 # dungeon
 A dungeon crawler game.
 
-Snow? Space? Dungeon?
+- setting
+  - snow?
+  - space?
+  - dungeon?
+
+- example fight
+  - attack vs 20% dodge -> success
+  - 10 strength vs 8 stamina -> success
+  - 3-8 damage, 10% crit chance -> 4 damage with crit -> 4 x 2 = 8 damage
+  - 5 armor - 8 damage = 3 damage
+  - 20 health - 3 damage = 17 health
 
 - perception
   - increase with equipment
   - lower with wounds
   - bonus loot
   - find traps, monster chest
+  - increase vision
+    - show next room
+    - show 2 next rooms
   
 - fight
   - round based
@@ -15,13 +28,15 @@ Snow? Space? Dungeon?
   - attack
     - strength vs stamina
     - dodge
-    - random crit chance
   - damage
-    - weapon vs health
+    - random crit chance
+      - double damage
+    - weapon vs armor
+    - rest goes against health
 
 - armor
   - helmet
-  - breastplate
+  - chest
   - pants
   - boots
   - gloves
@@ -36,7 +51,7 @@ Snow? Space? Dungeon?
     - minimum to maximum
     - average
     - crit
-      - 2 times maximum
+      - double damage
       
 - stats
   - strength
@@ -51,7 +66,7 @@ Snow? Space? Dungeon?
     
 - backpack
   - equipment
-    - bonus to stats, initiative, ...
+    - bonus to perception
   - endless storage  
 
 - randomly generated maps
