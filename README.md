@@ -67,7 +67,18 @@ A dungeon crawler game.
 - backpack
   - equipment
     - bonus to perception
-  - endless storage  
+  - endless storage
+  - health potion
+    - only usable during fights
+    - refill at save point
+    - multiple charges through upgrades
+  - bandage
+    - only usable outside fights
+    - refill at save point
+    - multiple charges from the start
+    - more through upgrades
+  - craft equipment?
+    - find stuff on monsters?
 
 - randomly generated maps
   - save place at the end
@@ -84,10 +95,16 @@ A dungeon crawler game.
   - encounter
     - monsters
       - elite
+        - equal power to player
+        - barely beat the monster, maybe using one potion
       - normal
+        - half power of player
+        - should be easy to beat
     - treasure chest
       - loot
       - monster chest
+        - normal
+        - 10% elite
 
 - tech
   - express?
