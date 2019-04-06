@@ -10,7 +10,7 @@ A dungeon crawler game.
   - attack vs 20% dodge -> success
   - 10 strength vs 8 stamina -> success
   - 3-8 damage, 10% crit chance -> 4 damage with crit -> 4 x 2 = 8 damage
-  - 5 armor - 8 damage = 3 damage
+  - 8 damage - 5 armor = 3 damage
   - 20 health - 3 damage = 17 health
 
 - perception
