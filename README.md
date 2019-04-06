@@ -8,10 +8,12 @@ Snow? Space? Dungeon?
   - lower with wounds
   
 - fight
+  - round based
   - initiative vs initiative
     - winner attacks first
   - attack
-    - stat vs stat
+    - strength vs stamina
+    - dodge
     - random crit chance
   - damage
     - weapon vs health
@@ -30,9 +32,24 @@ Snow? Space? Dungeon?
     - one hand + defensive
     - two hand
   - damage
+    - minimum to maximum
+    - average
+    - crit
+      - 2 times maximum
+      
+- stats
+  - strength
+    - attack
+  - stamina
+    - defense
+  - endurance
+    - health
+  - agility
+    - dodge chance
     
 - backpack
   - equipment
+    - bonus to stats, initiative, ...
   - endless storage  
 
 - randomly generated maps
@@ -47,3 +64,10 @@ Snow? Space? Dungeon?
       - right
       - crossing
       - dead end
+  - encounter
+    - monsters
+      - elite
+      - normal
+    - treasure chest
+      - loot
+      - monster chest
