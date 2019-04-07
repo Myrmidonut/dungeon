@@ -107,6 +107,9 @@ A dungeon crawler game.
         - 10% elite
 
 - tech
-  - express?
-  - react?
-  - sql?
+  - express
+  - react
+  - sql/mongodb ??
+  - webpack
+  - graphql
+  - testing
