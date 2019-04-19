@@ -106,10 +106,19 @@ A dungeon crawler game.
         - normal
         - 10% elite
 
-- tech
+- backend
   - express
-  - react
-  - sql/mongodb ??
-  - webpack
   - graphql
+  - sql
+  - jwt
+
+- frontend
+  - webpack
+  - react
+
+- hosting
+  - heroku
+  - elephantsql
+
+- stuff
   - testing
