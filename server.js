@@ -6,7 +6,7 @@ require("dotenv").config()
 
 const schema = require("./graphql/schema")
 const root = require("./graphql/root")
-const port = 3000
+const port = process.env.PORT || 3000;
 const app = express()
 
 const auth = jwt({
