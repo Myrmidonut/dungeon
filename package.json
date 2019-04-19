@@ -1,5 +1,5 @@
 {
-  "name": "express-sql-graphql",
+  "name": "dungeon",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -20,6 +20,8 @@
     "graphql": "^14.2.1",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^1.6.5",
+    "pg": "^7.10.0",
+    "pg-hstore": "^2.3.2",
     "sequelize": "^5.7.0"
   }
 }
