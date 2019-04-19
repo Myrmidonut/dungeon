@@ -9,7 +9,8 @@ const dbDev = {
 }
 
 const dbProd = {
-  
+  dbUrl: process.env.DATABASE_URL,
+  dialect: "postgres"
 }
 
 module.exports = {
