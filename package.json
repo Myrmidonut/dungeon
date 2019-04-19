@@ -1,11 +1,14 @@
 {
   "name": "dungeon",
   "version": "1.0.0",
+  "private": true,
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",
@@ -23,6 +26,18 @@
     "pg": "^7.10.0",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.7.0",
-    "sequelize-cli": "^5.4.0"
-  }
+    "sequelize-cli": "^5.4.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-scripts": "2.1.8"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
