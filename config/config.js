@@ -1,6 +1,6 @@
 require("dotenv").config()
 
-const dbDev = {
+const development = {
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
@@ -8,7 +8,7 @@ const dbDev = {
   dialect:  'mysql'
 }
 
-const dbProd = {
+const production = {
   username: process.env.DB_USERNAME_PROD,
   password: process.env.DB_PASSWORD_PROD,
   database: process.env.DB_NAME_PROD,
@@ -17,6 +17,6 @@ const dbProd = {
 }
 
 module.exports = {
-  development: dbDev,
-  production:  dbProd
+  development: development,
+  production:  production
 }
