@@ -93,6 +93,20 @@ A dungeon crawler game.
       - crossing
       - dead end
   - encounter
+    - random adjectives for strengths/weaknesses
+      - giant smelly blind orc
+      - 0 - 3 adjectives
+        - giant (higher strength)
+        - tiny (less strength)
+        - smelly (poison cloud)
+        - toxic (returns damage on hit)
+        - blind (less dodge)
+        - cautious (higher dodge)
+        - wild (higher attack)
+        - scared (less attack)
+        - hardened (higher defense)
+        - squishy (less defense)
+
     - monsters
       - elite
         - equal power to player
