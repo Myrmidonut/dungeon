@@ -63,6 +63,10 @@ A dungeon crawler game.
   - agility
     - dodge chance
     - disable trap, monster chest
+
+- how many maps cleared?
+
+- shop?
     
 - backpack
   - equipment
