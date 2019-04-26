@@ -28,10 +28,15 @@ const BackendTest = () => {
   .then(() => {
     console.log(token)
   })
+  .catch(() => {
+    console.log("error")
+
+    setToken("no token")
+  })
 
   return (
     <div>
-      <h1>Test</h1>
+      <h1>Token:</h1>
 
       {token}
     </div>
