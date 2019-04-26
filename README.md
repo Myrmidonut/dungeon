@@ -52,6 +52,12 @@ A dungeon crawler game.
     - average
     - crit
       - double damage
+  - effects
+    - electricity (ignore armor)
+    - fire (damage every round)
+    - ice (less attack)
+    - poison (damage every round)
+    - blind (less dodge)
       
 - stats
   - strength
@@ -63,10 +69,9 @@ A dungeon crawler game.
   - agility
     - dodge chance
     - disable trap, monster chest
-
-- how many maps cleared?
-
-- shop?
+  - power rating
+    - strength + stamina + endurance + agility
+    - balancing factors
     
 - backpack
   - equipment
@@ -110,7 +115,6 @@ A dungeon crawler game.
         - scared (less attack)
         - hardened (higher defense)
         - squishy (less defense)
-
     - monsters
       - elite
         - equal power to player
@@ -118,11 +122,19 @@ A dungeon crawler game.
       - normal
         - half power of player
         - should be easy to beat
+      - 10% elite
     - treasure chest
       - loot
       - monster chest
         - normal
         - 10% elite
+
+---
+
+- how many maps cleared?
+- shop?
+
+---
 
 - backend
   - express
