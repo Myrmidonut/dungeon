@@ -1,5 +1,6 @@
 const bcrypt = require("bcrypt")
 const jsonwebtoken = require("jsonwebtoken")
+
 const { User } = require('../models')
 
 const root = {
@@ -31,7 +32,7 @@ const root = {
     )
   },
 
-  async login({ email, password }) {
+  async login({ email, password }, { req, res }) {
     const user = await User.findOne({ where: { email } })
 
     if (!user) {
@@ -44,11 +45,21 @@ const root = {
       throw new Error('Incorrect password.')
     }
 
-    return jsonwebtoken.sign(
+    /*return jsonwebtoken.sign(
+      { id: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '1d' }
+    )*/
+
+    const token = jsonwebtoken.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: '1d' }
     )
+
+    res.cookie("token", token)
+
+    return "worked"
   }
 }
 

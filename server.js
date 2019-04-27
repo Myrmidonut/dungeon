@@ -1,5 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
+const cookieParser = require("cookie-parser")
 const jwt = require("express-jwt")
 const graphqlHTTP = require('express-graphql');
 const path = require("path")
@@ -17,6 +18,7 @@ const auth = jwt({
 
 app.use(express.static(path.join(__dirname, 'build')));
 app.use(bodyParser.json())
+app.use(cookieParser())
 app.use(auth)
 
 /*app.use((err, req, res, next) => {
@@ -25,16 +27,22 @@ app.use(auth)
   }
 
   next()
-});*/
+})*/
 
-app.use('/graphql', graphqlHTTP(req => ({
+/*app.use('/graphql', graphqlHTTP(req => ({
   schema: schema,
   rootValue: root,
   context: {
     req: req
   },
   graphiql: true
-})))
+})))*/
+
+app.use('/graphql', graphqlHTTP({
+  schema: schema,
+  rootValue: root,
+  graphiql: true
+}))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

@@ -10,6 +10,7 @@ const BackendTest = () => {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     },
+    credentials: "include",
     body: JSON.stringify({
       query: `mutation {
         login(
@@ -21,6 +22,7 @@ const BackendTest = () => {
   })
   .then(r => r.json())
   .then(data => {
+    console.log("data: ", data)
     console.log('token:', data.data.login)
 
     setToken(data.data.login)
