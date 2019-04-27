@@ -43,7 +43,7 @@ A dungeon crawler game.
   - attack
     - strength vs stamina
     - 50% (75% class weapon) to deal damage
-    - dodge
+    - dodge (0 - 50%)
   - damage
     - bonus with class weapon
     - random crit chance
@@ -131,19 +131,23 @@ A dungeon crawler game.
         - scared (less attack)
         - hardened (higher defense)
         - squishy (less defense)
-    - monsters
-      - elite
-        - equal power to player
-        - barely beat the monster, maybe using one potion
-      - normal
-        - half power of player
-        - should be easy to beat
-      - 10% elite
+    - elite
+      - 10% chance
+      - 90% power of player
+      - barely beatable, maybe using one potion
+      - playerlevel x 0.9 x stat
+    - normal
+      - 90% chance
+      - 50-90% power of player
+      - easily beatable
+      - playerlevel x (0.5...0.9) x stat
+    - 0 - 50% chance dodge
     - treasure chest
       - loot
-      - monster chest
-        - normal
-        - 10% elite
+        - 75% chance
+      - monster
+        - 25% chance
+        - normal / elite
 
 ---
 
@@ -168,6 +172,19 @@ A dungeon crawler game.
 
 - stuff
   - testing
+
+---
+
+- database
+  - user
+  - character
+
+- dynamically generated
+  - encounter
+  - map
+  - weapon
+  - armor
+  - backpack stuff
 
 ---
 
@@ -200,3 +217,24 @@ A dungeon crawler game.
       - potions
       - bandages
       - crafting materials
+
+- encounter
+  - adjectives
+    - giant (higher strength)
+    - tiny (less strength)
+    - smelly (poison cloud)
+    - toxic (returns damage on hit)
+    - blind (less dodge)
+    - cautious (higher dodge)
+    - wild (higher attack)
+    - scared (less attack)
+    - hardened (higher defense)
+    - squishy (less defense)
+  - stats
+    - strength
+    - stamina
+    - endurance
+    - agility
+  - elite
+    - true
+    - false
