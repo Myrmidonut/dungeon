@@ -1,46 +1,111 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 
 const BackendTest = () => {
+  const [loginname, setLoginname] = useState("empty")
+  const [user, setUser] = useState("empty")
 
-  const [token, setToken] = useState("empty")
-
-  fetch('/graphql', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    },
-    credentials: "include",
-    body: JSON.stringify({
-      query: `mutation {
-        login(
-          email: "johndoe@example.com"
-          password: "password"
-        )
-      }`
+  function login() {
+    fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      //credentials: "include",
+      body: JSON.stringify({
+        query: `mutation {
+          login(
+            email: "johndoe@example.com"
+            password: "password"
+          )
+        }`
+      })
     })
-  })
-  .then(r => r.json())
-  .then(data => {
-    console.log("data: ", data)
-    console.log('token:', data.data.login)
+    .then(r => r.json())
+    .then(data => {
+      console.log("data: ", data)
 
-    setToken(data.data.login)
-  })
-  .then(() => {
-    console.log(token)
-  })
-  .catch(() => {
-    console.log("error")
+      setLoginname(data.data.login)
+    })
+    .catch(() => {
+      console.log("error")
+    })
+  }
 
-    setToken("no token")
-  })
+  function me() {
+    const token = getCookie("token")
 
+    fetch('/graphql', {
+      method: 'POST',
+      withCredentials: true,
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      //credentials: "include",
+      body: JSON.stringify({
+        query: `query {
+          me {
+            email
+          }
+        }`
+      })
+    })
+    .then(r => r.json())
+    .then(data => {
+      console.log("data: ", data)
+
+      setUser(data.data.me.email)
+    })
+    .catch(() => {
+      console.log("error")
+    })
+  }
+
+  function getCookie(name) {
+    let cookieValue = null
+
+    if (document.cookie && document.cookie !== "") {
+      let cookies = document.cookie.split(";")
+
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim()
+
+        if (cookie.substring(0, name.length + 1) === (name + "=")) {
+          cookieValue = decodeURIComponent(cookie.substring(name.length + 1))
+          
+          break;
+        }
+      }
+    }
+
+    return(cookieValue)
+  }
+
+  useEffect(() => {
+    //login()
+  })
+  
   return (
     <div>
       <h1>Token:</h1>
 
-      {token}
+      <button onClick={login}>
+        Login
+      </button>
+
+      <p>
+        {loginname}
+      </p>
+
+      <button onClick={me}>
+        Me
+      </button>
+
+      <p>
+        {user}
+      </p>
     </div>
   )
 }

@@ -8,9 +8,9 @@ require("dotenv").config()
 
 const schema = require("./graphql/schema")
 const root = require("./graphql/root")
+
 const port = process.env.PORT || 4000;
 const app = express()
-
 const auth = jwt({
   secret: process.env.JWT_SECRET,
   credentialsRequired: false
@@ -21,28 +21,15 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 app.use(auth)
 
-/*app.use((err, req, res, next) => {
-  if (err.name === 'UnauthorizedError') {
-    console.log("Bad token.")
-  }
-
-  next()
-})*/
-
-/*app.use('/graphql', graphqlHTTP(req => ({
+app.use('/graphql', graphqlHTTP((req, res) => ({
   schema: schema,
   rootValue: root,
+  graphiql: true,
   context: {
-    req: req
-  },
-  graphiql: true
-})))*/
-
-app.use('/graphql', graphqlHTTP({
-  schema: schema,
-  rootValue: root,
-  graphiql: true
-}))
+    req: req,
+    res: res
+  }
+})))
 
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

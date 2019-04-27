@@ -4,7 +4,10 @@ const jsonwebtoken = require("jsonwebtoken")
 const { User } = require('../models')
 
 const root = {
-  async me(args, { req }) {
+  async me(args, { req, res }) {
+    //console.log(req.headers)
+    console.log(req.user)
+
     if (!req.user) {
       throw new Error('You are not authenticated.')
     }
@@ -12,7 +15,7 @@ const root = {
     return await User.findByPk(req.user.id)
   },
 
-  async signup({ username, email, password }) {
+  async signup({ username, email, password }, { req, res }) {
     const old_user = await User.findOne({ where: { email } })
 
     if (old_user) {
@@ -25,11 +28,15 @@ const root = {
       password: await bcrypt.hash(password, 10)
     })
 
-    return jsonwebtoken.sign(
+    const token = jsonwebtoken.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
-      { expiresIn: '1y' }
+      { expiresIn: '1d' }
     )
+
+    res.cookie("token", token)
+
+    return user.username
   },
 
   async login({ email, password }, { req, res }) {
@@ -45,12 +52,6 @@ const root = {
       throw new Error('Incorrect password.')
     }
 
-    /*return jsonwebtoken.sign(
-      { id: user.id, email: user.email },
-      process.env.JWT_SECRET,
-      { expiresIn: '1d' }
-    )*/
-
     const token = jsonwebtoken.sign(
       { id: user.id, email: user.email },
       process.env.JWT_SECRET,
@@ -59,7 +60,7 @@ const root = {
 
     res.cookie("token", token)
 
-    return "worked"
+    return user.username
   }
 }
 
