@@ -96,14 +96,28 @@ A dungeon crawler game.
   - health potion
     - only usable during fights
     - refill at save point
-    - multiple charges through upgrades
+    - upgrades
+      - multiple charges
+      - higher potency
+      - upgrade with organs
   - bandage
     - only usable outside fights
     - refill at save point
-    - multiple charges from the start
-    - more through upgrades
-  - craft equipment?
-    - find stuff on monsters?
+    - upgrades
+      - multiple charges
+      - upgrade with cloth
+  - armor improvements
+    - increase level
+    - upgrades
+      - upgrade with bones, metal
+  - craft equipment
+    - find materials on monsters
+    - tools
+      - knife 2 x cloth
+      - saw 2 x bones
+      - spoon 2 x organs
+      - hammer 2 x metal
+      - improved tool
 
 - randomly generated maps
   - save place at the end
@@ -174,7 +188,11 @@ A dungeon crawler game.
   - bonus perception?
   - helps in fight?
   - finds random loot?
-
+- weather?
+  - reduce effects with clothing?
+  - reduced perception?
+  - reduced fighting skills?
+  
 ---
 
 - backend
