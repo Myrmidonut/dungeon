@@ -16,17 +16,18 @@ A dungeon crawler game.
 - class
   - barbarian
     - 25% bonus attack with 2-handed weapon
-    - 2 x strength per level
+    - strength
   - thief
     - 25% bonus attack with two one-handed weapons
-    - 2 x agility per level
+    - agility
   - paladin
     - 25% bonus attack with one-handed weapon and shield
-    - 2 x stamina per level
+    - stamina
 
 - level
-  - stat = current level
-  - class stat = 2 x current level
+  - level up after clearing a map
+  - 90% chance to increase class stat
+  - 50% chance to increase stat
 
 - perception
   - increase with equipment
@@ -138,9 +139,9 @@ A dungeon crawler game.
       - dead end
     - contains
       - monster 50%
-      - trap 10%
+      - trap 20%
       - treasure chest 20%
-      - empty 20%
+      - empty 10%
 
 - monster
   - stats
@@ -170,7 +171,7 @@ A dungeon crawler game.
     - 90% chance
     - 50-90% power of player
     - easily beatable
-    - playerlevel x (0.5...0.9) x stat
+    - playerlevel x 0.5...0.9 x stat
   - dodge
     - 0 - 50% chance
 
@@ -271,3 +272,40 @@ A dungeon crawler game.
     - name
     - amount
     - value
+
+---
+
+1 map
+  10 rooms
+    monster 50%
+      normal 90% / elite 10%
+      stats
+        player power rating x 0.5...0.9 x stat
+        player power rating x 0.9 x stat
+          strength
+          stamina
+          endurance
+          agility
+        dodge 0% - 50%
+      adjectives
+      loot
+        materials 33%
+          cloth 25%
+          metal 25%
+          bones 25%
+          organs 25%
+        gold 34%
+        gear 33%
+    treasure chest 20%
+      loot 75%
+      monster 25%
+        normal 90% / elite 10%
+        stats
+        loot
+          materials 33%
+          gold 34%
+          gear 33%
+    trap 20%
+    empty 10%
+
+---

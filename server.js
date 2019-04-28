@@ -9,6 +9,12 @@ require("dotenv").config()
 const schema = require("./graphql/schema")
 const root = require("./graphql/root")
 
+const gameValues = require("./game/values")
+const gameFunctions = require("./game/functions")
+
+//console.log(values.probabilityTables.encounter)
+//console.log(gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+
 const port = process.env.PORT || 4000;
 const app = express()
 const auth = jwt({
