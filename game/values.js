@@ -1,3 +1,9 @@
+const monsterNames = [
+  "ogre",
+  "goblin",
+  "orc"
+]
+
 const adjectives = [
   {
     name: "giant",
@@ -93,4 +99,9 @@ const probabilityTables = {
   }
 }
 
-module.exports = { adjectives, probabilityTables }
+const monsterRating = {
+  normal: 0.5,
+  elite: 0.9
+}
+
+module.exports = { monsterRating, monsterNames, adjectives, probabilityTables }

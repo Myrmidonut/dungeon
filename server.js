@@ -15,16 +15,27 @@ const gameFunctions = require("./game/functions")
 const player = {
   class: "thief",
   stats: {
-    strength: 1,
-    agility: 1,
-    stamina: 1,
-    endurance: 1
+    strength: 5,
+    stamina: 8,
+    endurance: 9,
+    agility: 15
   }
 }
 
+console.log("player: ", player)
+
 gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
 
-console.log(player)
+console.log("level up: ", player)
+
+//console.log(gameFunctions.playerStatAverage(player))
+
+console.log(gameFunctions.generateMonster(
+  gameValues.monsterNames,
+  gameFunctions.randomProbability(gameValues.probabilityTables.monster),
+  gameFunctions.playerStatAverage(player),
+  gameValues.monsterRating
+))
 
 const port = process.env.PORT || 4000;
 const app = express()
