@@ -32,7 +32,7 @@ A dungeon crawler game.
   - increase with equipment
   - lower with wounds
   - bonus loot
-  - find traps, monster chest
+  - find trap, monster chest
   - increase vision
     - show next room
     - show 2 next rooms
@@ -69,7 +69,7 @@ A dungeon crawler game.
     - crit
       - double damage
   - effects
-    - electricity (ignore armor)
+    - electricity (ignore some armor)
     - fire (damage every round)
     - ice (less attack)
     - poison (damage every round)
@@ -88,7 +88,7 @@ A dungeon crawler game.
   - power rating
     - strength + stamina + endurance + agility
     - balancing factors
-    
+
 - backpack
   - equipment
     - bonus to perception
@@ -110,6 +110,9 @@ A dungeon crawler game.
   - if you die you lose everything you got in the map and go back to the last save place
   - three paths from the save place of varying difficulties
   - better rewards on higher difficulties
+    - normal monster power / loot
+    - +10% monster power / loot
+    - +20% monster power / loot
   - paths
     - chances for
       - straight
@@ -117,42 +120,60 @@ A dungeon crawler game.
       - right
       - crossing
       - dead end
-  - encounter
-    - random adjectives for strengths/weaknesses
-      - giant smelly blind orc
-      - 0 - 3 adjectives
-        - giant (higher strength)
-        - tiny (less strength)
-        - smelly (poison cloud)
-        - toxic (returns damage on hit)
-        - blind (less dodge)
-        - cautious (higher dodge)
-        - wild (higher attack)
-        - scared (less attack)
-        - hardened (higher defense)
-        - squishy (less defense)
-    - elite
-      - 10% chance
-      - 90% power of player
-      - barely beatable, maybe using one potion
-      - playerlevel x 0.9 x stat
-    - normal
-      - 90% chance
-      - 50-90% power of player
-      - easily beatable
-      - playerlevel x (0.5...0.9) x stat
-    - 0 - 50% chance dodge
-    - treasure chest
-      - loot
-        - 75% chance
-      - monster
-        - 25% chance
-        - normal / elite
+    - contains
+      - monster 50%
+      - trap 10%
+      - treasure chest 20%
+      - empty 20%
+
+- monster
+  - random adjectives for strengths/weaknesses
+    - giant smelly blind orc
+    - 0 - 3 adjectives
+      - giant (higher strength)
+      - tiny (less strength)
+      - smelly (poison cloud)
+      - toxic (returns damage on hit)
+      - blind (less dodge)
+      - cautious (higher dodge)
+      - wild (higher attack)
+      - scared (less attack)
+      - hardened (higher defense)
+      - squishy (less defense)
+  - elite
+    - 10% chance
+    - 90% power of player
+    - barely beatable, maybe using one potion
+    - playerlevel x 0.9 x stat
+  - normal
+    - 90% chance
+    - 50-90% power of player
+    - easily beatable
+    - playerlevel x (0.5...0.9) x stat
+  - 0 - 50% chance dodge
+
+- treasure chest
+  - loot 75%
+  - monster 25%
+
+- trap
+  - disarm
+  - damage
+
+- loot
+  - materials 33%
+  - gold 34%
+  - gear 33%
 
 ---
 
-- how many maps cleared?
+- cleared maps counter?
 - shop?
+  - buy weapons/armor?
+- pet?
+  - bonus perception?
+  - helps in fight?
+  - finds random loot?
 
 ---
 
