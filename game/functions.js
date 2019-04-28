@@ -14,4 +14,20 @@ function dodge(max) {
   return Math.floor(Math.random() * (max * 10 + 1))
 }
 
-module.exports = { randomProbability, dodge }
+function classStat(player) {
+  if (player.class === "barbarian") return "strength"
+  else if (player.class === "thief") return "agility"
+  else return "stamina"
+}
+
+function levelUp(player, probability) {
+  for (let stat in player.stats) {
+    if (stat === classStat(player) && Math.random() >= probability.classStat) {
+      player.stats[stat] += 1
+    } else if (stat !== classStat(player) && Math.random() >= probability.stat) {
+      player.stats[stat] += 1
+    }
+  }
+}
+
+module.exports = { randomProbability, dodge, levelUp }

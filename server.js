@@ -12,8 +12,19 @@ const root = require("./graphql/root")
 const gameValues = require("./game/values")
 const gameFunctions = require("./game/functions")
 
-//console.log(values.probabilityTables.encounter)
-//console.log(gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+const player = {
+  class: "thief",
+  stats: {
+    strength: 1,
+    agility: 1,
+    stamina: 1,
+    endurance: 1
+  }
+}
+
+gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
+
+console.log(player)
 
 const port = process.env.PORT || 4000;
 const app = express()

@@ -37,7 +37,7 @@ A dungeon crawler game.
   - increase vision
     - show next room
     - show 2 next rooms
-  
+
 - fight
   - round based
   - player attacks first
@@ -180,8 +180,12 @@ A dungeon crawler game.
   - monster 25%
 
 - trap
-  - disarm
-  - damage
+  - strength 10% - 100%
+  - find with perception
+    - disarm with agility
+      - success
+      - damage
+    - damage
 
 - loot
   - materials 33%
@@ -201,6 +205,8 @@ A dungeon crawler game.
   - reduce effects with clothing?
   - reduced perception?
   - reduced fighting skills?
+- wounds from traps / monsters?
+  - heal with material?
   
 ---
 
@@ -211,12 +217,11 @@ A dungeon crawler game.
   - jwt
 
 - frontend
-  - webpack
   - react
 
 - hosting
   - heroku
-  - elephantsql
+  - elephantsql/heroku
 
 - stuff
   - testing
