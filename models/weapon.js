@@ -1,4 +1,5 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const Weapon = sequelize.define('Weapon', {
     name: DataTypes.STRING,
@@ -6,8 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     damage: DataTypes.INTEGER,
     bonus: DataTypes.STRING
   }, {});
+
   Weapon.associate = function(models) {
     // associations can be defined here
   };
+  
   return Weapon;
 };

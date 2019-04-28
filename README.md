@@ -90,7 +90,7 @@ A dungeon crawler game.
     - balancing factors
 
 - backpack
-  - equipment
+  - addon
     - bonus to perception
   - endless storage
   - health potion
@@ -110,14 +110,16 @@ A dungeon crawler game.
     - increase level
     - upgrades
       - upgrade with bones, metal
-  - craft equipment
+  - crafting
     - find materials on monsters
+    - materials
+      - cloth
+      - bones
+      - organs
+      - metal
     - tools
-      - knife 2 x cloth
-      - saw 2 x bones
-      - spoon 2 x organs
-      - hammer 2 x metal
-      - improved tool
+      - one for each material
+      - 2 x materials from looting
 
 - randomly generated maps
   - save place at the end
@@ -141,6 +143,11 @@ A dungeon crawler game.
       - empty 20%
 
 - monster
+  - stats
+    - strength
+    - stamina
+    - endurance
+    - agility
   - random adjectives for strengths/weaknesses
     - giant smelly blind orc
     - 0 - 3 adjectives
@@ -164,7 +171,8 @@ A dungeon crawler game.
     - 50-90% power of player
     - easily beatable
     - playerlevel x (0.5...0.9) x stat
-  - 0 - 50% chance dodge
+  - dodge
+    - 0 - 50% chance
 
 - treasure chest
   - loot 75%
@@ -231,49 +239,35 @@ A dungeon crawler game.
   - username
   - email
   - password
-  - [character id]
-  - default character id
 
 - character
+  - user id
   - name
   - level
   - class
-  - base stats
-    - strength
-    - stamina
-    - endurance
-    - agility
-  - gear
-    - weapons
-    - armor
-      - helmet
-      - chest
-      - pants
-      - boots
-      - gloves
-    - backpack
-      - equipment
-      - potions
-      - bandages
-      - crafting materials
-
-- encounter
-  - adjectives
-    - giant (higher strength)
-    - tiny (less strength)
-    - smelly (poison cloud)
-    - toxic (returns damage on hit)
-    - blind (less dodge)
-    - cautious (higher dodge)
-    - wild (higher attack)
-    - scared (less attack)
-    - hardened (higher defense)
-    - squishy (less defense)
-  - stats
-    - strength
-    - stamina
-    - endurance
-    - agility
-  - elite
-    - true
-    - false
+  - weapon
+    - type
+    - name
+    - value
+  - armor
+    - type
+    - name
+    - value
+  - addon
+    - name
+    - value
+  - materials
+    - type
+    - amount
+  - tools
+    - type
+    - name
+    - value
+  - potion
+    - name
+    - amount
+    - value
+  - bandage
+    - name
+    - amount
+    - value
