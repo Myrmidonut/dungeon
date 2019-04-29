@@ -36,6 +36,8 @@ console.log(gameFunctions.generateMonster(
   gameValues.monsterRating
 ))
 
+console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+
 const port = process.env.PORT || 4000;
 const app = express()
 const auth = jwt({

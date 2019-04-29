@@ -14,7 +14,7 @@ function dodge(max) {
   return Math.floor(Math.random() * (max * 10 + 1))
 }
 
-function classStat(player) {
+function getClassStat(player) {
   if (player.class === "barbarian") return "strength"
   else if (player.class === "thief") return "agility"
   else return "stamina"
@@ -22,9 +22,9 @@ function classStat(player) {
 
 function levelUp(player, probability) {
   for (let stat in player.stats) {
-    if (stat === classStat(player) && Math.random() >= probability.classStat) {
+    if (stat === getClassStat(player) && Math.random() >= probability.classStat) {
       player.stats[stat] += 1
-    } else if (stat !== classStat(player) && Math.random() >= probability.stat) {
+    } else if (stat !== getClassStat(player) && Math.random() >= probability.stat) {
       player.stats[stat] += 1
     }
   }
@@ -41,8 +41,6 @@ function playerStatAverage(player) {
 }
 
 function generateMonster(names, type, adjectives, playerStatAverage, monsterRating) {
-  //console.log("playerStatAverage: ", playerStatAverage)
-
   function stat() {
     let rating
 

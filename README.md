@@ -280,37 +280,58 @@ A dungeon crawler game.
 
 ---
 
-1 map
-  10 rooms
-    monster 50%
-      normal 90% / elite 10%
-      stats
-        player power rating x 0.5...0.9 x stat
-        player power rating x 0.9 x stat
-          strength
-          stamina
-          endurance
-          agility
-        dodge 0% - 50%
-      adjectives
-      loot
-        materials 33%
-          cloth 25%
-          metal 25%
-          bones 25%
-          organs 25%
-        gold 34%
-        gear 33%
-    treasure chest 20%
-      loot 75%
-      monster 25%
-        normal 90% / elite 10%
-        stats
-        loot
-          materials 33%
-          gold 34%
-          gear 33%
-    trap 20%
-    empty 10%
+- 1 map
+  - 10 rooms
+    - monster 50%
+      - normal 90% / elite 10%
+      - stats
+        - player power rating x 0.5...0.9 x stat
+        - player power rating x 0.9 x stat
+          - strength
+          - stamina
+          - endurance
+          - agility
+        - dodge 0% - 50%
+      - adjectives
+      - loot
+        - materials 33%
+          - cloth 25%
+          - metal 25%
+          - bones 25%
+          - organs 25%
+        - gold 34%
+        - gear 33%
+    - treasure chest 20%
+      - loot 75%
+      - monster 25%
+        - normal 90% / elite 10%
+        - stats
+        - loot
+          - materials 33%
+          - gold 34%
+          - gear 33%
+    - trap 20%
+    - empty 10%
 
 ---
+
+- frontend:
+
+- backend:
+  - create room
+    - treasure chest
+      - monster
+      - loot
+    - monster --- DONE
+    - empty
+
+  - get loot
+  
+  - create character
+    - class
+
+  - account
+    - register
+    - login
+
+  - fight
