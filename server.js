@@ -28,11 +28,10 @@ gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
 
 console.log("level up: ", player)
 
-//console.log(gameFunctions.playerStatAverage(player))
-
 console.log(gameFunctions.generateMonster(
   gameValues.monsterNames,
   gameFunctions.randomProbability(gameValues.probabilityTables.monster),
+  gameValues.adjectives,
   gameFunctions.playerStatAverage(player),
   gameValues.monsterRating
 ))

@@ -40,8 +40,8 @@ function playerStatAverage(player) {
   return average / 4
 }
 
-function generateMonster(names, type, playerStatAverage, monsterRating) {
-  console.log("playerStatAverage: ", playerStatAverage)
+function generateMonster(names, type, adjectives, playerStatAverage, monsterRating) {
+  //console.log("playerStatAverage: ", playerStatAverage)
 
   function stat() {
     let rating
@@ -52,23 +52,34 @@ function generateMonster(names, type, playerStatAverage, monsterRating) {
     let max = rating * playerStatAverage
     let min = (rating - 0.25) * playerStatAverage
 
-    return Math.floor(Math.random() * (max - min + 1)) + min
+    return Math.floor(Math.random() * (max - min + 1) + min)
   }
 
   function name() {
     return names[Math.floor(Math.random() * names.length)]
   }
 
-  function adjectives() {
+  function randomAdjectives() {
+    let adjectivesCopy = adjectives.slice()
     let amount = Math.floor(Math.random() * 4)
+    let result = []
 
-    
+    for (let i = 0; i < amount; i++) {
+      const random = Math.floor(Math.random() * adjectivesCopy.length)
+      const value = adjectivesCopy[random]
+
+      adjectivesCopy.splice(random, 1)
+
+      result.push(value.name)
+    }
+
+    return result
   }
 
   return {
     name: name(),
     type: type,
-    adjectives: [],  // 0-3 andjectives
+    adjectives: randomAdjectives(),
     stats: {
       strength: stat(),
       stamina: stat(),
