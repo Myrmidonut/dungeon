@@ -109,6 +109,10 @@ A dungeon crawler game.
   - agility
     - dodge chance
     - disable trap, monster chest
+  - perception
+    - more loot
+    - find traps
+    - find monster chest
   - power rating
     - strength + stamina + endurance + agility
     - balancing factors
@@ -299,6 +303,10 @@ A dungeon crawler game.
   - bandage
     - name
     - amount
+    - value
+  - recipe
+    - name
+    - type
     - value
 
 ---

@@ -91,11 +91,11 @@ function createLoot(player, lootProbability, materialProbability) {
   let loot = lootProbability
 
   if (loot === "gear") {
-    loot += ` quality ${player.toy}`
+    loot += ` quality ${perception(player)}`
   } else if (loot === "material") {
     loot = createMaterial(player, materialProbability)
   } else if (loot === "gold") {
-    loot = `${player.toy} gold`
+    loot = `${perception(player)} gold`
   }
 
   return loot
@@ -103,19 +103,51 @@ function createLoot(player, lootProbability, materialProbability) {
 
 function createMaterial(player, material) {
   if (material === "empty") return "empty"
-  else return `${player.tools[material]} ${material}`
+  else return `${player.tools[material] * perception(player)} ${material}`
+}
+
+function perception(player) {
+  return player.stats.perception + player.toy
+}
+
+function craftRecipe(player, type, recipes) {
+  if (player.recipes.indexOf(type) !== -1) {
+    let hasMaterial = true
+
+    for (let material in recipes[type].materials) {
+      if (player.materials[material] < material) {
+        hasMaterial = false
+      }
+    }
+
+    if (hasMaterial) {
+      for (let material in recipes[type].materials) {
+        player.materials[material] -= recipes[type].value
+      }
+
+      player[recipes[type]["type"]][type].amount += 1
+
+      return "crafted"
+    }
+
+    return "failed"
+  }
+}
+
+function learnRecipe(player, recipe) {
+  if (player.recipes.indexOf(recipe) === -1) {
+    player.recipes.push(recipe)
+  }
+}
+
+function fight() {
+
 }
 
 /*
-loot
-  random loot
-  gear quality increased with perception
-
-materials
-  random material * tool
-
-perception
-  toy
+crafting
+  check for appropriate tool
+  increase with perception
 
 fight
   strength vs stamina
@@ -147,10 +179,11 @@ fight
 
   health
     health = health + armor - damage
-
 */
 
-module.exports = { 
+module.exports = {
+  craftRecipe,
+  learnRecipe,
   createLoot,
   createMaterial,
   createMonster,

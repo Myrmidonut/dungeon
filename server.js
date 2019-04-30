@@ -18,7 +18,8 @@ const player = {
     strength: 5,
     stamina: 8,
     endurance: 9,
-    agility: 15
+    agility: 15,
+    perception: 3
   },
   weapons: {
     left: 6,
@@ -37,14 +38,40 @@ const player = {
     bones: 5,
     organs: 7,
     metal: 1
-  }
+  },
+  materials: {
+    cloth: 2,
+    bones: 5,
+    organs: 7,
+    metal: 1
+  },
+  potions: {
+    "basic potion": {
+      value: 1,
+      amount: 1
+    }
+  },
+  bandages: {
+    name: "basic bandage",
+    value: 1,
+    amount: 3
+  },
+  recipes: [
+    "basic potion",
+    "improved potion",
+    "basic bandage"
+  ]
 }
 
+console.log("=============================")
+
 console.log("player: ", player)
+console.log("=============================")
 
 gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
 
 console.log("level up: ", player)
+console.log("=============================")
 
 console.log("monster: ", gameFunctions.createMonster(
   gameValues.monsterNames,
@@ -53,19 +80,43 @@ console.log("monster: ", gameFunctions.createMonster(
   gameFunctions.playerStatAverage(player),
   gameValues.monsterRating
 ))
+console.log("=============================")
 
 console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+console.log("=============================")
 
 console.log("materials loot: ", gameFunctions.createMaterial(
   player,
   gameFunctions.randomProbability(gameValues.probabilityTables.material)
 ))
+console.log("=============================")
 
 console.log("monster loot: ", gameFunctions.createLoot(
   player,
   gameFunctions.randomProbability(gameValues.probabilityTables.loot),
   gameFunctions.randomProbability(gameValues.probabilityTables.material)
 ))
+console.log("=============================")
+
+console.log(player.materials)
+console.log(player.potions)
+
+console.log(gameFunctions.craftRecipe(
+  player,
+  "basic potion",
+  gameValues.recipes
+))
+
+console.log(player.materials)
+console.log(player.potions)
+
+console.log(gameFunctions.craftRecipe(
+  player,
+  "basic potion",
+  gameValues.recipes
+))
+
+console.log("=============================")
 
 const port = process.env.PORT || 4000;
 const app = express()
