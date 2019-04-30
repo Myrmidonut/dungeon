@@ -318,12 +318,12 @@ A dungeon crawler game.
 - frontend:
 
 - backend:
-  - create room
+  - create room --- DONE
     - treasure chest
       - monster
       - loot
     - monster --- DONE
-    - empty
+    - empty --- DONE
 
   - get loot
   
@@ -331,7 +331,7 @@ A dungeon crawler game.
     - class
 
   - account
-    - register
-    - login
+    - register --- DONE
+    - login --- DONE
 
   - fight

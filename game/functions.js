@@ -40,49 +40,49 @@ function playerStatAverage(player) {
   return average / 4
 }
 
+function monsterName(names) {
+  return names[Math.floor(Math.random() * names.length)]
+}
+
+function monsterRandomAdjectives(adjectives) {
+  let adjectivesCopy = adjectives.slice()
+  let amount = Math.floor(Math.random() * 4)
+  let result = []
+
+  for (let i = 0; i < amount; i++) {
+    const random = Math.floor(Math.random() * adjectivesCopy.length)
+    const value = adjectivesCopy[random]
+
+    adjectivesCopy.splice(random, 1)
+
+    result.push(value.name)
+  }
+
+  return result
+}
+
+function monsterStat(type, playerStatAverage, monsterRating) {
+  let rating
+
+  if (type === "normal") rating = monsterRating.normal
+  else rating = monsterRating.elite
+
+  let max = rating * playerStatAverage
+  let min = (rating - 0.25) * playerStatAverage
+
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 function generateMonster(names, type, adjectives, playerStatAverage, monsterRating) {
-  function stat() {
-    let rating
-
-    if (type === "normal") rating = monsterRating.normal
-    else rating = monsterRating.elite
-
-    let max = rating * playerStatAverage
-    let min = (rating - 0.25) * playerStatAverage
-
-    return Math.floor(Math.random() * (max - min + 1) + min)
-  }
-
-  function name() {
-    return names[Math.floor(Math.random() * names.length)]
-  }
-
-  function randomAdjectives() {
-    let adjectivesCopy = adjectives.slice()
-    let amount = Math.floor(Math.random() * 4)
-    let result = []
-
-    for (let i = 0; i < amount; i++) {
-      const random = Math.floor(Math.random() * adjectivesCopy.length)
-      const value = adjectivesCopy[random]
-
-      adjectivesCopy.splice(random, 1)
-
-      result.push(value.name)
-    }
-
-    return result
-  }
-
   return {
-    name: name(),
+    name: monsterName(names),
     type: type,
-    adjectives: randomAdjectives(),
+    adjectives: monsterRandomAdjectives(adjectives),
     stats: {
-      strength: stat(),
-      stamina: stat(),
-      endurance: stat(),
-      agility: stat()
+      strength: monsterStat(type, playerStatAverage, monsterRating),
+      stamina: monsterStat(type, playerStatAverage, monsterRating),
+      endurance: monsterStat(type, playerStatAverage, monsterRating),
+      agility: monsterStat(type, playerStatAverage, monsterRating)
     }
   }
 }
