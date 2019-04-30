@@ -19,6 +19,24 @@ const player = {
     stamina: 8,
     endurance: 9,
     agility: 15
+  },
+  weapons: {
+    left: 6,
+    right: 4
+  },
+  armor: {
+    helmet: 2,
+    chest: 5,
+    pants: 2,
+    boots: 1,
+    gloves: 3
+  },
+  toy: 3,
+  tools: {
+    cloth: 2,
+    bones: 5,
+    organs: 7,
+    metal: 1
   }
 }
 
@@ -28,7 +46,7 @@ gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
 
 console.log("level up: ", player)
 
-console.log(gameFunctions.generateMonster(
+console.log("monster: ", gameFunctions.generateMonster(
   gameValues.monsterNames,
   gameFunctions.randomProbability(gameValues.probabilityTables.monster),
   gameValues.adjectives,

@@ -13,15 +13,39 @@ A dungeon crawler game.
   - 8 damage - 5 armor = 3 damage
   - 20 health - 3 damage = 17 health
 
+- player
+  - class
+    - class stat
+  - weapons
+    - left
+    - right
+  - armor
+    - helmet
+    - chest
+    - pants
+    - boots
+    - gloves
+  - tools
+    - cloth
+    - bones
+    - organs
+    - metal
+  - addons
+  - stats
+    - strength
+    - stamina
+    - endurance
+    - agility
+
 - class
   - barbarian
-    - 25% bonus attack with 2-handed weapon
+    - 25% bonus hit chance with 2-handed weapon
     - strength
   - thief
-    - 25% bonus attack with two one-handed weapons
+    - 25% bonus hit chance with two one-handed weapons
     - agility
   - paladin
-    - 25% bonus attack with one-handed weapon and shield
+    - 25% bonus hit chance with one-handed weapon and shield
     - stamina
 
 - level
@@ -30,7 +54,7 @@ A dungeon crawler game.
   - 50% chance to increase stat
 
 - perception
-  - increase with equipment
+  - increase with toy
   - lower with wounds
   - bonus loot
   - find trap, monster chest
@@ -43,10 +67,9 @@ A dungeon crawler game.
   - player attacks first
   - attack
     - strength vs stamina
-    - 50% (75% class weapon) to deal damage
+    - 50% (75% class weapon) to hit
     - dodge (0 - 50%)
   - damage
-    - bonus with class weapon
     - random crit chance
       - double damage
     - weapon vs armor
@@ -91,7 +114,7 @@ A dungeon crawler game.
     - balancing factors
 
 - backpack
-  - addon
+  - topy
     - bonus to perception
   - endless storage
   - health potion
@@ -259,7 +282,7 @@ A dungeon crawler game.
     - type
     - name
     - value
-  - addon
+  - toy
     - name
     - value
   - materials

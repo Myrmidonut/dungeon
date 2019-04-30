@@ -83,19 +83,21 @@ const probabilityTables = {
     elite: 0.1
   },
   material: {
-    cloth: 0.25,
-    metal: 0.25,
-    bones: 0.25,
-    organs: 0.25
+    cloth: 0.225,
+    metal: 0.225,
+    bones: 0.225,
+    organs: 0.225,
+    empty: 0.1
   },
   treasureChest: {
     monster: 0.25,
     treasure: 0.75
   },
   loot: {
-    gear: 0.25,
-    gold: 0.25,
-    material: 0.5
+    gear: 0.2,
+    gold: 0.2,
+    material: 0.5,
+    empty: 0.1
   }
 }
 

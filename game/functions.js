@@ -87,4 +87,48 @@ function generateMonster(names, type, adjectives, playerStatAverage, monsterRati
   }
 }
 
+/*
+loot
+  random loot
+  gear quality increased with perception
+
+materials
+  random material * tool
+
+perception
+  toy
+
+fight
+  strength vs stamina
+
+  weapon hit
+    if class weapon
+      75%
+    50%
+
+  dodge
+    0% - 50%
+
+  weapon damage
+    left
+      if crit
+        damage x 2
+      damage
+
+    if right
+      if crit
+        damage x 2
+      damage
+
+    damage = left + right
+
+  weapon effect
+    if hit
+      chance to apply effect
+
+  health
+    health = health + armor - damage
+
+*/
+
 module.exports = { generateMonster, playerStatAverage, randomProbability, dodge, levelUp }
