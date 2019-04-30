@@ -61,6 +61,12 @@ console.log("materials loot: ", gameFunctions.createMaterial(
   gameFunctions.randomProbability(gameValues.probabilityTables.material)
 ))
 
+console.log("monster loot: ", gameFunctions.createLoot(
+  player,
+  gameFunctions.randomProbability(gameValues.probabilityTables.loot),
+  gameFunctions.randomProbability(gameValues.probabilityTables.material)
+))
+
 const port = process.env.PORT || 4000;
 const app = express()
 const auth = jwt({

@@ -87,14 +87,23 @@ function createMonster(names, type, adjectives, playerStatAverage, monsterRating
   }
 }
 
-function createLoot(player, probability) {
-  const loot = randomProbability(probability)
+function createLoot(player, lootProbability, materialProbability) {
+  let loot = lootProbability
 
-  
+  if (loot === "gear") {
+    loot += ` quality ${player.toy}`
+  } else if (loot === "material") {
+    loot = createMaterial(player, materialProbability)
+  } else if (loot === "gold") {
+    loot = `${player.toy} gold`
+  }
+
+  return loot
 }
 
 function createMaterial(player, material) {
-  return `${player.tools[material]} ${material}`
+  if (material === "empty") return "empty"
+  else return `${player.tools[material]} ${material}`
 }
 
 /*
@@ -141,4 +150,12 @@ fight
 
 */
 
-module.exports = { createMaterial, createMonster, playerStatAverage, randomProbability, dodge, levelUp }
+module.exports = { 
+  createLoot,
+  createMaterial,
+  createMonster,
+  playerStatAverage,
+  randomProbability,
+  dodge,
+  levelUp
+}

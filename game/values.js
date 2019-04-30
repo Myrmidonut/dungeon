@@ -106,4 +106,9 @@ const monsterRating = {
   elite: 0.9
 }
 
-module.exports = { monsterRating, monsterNames, adjectives, probabilityTables }
+module.exports = {
+  monsterRating,
+  monsterNames,
+  adjectives,
+  probabilityTables
+}
