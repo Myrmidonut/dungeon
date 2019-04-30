@@ -73,7 +73,7 @@ function monsterStat(type, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function generateMonster(names, type, adjectives, playerStatAverage, monsterRating) {
+function createMonster(names, type, adjectives, playerStatAverage, monsterRating) {
   return {
     name: monsterName(names),
     type: type,
@@ -85,6 +85,16 @@ function generateMonster(names, type, adjectives, playerStatAverage, monsterRati
       agility: monsterStat(type, playerStatAverage, monsterRating)
     }
   }
+}
+
+function createLoot(player, probability) {
+  const loot = randomProbability(probability)
+
+  
+}
+
+function createMaterial(player, material) {
+  return `${player.tools[material]} ${material}`
 }
 
 /*
@@ -131,4 +141,4 @@ fight
 
 */
 
-module.exports = { generateMonster, playerStatAverage, randomProbability, dodge, levelUp }
+module.exports = { createMaterial, createMonster, playerStatAverage, randomProbability, dodge, levelUp }

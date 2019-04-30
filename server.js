@@ -46,7 +46,7 @@ gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
 
 console.log("level up: ", player)
 
-console.log("monster: ", gameFunctions.generateMonster(
+console.log("monster: ", gameFunctions.createMonster(
   gameValues.monsterNames,
   gameFunctions.randomProbability(gameValues.probabilityTables.monster),
   gameValues.adjectives,
@@ -55,6 +55,11 @@ console.log("monster: ", gameFunctions.generateMonster(
 ))
 
 console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+
+console.log("materials loot: ", gameFunctions.createMaterial(
+  player,
+  gameFunctions.randomProbability(gameValues.probabilityTables.material)
+))
 
 const port = process.env.PORT || 4000;
 const app = express()
