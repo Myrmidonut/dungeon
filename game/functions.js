@@ -115,7 +115,7 @@ function craftRecipe(player, type, recipes) {
     let hasMaterial = true
 
     for (let material in recipes[type].materials) {
-      if (player.materials[material] < material) {
+      if (player.materials[material] < recipes[type].value) {
         hasMaterial = false
       }
     }
@@ -128,10 +128,8 @@ function craftRecipe(player, type, recipes) {
       player[recipes[type]["type"]][type].amount += 1
 
       return "crafted"
-    }
-
-    return "failed"
-  }
+    } else return "not enough materials"
+  } else return "unknown recipe"
 }
 
 function learnRecipe(player, recipe) {
