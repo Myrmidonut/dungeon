@@ -133,7 +133,19 @@ const recipes = {
   }
 }
 
+const tools = {
+  "basic hammer": {
+    type: "metal",
+    value: 1
+  },
+  "basic knife": {
+    type: "cloth",
+    value: 1
+  }
+}
+
 module.exports = {
+  tools,
   recipes,
   monsterRating,
   monsterNames,

@@ -234,6 +234,8 @@ A dungeon crawler game.
   - reduced fighting skills?
 - wounds from traps / monsters?
   - heal with material?
+- crafting
+  - tools?
   
 ---
 

@@ -34,10 +34,22 @@ const player = {
   },
   toy: 3,
   tools: {
-    cloth: 2,
-    bones: 5,
-    organs: 7,
-    metal: 1
+    cloth: {
+      name: "basic scissors",
+      value: 2
+    },
+    bones: {
+      name: "basic knife",
+      value: 5
+    },
+    organs: {
+      name: "basic spoon",
+      value: 7
+    },
+    metal: {
+      name: "basic hammer",
+      value: 1
+    }
   },
   materials: {
     cloth: 2,

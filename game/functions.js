@@ -103,7 +103,7 @@ function createLoot(player, lootProbability, materialProbability) {
 
 function createMaterial(player, material) {
   if (material === "empty") return "empty"
-  else return `${player.tools[material] * perception(player)} ${material}`
+  else return `${player.tools[material].value * perception(player)} ${material}`
 }
 
 function perception(player) {
@@ -125,7 +125,7 @@ function craftRecipe(player, type, recipes) {
         player.materials[material] -= recipes[type].value
       }
 
-      player[recipes[type]["type"]][type].amount += 1
+      player[recipes[type]["type"]][type].amount += (1 + perception(player))
 
       return "crafted"
     } else return "not enough materials"
@@ -143,10 +143,6 @@ function fight() {
 }
 
 /*
-crafting
-  check for appropriate tool
-  increase with perception
-
 fight
   strength vs stamina
 
