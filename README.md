@@ -252,8 +252,9 @@ A dungeon crawler game.
   - heroku
   - elephantsql/heroku
 
-- stuff
-  - testing
+- testing
+  - mocha
+  - chai
 
 ---
 
