@@ -1,6 +1,8 @@
 const expect = require("chai").expect
 
-describe('test that chai work', () => {
+const player = require("../game/dummyPlayer")
+
+/*describe('test that chai work', () => {
   const foo = 'bar';
 
   it('multiples two numbers', () => {
@@ -14,4 +16,10 @@ describe('test that chai work', () => {
   it('finds length of a value', () => {
      expect(foo).to.have.lengthOf(3);
   })
+})*/
+
+describe("player", () => {
+   it("should be an object", () => {
+      expect(player).to.be.a("object");
+   })
 })
