@@ -103,7 +103,7 @@ function createLoot(player, lootProbability, materialProbability) {
 
 function createMaterial(player, material) {
   if (material === "empty") return "empty"
-  else return `${player.tools[material].value * perception(player)} ${material}`
+  else return `${player.tools[material].value * Math.ceil(perception(player) / 10)} ${material}`
 }
 
 function perception(player) {
@@ -125,7 +125,7 @@ function craftRecipe(player, type, recipes) {
         player.materials[material] -= recipes[type].value
       }
 
-      player[recipes[type]["type"]][type].amount += (1 + perception(player))
+      player[recipes[type]["type"]][type].amount += (1 + Math.ceil(perception(player) / 10))
 
       return "crafted"
     } else return "not enough materials"
