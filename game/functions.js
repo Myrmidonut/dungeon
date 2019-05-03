@@ -10,8 +10,14 @@ function randomProbability(probabilityTable) {
   }
 }
 
-function dodge(max) {
+// Math.floor(Math.random() * (max - min + 1)) + min;
+
+function monsterDodge(max) {
   return Math.floor(Math.random() * (max * 10 + 1))
+}
+
+function playerDodge(player, max) {
+  return Math.floor(Math.random() * max * 100) / 100
 }
 
 function getClassStat(player) {
@@ -192,7 +198,7 @@ function fight(player, monster, hitChanceTable) {
     },
     health: player.stats.endurance,
     armor: armor(player),
-    dodge: 1
+    dodge: playerDodge(player, 0.5)
   }
 
   console.log(currentPlayer)
@@ -244,6 +250,5 @@ module.exports = {
   createMonster,
   playerStatAverage,
   randomProbability,
-  dodge,
   levelUp
 }
