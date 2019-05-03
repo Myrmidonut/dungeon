@@ -16,8 +16,8 @@ function monsterDodge(max) {
   return Math.floor(Math.random() * (max * 10 + 1))
 }
 
-function playerDodge(player, max) {
-  return Math.floor(Math.random() * max * 100) / 100
+function playerDodge(player) {
+  return Math.round(Math.random() * Math.log2(player.stats.agility) / 10 * 100) / 100
 }
 
 function getClassStat(player) {
