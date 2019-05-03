@@ -5,65 +5,83 @@ const monsterNames = [
 ]
 
 const adjectives = [
+  // strength:
   {
     name: "giant",
     description: "higher strength",
     type: "strength",
-    value: 0.2
+    value: 1.2
   },
   {
     name: "tiny",
     description: "less strength",
     type: "strength",
-    value: -0.2
+    value: 0.8
+  },
+  // stamina:
+  {
+    name: "hardened",
+    description: "higher defense",
+    type: "stamina",
+    value: 1.2
   },
   {
-    name: "smelly",
-    description: "poison cloud",
-    type: "damage",
-    value: 0
+    name: "squishy",
+    description: "less defense",
+    type: "stamina",
+    value: 0.8
   },
+  // dodge:
   {
-    name: "toxic",
-    description: "return damage on hit",
-    type: "damage",
-    value: 0
+    name: "cautious",
+    description: "higher dodge",
+    type: "dodge",
+    value: 1.2
   },
   {
     name: "blind",
     description: "less dodge",
     type: "dodge",
-    value: -0.2
+    value: 0.8
+  },
+  // hit:
+  {
+    name: "fast",
+    description: "higher hit chance",
+    type: "hit",
+    value: 1.2
   },
   {
-    name: "cautious",
-    description: "higher dodge",
-    type: "dodge",
-    value: 0.2
+    name: "slow",
+    description: "less hit chance",
+    type: "hit",
+    value: 0.8
   },
+  // crit:
   {
     name: "wild",
-    description: "higher attack",
-    type: "attack",
-    value: 0.2
+    description: "higher crit chance",
+    type: "crit",
+    value: 1.2
   },
   {
-    name: "cautious",
-    description: "less dodge",
-    type: "attack",
-    value: -0.2
+    name: "weak",
+    description: "less crit chance",
+    type: "crit",
+    value: 0.8
+  },
+  // special:
+  {
+    name: "smelly",
+    description: "poison cloud",
+    type: "damage effects",
+    value: 0
   },
   {
-    name: "hardened",
-    description: "higher defense",
-    type: "defense",
-    value: 0.2
-  },
-  {
-    name: "squishy",
-    description: "less defense",
-    type: "defense",
-    value: -0.2
+    name: "toxic",
+    description: "return damage on hit",
+    type: "damage effects",
+    value: 0
   }
 ]
 
@@ -106,6 +124,11 @@ const monsterRating = {
   elite: 0.9
 }
 
+const hitChance = {
+  class: 0.75,
+  nonClass: 0.5
+}
+
 const recipes = {
   "basic potion": {
     type: "potions",
@@ -145,6 +168,7 @@ const tools = {
 }
 
 module.exports = {
+  hitChance,
   tools,
   recipes,
   monsterRating,

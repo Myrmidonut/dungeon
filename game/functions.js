@@ -138,8 +138,64 @@ function learnRecipe(player, recipe) {
   }
 }
 
-function fight() {
+function hitChance(player, hand, hitChance) {
+  if (player.class === player.weapons[hand].class) {
+    return hitChance.class
+  } else {
+    return hitChance.nonClass
+  }
+}
 
+function critChance(player, hand) {
+  if (player.class === player.weapons[hand].class) {
+    return player.weapons[hand].critChance
+  } else {
+    return undefined
+  }
+}
+
+function armor(player) {
+  const armor = Object.values(player.armor).reduce((total, e) => total + e)
+  
+  return armor
+}
+
+function fight(player, monster, hitChanceTable) {
+  const first = "player"
+  let attacker = first
+
+  // player attacks first
+  // go throuch attack round
+  // monster attacks
+  // go through attack round
+  // repeat until dead
+
+  // player:
+  // stats
+  // weapons
+
+  // monster:
+  // stats
+  // weapons
+  // adjectives
+
+  let currentPlayer = {
+    strength: player.stats.strength,
+    stamina: player.stats.stamina,
+    hitChance: {
+      left: hitChance(player, "left", hitChanceTable),
+      right: hitChance(player, "right", hitChanceTable)
+    },
+    critChance: {
+      left: critChance(player, "left"),
+      right: critChance(player, "right")
+    },
+    health: player.stats.endurance,
+    armor: armor(player),
+    dodge: 1
+  }
+
+  console.log(currentPlayer)
 }
 
 /*
@@ -148,7 +204,7 @@ fight
 
   weapon hit
     if class weapon
-      75%
+      75% + weapon bonus
     50%
 
   dodge
@@ -156,13 +212,17 @@ fight
 
   weapon damage
     left
-      if crit
-        damage x 2
+      if class weapon
+        if crit
+          damage x 2
+        damage
       damage
 
     if right
-      if crit
-        damage x 2
+      if class weapon
+        if crit
+          damage x 2
+        damage
       damage
 
     damage = left + right
@@ -176,6 +236,7 @@ fight
 */
 
 module.exports = {
+  fight,
   craftRecipe,
   learnRecipe,
   createLoot,

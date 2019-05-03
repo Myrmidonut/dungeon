@@ -8,8 +8,22 @@ const player = {
     perception: 3
   },
   weapons: {
-    left: 6,
-    right: 4
+    left: {
+      class: "thief",
+      damage: {
+        minimum: 3,
+        maximum: 6
+      },
+      critChance: 0.2
+    },
+    right: {
+      class: "paladin",
+      damage: {
+        minimum: 1,
+        maximum: 4
+      },
+      critChance: 0.3
+    },
   },
   armor: {
     helmet: 2,

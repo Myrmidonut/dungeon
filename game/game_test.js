@@ -57,6 +57,8 @@ function game_test() {
   ))
 
   console.log("=============================")
+
+  gameFunctions.fight(player, "monster", gameValues.hitChance)
 }
 
 module.exports = game_test
