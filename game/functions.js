@@ -160,6 +160,17 @@ function critChance(player, hand) {
   }
 }
 
+function damage(player, hand) {
+  const min = player.weapons[hand].damage.minimum
+  const max = player.weapons[hand].damage.maximum
+
+  if (!critChance(player, hand) || Math.random() > critChance(player, hand)) {
+    return `no crit: ${Math.floor(Math.random() * (max - min + 1)) + min}`
+  } else {
+    return `crit: ${2 * Math.floor(Math.random() * (max - min + 1)) + min}`
+  }
+}
+
 function armor(player) {
   const armor = Object.values(player.armor).reduce((total, e) => total + e)
   
@@ -198,7 +209,11 @@ function fight(player, monster, hitChanceTable) {
     },
     health: player.stats.endurance,
     armor: armor(player),
-    dodge: playerDodge(player, 0.5)
+    dodge: playerDodge(player, 0.5),
+    damage: {
+      left: damage(player, "left", critChance(player, "left")),
+      right: damage(player, "right", critChance(player, "right")),
+    }
   }
 
   console.log(currentPlayer)
