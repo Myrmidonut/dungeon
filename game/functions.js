@@ -12,13 +12,21 @@ function randomProbability(probabilityTable) {
 
 // Math.floor(Math.random() * (max - min + 1)) + min;
 
-function monsterDodge(max) {
-  return Math.round(Math.random() * max * 100) / 100
+function monsterDodge() {
+  return 0.2
 }
 
 function playerDodge(player) {
-  return Math.round(Math.random() * Math.log2(player.stats.agility) / 10 * 100) / 100
+  return Math.log2(player.stats.agility) / 10
 }
+
+function dodgeRoll(value) {
+  const dodge = Math.round(Math.random() * 100) / 100
+
+  if (dodge > value) return false
+  else return true
+}
+
 
 function getClassStat(player) {
   if (player.class === "barbarian") return "strength"
@@ -140,7 +148,7 @@ function createMonster(names, type, adjectives, playerStatAverage, monsterRating
       agility: monsterStat(type, playerStatAverage, monsterRating)
     },
     weapons: monsterWeapons(player),
-    dodge: 0.2,
+    dodge: monsterDodge(),
     armor: Math.round(armor(player) * monsterRating[type]),
     hitChance: monsterRating[type]
   }
@@ -266,20 +274,21 @@ function fight(player, monster, hitChanceTable) {
       left: critChance(player, "left"),
       right: critChance(player, "right")
     },
-    health: player.stats.endurance,
+    health: player.stats.endurance * 10,
     armor: armor(player),
-    dodge: playerDodge(player, 0.5),
+    dodge: dodgeRoll(playerDodge(player)),
     damage: {
       left: damage(player, "left", critChance(player, "left")),
       right: damage(player, "right", critChance(player, "right")),
     },
-    damageAverage: playerDamageAverage(player)
+    //damageAverage: playerDamageAverage(player)
   }
 
   let currentMonster = {
     strength: monster.stats.strength,
     stamina: monster.stats.stamina,
-    dodge: monster.dodge
+    dodge: dodgeRoll(monsterDodge()),
+    armor: monster.armor
   }
 
   console.log(currentPlayer)
