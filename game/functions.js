@@ -245,12 +245,6 @@ function armor(player) {
 }
 
 function fight(player, monster, playerClassHitChance) {
-  // player attacks first
-  // go throuch attack round
-  // monster attacks
-  // go through attack round
-  // repeat until dead
-
   let currentPlayer = {
     name: "player",
     strength: player.stats.strength,
@@ -317,6 +311,32 @@ function fight(player, monster, playerClassHitChance) {
 
     attacker === currentPlayer ? attacker = currentMonster : attacker = currentPlayer
     defender === currentMonster ? defender = currentPlayer : defender = currentMonster
+  }
+
+  console.log("======================")
+  console.log("======================")
+  console.log("winner:", defender.name, "health:", defender.health)
+
+  return defender.name
+}
+
+function encounter(encounterTable) {
+  const type = randomProbability(encounterTable)
+
+  if (type === "monster") {
+    if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
+      // loot
+    } else {
+      console.log("you lost")
+    }
+  } else if (type === "treasureChest") {
+    // chest or monster?
+  } else if (type === "trap") {
+    // perception check if found
+    // disarm with agility
+    // loot?
+  } else {
+    console.log("empty")
   }
 }
 
