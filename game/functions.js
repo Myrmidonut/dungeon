@@ -13,7 +13,7 @@ function randomProbability(probabilityTable) {
 // Math.floor(Math.random() * (max - min + 1)) + min;
 
 function monsterDodge(max) {
-  return Math.floor(Math.random() * (max * 10 + 1))
+  return Math.round(Math.random() * max * 100) / 100
 }
 
 function playerDodge(player) {
@@ -139,7 +139,10 @@ function createMonster(names, type, adjectives, playerStatAverage, monsterRating
       endurance: monsterStat(type, playerStatAverage, monsterRating),
       agility: monsterStat(type, playerStatAverage, monsterRating)
     },
-    weapons: monsterWeapons(player)
+    weapons: monsterWeapons(player),
+    dodge: 0.2,
+    armor: Math.round(armor(player) * monsterRating[type]),
+    hitChance: monsterRating[type]
   }
 }
 
@@ -276,6 +279,7 @@ function fight(player, monster, hitChanceTable) {
   let currentMonster = {
     strength: monster.stats.strength,
     stamina: monster.stats.stamina,
+    dodge: monster.dodge
   }
 
   console.log(currentPlayer)
