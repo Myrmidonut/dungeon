@@ -124,7 +124,7 @@ const monsterRating = {
   elite: 0.9
 }
 
-const hitChance = {
+const playerClassHitChance = {
   class: 0.75,
   nonClass: 0.5
 }
@@ -168,7 +168,7 @@ const tools = {
 }
 
 module.exports = {
-  hitChance,
+  playerClassHitChance,
   tools,
   recipes,
   monsterRating,

@@ -20,10 +20,10 @@ function playerDodge(player) {
   return Math.log2(player.stats.agility) / 10
 }
 
-function dodgeRoll(value) {
-  const dodge = Math.round(Math.random() * 100) / 100
+function randomRoll(dodge) {
+  const random = Math.round(Math.random() * 100) / 100
 
-  if (dodge > value) return false
+  if (random > dodge) return false
   else return true
 }
 
@@ -244,7 +244,7 @@ function armor(player) {
   return armor
 }
 
-function fight(player, monster, hitChanceTable) {
+function fight(player, monster, playerClassHitChance) {
   const first = "player"
   let attacker = first
 
@@ -254,44 +254,48 @@ function fight(player, monster, hitChanceTable) {
   // go through attack round
   // repeat until dead
 
-  // player:
-  // stats
-  // weapons
-
-  // monster:
-  // stats
-  // weapons
-  // adjectives
-
   let currentPlayer = {
     strength: player.stats.strength,
     stamina: player.stats.stamina,
-    hitChance: {
-      left: hitChance(player, "left", hitChanceTable),
-      right: hitChance(player, "right", hitChanceTable)
+    hit: {
+      left: randomRoll(hitChance(player, "left", playerClassHitChance)),
+      right: randomRoll(hitChance(player, "right", playerClassHitChance))
     },
-    critChance: {
-      left: critChance(player, "left"),
-      right: critChance(player, "right")
+    crit: {
+      left: randomRoll(critChance(player, "left")),
+      right: randomRoll(critChance(player, "right"))
     },
     health: player.stats.endurance * 10,
     armor: armor(player),
-    dodge: dodgeRoll(playerDodge(player)),
+    dodge: randomRoll(playerDodge(player)),
     damage: {
       left: damage(player, "left", critChance(player, "left")),
       right: damage(player, "right", critChance(player, "right")),
-    },
-    //damageAverage: playerDamageAverage(player)
+    }
   }
 
   let currentMonster = {
     strength: monster.stats.strength,
     stamina: monster.stats.stamina,
-    dodge: dodgeRoll(monsterDodge()),
-    armor: monster.armor
+    hit: {
+      left: randomRoll(monster.hitChance),
+      right: randomRoll(monster.hitChance)
+    },
+    crit: {
+      left: randomRoll(monster.critChance),
+      right: randomRoll(monster.critChance)
+    },
+    health: monster.stats.endurance * 10,
+    armor: monster.armor,
+    dodge: randomRoll(monsterDodge()),
+    damage: {
+      left: damage(monster, "left", critChance(monster, "left")),
+      right: damage(monster, "right", critChance(monster, "right")),
+    }
   }
 
   console.log(currentPlayer)
+  console.log(currentMonster)
 }
 
 /*

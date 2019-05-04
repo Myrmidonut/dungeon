@@ -61,7 +61,7 @@ function game_test() {
 
   console.log("=============================")
 
-  gameFunctions.fight(player, monster, gameValues.hitChance)
+  gameFunctions.fight(player, monster, gameValues.playerClassHitChance)
 }
 
 module.exports = game_test
