@@ -245,9 +245,6 @@ function armor(player) {
 }
 
 function fight(player, monster, playerClassHitChance) {
-  const first = "player"
-  let attacker = first
-
   // player attacks first
   // go throuch attack round
   // monster attacks
@@ -255,47 +252,72 @@ function fight(player, monster, playerClassHitChance) {
   // repeat until dead
 
   let currentPlayer = {
+    name: "player",
     strength: player.stats.strength,
     stamina: player.stats.stamina,
-    hit: {
-      left: randomRoll(hitChance(player, "left", playerClassHitChance)),
-      right: randomRoll(hitChance(player, "right", playerClassHitChance))
-    },
-    crit: {
-      left: randomRoll(critChance(player, "left")),
-      right: randomRoll(critChance(player, "right"))
-    },
     health: player.stats.endurance * 10,
     armor: armor(player),
-    dodge: randomRoll(playerDodge(player)),
-    damage: {
-      left: damage(player, "left", critChance(player, "left")),
-      right: damage(player, "right", critChance(player, "right")),
+    dodge: playerDodge(player),
+    weapons: player.weapons,
+    hit: {
+      left: hitChance(player, "left", playerClassHitChance),
+      right: hitChance(player, "right", playerClassHitChance)
     }
   }
 
   let currentMonster = {
+    name: "monster",
     strength: monster.stats.strength,
     stamina: monster.stats.stamina,
-    hit: {
-      left: randomRoll(monster.hitChance),
-      right: randomRoll(monster.hitChance)
-    },
-    crit: {
-      left: randomRoll(monster.critChance),
-      right: randomRoll(monster.critChance)
-    },
     health: monster.stats.endurance * 10,
     armor: monster.armor,
-    dodge: randomRoll(monsterDodge()),
-    damage: {
-      left: damage(monster, "left", critChance(monster, "left")),
-      right: damage(monster, "right", critChance(monster, "right")),
-    }
+    dodge: monster.dodge,
+    hit: {
+      left: monster.hitChance,
+      right: monster.hitChance
+    },
+    weapons: monster.weapons
   }
 
   console.log(currentPlayer)
   console.log(currentMonster)
+
+  let attacker = currentPlayer
+  let defender = currentMonster
+
+  while (currentPlayer.health > 0 && currentMonster.health > 0) {
+    console.log("========================")
+    console.log("attacker:", attacker.name, "health:", attacker.health)
+    console.log("defender:", defender.name, "health:", defender.health)
+
+    let damageDealt = 0
+
+    if (randomRoll(attacker.hit.left)) {
+      if (!randomRoll(defender.dodge)) {
+        console.log("hit left")
+        damageDealt += damage(attacker, "left", critChance(attacker, "left")).value
+      } else console.log("dodge left")
+    } else console.log("miss left")
+
+    if (randomRoll(attacker.hit.right)) {
+      if (!randomRoll(defender.dodge)) {
+        console.log("hit right")
+        damageDealt += damage(attacker, "right", critChance(attacker, "right")).value
+      } else console.log("dodge right")
+    } else console.log("miss right")
+
+    console.log("health before damage:", defender.health)
+    console.log("total damage:", damageDealt)
+
+    if (damageDealt > defender.armor) {
+      defender.health -= (damageDealt - defender.armor)
+    }
+
+    console.log("health after damage:", defender.health)
+
+    attacker === currentPlayer ? attacker = currentMonster : attacker = currentPlayer
+    defender === currentMonster ? defender = currentPlayer : defender = currentMonster
+  }
 }
 
 /*

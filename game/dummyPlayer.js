@@ -11,23 +11,23 @@ const player = {
     left: {
       class: "thief",
       damage: {
-        minimum: 3,
-        maximum: 6
+        minimum: 10,
+        maximum: 15
       },
       critChance: 0.2
     },
     right: {
       class: "paladin",
       damage: {
-        minimum: 1,
-        maximum: 4
+        minimum: 5,
+        maximum: 14
       },
       critChance: 0.3
     },
   },
   armor: {
     helmet: 2,
-    chest: 5,
+    chest: 2,
     pants: 2,
     boots: 1,
     gloves: 3
