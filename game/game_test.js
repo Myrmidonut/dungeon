@@ -13,13 +13,16 @@ function game_test() {
   console.log("level up: ", player)
   console.log("=============================")
 
-  console.log("monster: ", gameFunctions.createMonster(
+  let monster = gameFunctions.createMonster(
     gameValues.monsterNames,
     gameFunctions.randomProbability(gameValues.probabilityTables.monster),
     gameValues.adjectives,
     gameFunctions.playerStatAverage(player),
-    gameValues.monsterRating
-  ))
+    gameValues.monsterRating,
+    player
+  )
+
+  console.log("monster: ", monster)
   console.log("=============================")
 
   console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
@@ -58,7 +61,7 @@ function game_test() {
 
   console.log("=============================")
 
-  gameFunctions.fight(player, "monster", gameValues.hitChance)
+  gameFunctions.fight(player, monster, gameValues.hitChance)
 }
 
 module.exports = game_test

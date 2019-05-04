@@ -46,6 +46,55 @@ function playerStatAverage(player) {
   return average / 4
 }
 
+function playerDamageAverage(player) {
+  return (
+    (player.weapons.left.damage.minimum 
+    + player.weapons.left.damage.maximum
+    + player.weapons.right.damage.minimum
+    + player.weapons.right.damage.maximum) / 4
+  )
+}
+
+function monsterWeapons(player) {
+  const amount = Math.floor(Math.random() * 2 + 1)
+
+  if (amount === 1) {
+    return {
+      left: {
+        damage: {
+          minimum: playerDamageAverage(player) * 0.666,
+          maximum: playerDamageAverage(player) * 1.333,
+        },
+        critChance: 0.2
+      },
+      right: {
+        damage: {
+          minimum: 0,
+          maximum: 0,
+        },
+        critChance: 0
+      }
+    }
+  } else {
+    return {
+      left: {
+        damage: {
+          minimum: playerDamageAverage(player) * 0.666 / 2,
+          maximum: playerDamageAverage(player) * 1.333 / 2,
+        },
+        critChance: 0.2
+      },
+      right: {
+        damage: {
+          minimum: playerDamageAverage(player) * 0.666 / 2,
+          maximum: playerDamageAverage(player) * 1.333 / 2,
+        },
+        critChance: 0.2
+      }
+    }
+  }
+}
+
 function monsterName(names) {
   return names[Math.floor(Math.random() * names.length)]
 }
@@ -79,7 +128,7 @@ function monsterStat(type, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function createMonster(names, type, adjectives, playerStatAverage, monsterRating) {
+function createMonster(names, type, adjectives, playerStatAverage, monsterRating, player) {
   return {
     name: monsterName(names),
     type: type,
@@ -89,7 +138,8 @@ function createMonster(names, type, adjectives, playerStatAverage, monsterRating
       stamina: monsterStat(type, playerStatAverage, monsterRating),
       endurance: monsterStat(type, playerStatAverage, monsterRating),
       agility: monsterStat(type, playerStatAverage, monsterRating)
-    }
+    },
+    weapons: monsterWeapons(player)
   }
 }
 
@@ -219,7 +269,13 @@ function fight(player, monster, hitChanceTable) {
     damage: {
       left: damage(player, "left", critChance(player, "left")),
       right: damage(player, "right", critChance(player, "right")),
-    }
+    },
+    damageAverage: playerDamageAverage(player)
+  }
+
+  let currentMonster = {
+    strength: monster.stats.strength,
+    stamina: monster.stats.stamina,
   }
 
   console.log(currentPlayer)
@@ -270,6 +326,7 @@ module.exports = {
   createMaterial,
   createMonster,
   playerStatAverage,
+  playerDamageAverage,
   randomProbability,
   levelUp
 }
