@@ -156,7 +156,7 @@ function critChance(player, hand) {
   if (player.class === player.weapons[hand].class) {
     return player.weapons[hand].critChance
   } else {
-    return undefined
+    return 0
   }
 }
 
@@ -164,10 +164,16 @@ function damage(player, hand) {
   const min = player.weapons[hand].damage.minimum
   const max = player.weapons[hand].damage.maximum
 
-  if (!critChance(player, hand) || Math.random() > critChance(player, hand)) {
-    return `no crit: ${Math.floor(Math.random() * (max - min + 1)) + min}`
+  if (Math.random() >= critChance(player, hand)) {
+    return {
+      crit: false,
+      value: Math.floor(Math.random() * (max - min + 1)) + min
+    }
   } else {
-    return `crit: ${2 * Math.floor(Math.random() * (max - min + 1)) + min}`
+    return {
+      crit: true,
+      value: 2 * (Math.floor(Math.random() * (max - min + 1)) + min)
+    }
   }
 }
 
