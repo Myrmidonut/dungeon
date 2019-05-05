@@ -19,15 +19,15 @@ function randomRoll(value) {
   else return true
 }
 
-function log(value, base) {
+function log(value, base, min) {
   result = Math.log(value) / Math.log(base)
 
-  if (result >= 1) return result
-  else return 1
+  if (result >= min) return result
+  else return min
 }
 
 function perception(player) {
-  return Math.floor(log(player.stats.agility, 3)) + player.toy
+  return Math.floor(log(player.stats.agility, 3, 1)) + player.toy
 }
 
 function monsterDodge() {
@@ -35,13 +35,15 @@ function monsterDodge() {
 }
 
 function playerDodge(player) {
-  return round(log(player.stats.agility, 3), 2) / 10
+  return round(log(player.stats.agility, 3, 1), 2) / 10
 }
 
 function disarmTrap(player) {
   // random roll
   // check if higher than perception
   // take damage or loot
+
+  randomRoll(round(log(player.stats.agility, 3, 0), 2) / 10)
 }
 
 function getClassStat(player) {
