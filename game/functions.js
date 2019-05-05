@@ -10,18 +10,8 @@ function randomProbability(probabilityTable) {
   }
 }
 
-// Math.floor(Math.random() * (max - min + 1)) + min;
-
-function monsterDodge() {
-  return 0.2
-}
-
 function round(value, decimals) {
   return Math.round(value * decimals) / decimals
-}
-
-function playerDodge(player) {
-  return round(log(player.stats.agility, 3), 100) / 10
 }
 
 function randomRoll(value) {
@@ -38,6 +28,14 @@ function log(value, base) {
 
 function perception(player) {
   return log(player.stats.agility, 3) + player.toy
+}
+
+function monsterDodge() {
+  return 0.2
+}
+
+function playerDodge(player) {
+  return round(log(player.stats.agility, 3), 100) / 10
 }
 
 function disarmTrap(player) {
@@ -253,9 +251,7 @@ function damage(player, hand) {
 }
 
 function armor(player) {
-  const armor = Object.values(player.armor).reduce((total, e) => total + e)
-  
-  return armor
+  return Object.values(player.armor).reduce((total, e) => total + e)
 }
 
 function fight(player, monster, playerClassHitChance) {
