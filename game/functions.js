@@ -11,7 +11,7 @@ function randomProbability(probabilityTable) {
 }
 
 function round(value, decimals) {
-  return Math.round(value * decimals) / decimals
+  return Math.round(value * Math.pow(10, decimals)) / Math.pow(10, decimals)
 }
 
 function randomRoll(value) {
@@ -27,7 +27,7 @@ function log(value, base) {
 }
 
 function perception(player) {
-  return log(player.stats.agility, 3) + player.toy
+  return round(log(player.stats.agility, 3), 2) + player.toy
 }
 
 function monsterDodge() {
@@ -35,7 +35,7 @@ function monsterDodge() {
 }
 
 function playerDodge(player) {
-  return round(log(player.stats.agility, 3), 100) / 10
+  return round(log(player.stats.agility, 3), 2) / 10
 }
 
 function disarmTrap(player) {
