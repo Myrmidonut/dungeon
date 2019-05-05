@@ -138,6 +138,12 @@ function randomEffect(effects) {
   return result
 }
 
+function applyEffects(player, effects) {
+  effects.forEach(e => {
+
+  })
+}
+
 function monsterStat(type, playerStatAverage, monsterRating) {
   let rating
 
@@ -297,14 +303,20 @@ function fight(player, monster, playerClassHitChance) {
     if (randomRoll(attacker.hit.left)) {
       if (!randomRoll(defender.dodge)) {
         console.log("hit left")
+
         damageDealt += damage(attacker, "left", critChance(attacker, "left")).value
+        damageDealt += attacker.strength
+        // + effects
       } else console.log("dodge left")
     } else console.log("miss left")
 
     if (randomRoll(attacker.hit.right)) {
       if (!randomRoll(defender.dodge)) {
         console.log("hit right")
+
         damageDealt += damage(attacker, "right", critChance(attacker, "right")).value
+        damageDealt += attacker.strength
+        // + effects
       } else console.log("dodge right")
     } else console.log("miss right")
 
