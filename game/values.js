@@ -1,7 +1,9 @@
 const monsterNames = [
   "ogre",
   "goblin",
-  "orc"
+  "orc",
+  "shield maiden",
+  "dragon"
 ]
 
 const weaponNames = {
@@ -11,7 +13,16 @@ const weaponNames = {
     "tiny",
     "colorful",
     "hilarious",
-    "amazing"
+    "amazing",
+    "titanic",
+    "invisible",
+    "screaming",
+    "vibrating",
+    "annoying",
+    "talking",
+    "slimey",
+    "smelly",
+    "glowing"
   ],
   second: [
     "hammer",
@@ -19,7 +30,15 @@ const weaponNames = {
     "dagger",
     "axe",
     "pole",
-    "tableleg"
+    "tableleg",
+    "pike",
+    "stone",
+    "morningstar",
+    "net",
+    "gauntlet",
+    "whip",
+    "laser sword",
+    "mace"
   ],
   third: [
     "awesomeness",
@@ -27,7 +46,8 @@ const weaponNames = {
     "destruction",
     "devastation",
     "bloodbaths",
-    "slaughter"
+    "slaughter",
+    "throwing"
   ]
 }
 
