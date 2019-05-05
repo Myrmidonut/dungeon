@@ -121,18 +121,18 @@ function monsterName(names) {
   return names[Math.floor(Math.random() * names.length)]
 }
 
-function monsterRandomAdjectives(adjectives) {
-  let adjectivesCopy = adjectives.slice()
+function randomEffect(effects) {
+  let effectsCopy = effects.slice()
   let amount = Math.floor(Math.random() * 4)
   let result = []
 
   for (let i = 0; i < amount; i++) {
-    const random = Math.floor(Math.random() * adjectivesCopy.length)
-    const value = adjectivesCopy[random]
+    const random = Math.floor(Math.random() * effectsCopy.length)
+    const effect = effectsCopy[random]
 
-    adjectivesCopy.splice(random, 1)
+    effectsCopy.splice(random, 1)
 
-    result.push(value.name)
+    result.push(effect)
   }
 
   return result
@@ -150,11 +150,11 @@ function monsterStat(type, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function createMonster(names, type, adjectives, playerStatAverage, monsterRating, player) {
+function createMonster(names, type, effects, playerStatAverage, monsterRating, player) {
   return {
     name: monsterName(names),
     type: type,
-    adjectives: monsterRandomAdjectives(adjectives),
+    adjectives: randomEffect(effects),
     stats: {
       strength: monsterStat(type, playerStatAverage, monsterRating),
       stamina: monsterStat(type, playerStatAverage, monsterRating),

@@ -4,7 +4,16 @@ const monsterNames = [
   "orc"
 ]
 
-const adjectives = [
+const playerEffects = [
+  {
+    name: "weak",
+    description: "less strength",
+    type: "strength",
+    value: 0.8
+  }
+]
+
+const monsterEffects = [
   // strength:
   {
     name: "giant",
@@ -168,11 +177,12 @@ const tools = {
 }
 
 module.exports = {
+  playerEffects,
   playerClassHitChance,
   tools,
   recipes,
   monsterRating,
   monsterNames,
-  adjectives,
+  monsterEffects,
   probabilityTables
 }
