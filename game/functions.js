@@ -27,7 +27,7 @@ function log(value, base) {
 }
 
 function perception(player) {
-  return round(log(player.stats.agility, 3), 2) + player.toy
+  return Math.floor(log(player.stats.agility, 3)) + player.toy
 }
 
 function monsterDodge() {
@@ -186,7 +186,7 @@ function createLoot(player, lootProbability, materialProbability) {
 
 function createMaterial(player, material) {
   if (material === "empty") return "empty"
-  else return `${player.tools[material].value * Math.ceil(perception(player) / 10)} ${material}`
+  else return `${player.tools[material].value + perception(player)} ${material}`
 }
 
 function craftRecipe(player, type, recipes) {
