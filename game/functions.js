@@ -78,14 +78,14 @@ function playerDamageAverage(player) {
 }
 
 function monsterWeapons(player) {
-  const amount = Math.floor(Math.random() * 2 + 1)
+  const hands = Math.floor(Math.random() * 2 + 1)
 
-  if (amount === 1) {
+  if (hands === 1) {
     return {
       left: {
         damage: {
-          minimum: playerDamageAverage(player) * 0.666,
-          maximum: playerDamageAverage(player) * 1.333,
+          minimum: Math.round(playerDamageAverage(player) * 0.666),
+          maximum: Math.round(playerDamageAverage(player) * 1.333)
         },
         critChance: 0.2
       },
@@ -101,15 +101,15 @@ function monsterWeapons(player) {
     return {
       left: {
         damage: {
-          minimum: playerDamageAverage(player) * 0.666 / 2,
-          maximum: playerDamageAverage(player) * 1.333 / 2,
+          minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
+          maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
         },
         critChance: 0.2
       },
       right: {
         damage: {
-          minimum: playerDamageAverage(player) * 0.666 / 2,
-          maximum: playerDamageAverage(player) * 1.333 / 2,
+          minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
+          maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
         },
         critChance: 0.2
       }
