@@ -15,6 +15,7 @@ function game_test() {
 
   const monster = gameFunctions.createMonster(
     gameValues.monsterNames,
+    gameValues.weaponNames,
     gameFunctions.randomProbability(gameValues.probabilityTables.monster),
     gameValues.monsterEffects,
     gameFunctions.playerStatAverage(player),

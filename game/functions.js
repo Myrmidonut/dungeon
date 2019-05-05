@@ -42,7 +42,6 @@ function createWeaponName(names) {
   return `${first} ${second} of ${third}`
 }
 
-
 function playerDodge(player) {
   return round(log(player.stats.agility, 3, 1), 2) / 10
 }
@@ -86,7 +85,7 @@ function playerDamageAverage(player) {
   )
 }
 
-function monsterWeapons(player) {
+function monsterWeapons(player, names) {
   const hands = Math.floor(Math.random() * 2 + 1)
 
   if (hands === 1) {
@@ -96,6 +95,7 @@ function monsterWeapons(player) {
           minimum: Math.round(playerDamageAverage(player) * 0.666),
           maximum: Math.round(playerDamageAverage(player) * 1.333)
         },
+        name: createWeaponName(names),
         critChance: 0.2
       },
       right: {
@@ -113,6 +113,7 @@ function monsterWeapons(player) {
           minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
           maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
         },
+        name: createWeaponName(names),
         critChance: 0.2
       },
       right: {
@@ -120,6 +121,7 @@ function monsterWeapons(player) {
           minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
           maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
         },
+        name: createWeaponName(names),
         critChance: 0.2
       }
     }
@@ -165,9 +167,9 @@ function monsterStat(type, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
-function createMonster(names, type, effects, playerStatAverage, monsterRating, player) {
+function createMonster(monsterNames, weaponNames, type, effects, playerStatAverage, monsterRating, player) {
   return {
-    name: monsterName(names),
+    name: monsterName(monsterNames),
     type: type,
     adjectives: randomEffects(effects),
     stats: {
@@ -175,7 +177,7 @@ function createMonster(names, type, effects, playerStatAverage, monsterRating, p
       stamina: monsterStat(type, playerStatAverage, monsterRating),
       agility: monsterStat(type, playerStatAverage, monsterRating)
     },
-    weapons: monsterWeapons(player),
+    weapons: monsterWeapons(player, weaponNames),
     dodge: monsterDodge(),
     armor: Math.round(armor(player) * monsterRating[type]),
     hitChance: monsterRating[type]
