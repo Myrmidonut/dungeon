@@ -16,17 +16,35 @@ function monsterDodge() {
   return 0.2
 }
 
-function playerDodge(player) {
-  return Math.log2(player.stats.agility) / 10
+function round(value, decimals) {
+  return Math.round(value * decimals) / decimals
 }
 
-function randomRoll(dodge) {
-  const random = Math.round(Math.random() * 100) / 100
+function playerDodge(player) {
+  return round(log(player.stats.agility, 3), 100) / 10
+}
 
-  if (random > dodge) return false
+function randomRoll(value) {
+  if (Math.random() > value) return false
   else return true
 }
 
+function log(value, base) {
+  result = Math.log(value) / Math.log(base)
+
+  if (result >= 1) return result
+  else return 1
+}
+
+function perception(player) {
+  return log(player.stats.agility, 3) + player.toy
+}
+
+function disarmTrap(player) {
+  // random roll
+  // check if higher than perception
+  // take damage or loot
+}
 
 function getClassStat(player) {
   if (player.class === "barbarian") return "strength"
@@ -171,10 +189,6 @@ function createLoot(player, lootProbability, materialProbability) {
 function createMaterial(player, material) {
   if (material === "empty") return "empty"
   else return `${player.tools[material].value * Math.ceil(perception(player) / 10)} ${material}`
-}
-
-function perception(player) {
-  return player.stats.perception + player.toy
 }
 
 function craftRecipe(player, type, recipes) {
@@ -351,6 +365,10 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
 }
 
 /*
+trap
+  disarm with perception
+    loot
+
 fight
   strength vs stamina
 

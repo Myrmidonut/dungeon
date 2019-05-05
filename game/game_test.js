@@ -13,7 +13,7 @@ function game_test() {
   console.log("level up: ", player)
   console.log("=============================")
 
-  let monster = gameFunctions.createMonster(
+  const monster = gameFunctions.createMonster(
     gameValues.monsterNames,
     gameFunctions.randomProbability(gameValues.probabilityTables.monster),
     gameValues.adjectives,
