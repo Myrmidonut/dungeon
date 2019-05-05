@@ -349,10 +349,13 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
       console.log("treasure chest loot:", loot)
     }
   } else if (type === "trap") {
-    console.log("trap")
-    // perception check if found
-    // disarm with agility
-    // loot?
+    if (disarmTrap(player)) {
+      console.log("trap loot:", loot)
+    } else {
+      console.log("you lost to the trap")
+
+      // negative effect missing
+    }
   } else {
     console.log("empty")
   }
