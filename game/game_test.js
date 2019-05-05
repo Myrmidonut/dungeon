@@ -25,7 +25,17 @@ function game_test() {
   console.log("monster: ", monster)
   console.log("=============================")
 
-  console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
+  console.log("encounter:", gameFunctions.encounter(
+    player,
+    monster,
+    gameValues.playerClassHitChance,
+    gameValues.probabilityTables.encounter,
+    gameValues.probabilityTables.loot,
+    gameValues.probabilityTables.material,
+    gameValues.probabilityTables.treasureChest
+  ))
+
+  /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
   console.log("=============================")
 
   console.log("materials loot: ", gameFunctions.createMaterial(
@@ -62,6 +72,7 @@ function game_test() {
   console.log("=============================")
 
   gameFunctions.fight(player, monster, gameValues.playerClassHitChance)
+  */
 }
 
 module.exports = game_test

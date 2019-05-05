@@ -320,29 +320,28 @@ function fight(player, monster, playerClassHitChance) {
   return defender.name
 }
 
-function encounter(encounterTable, lootTable, materialTable, treasureChestTable) {
+function encounter(player, monster, playerClassHitChance, encounterTable, lootTable, materialTable, treasureChestTable) {
   const type = randomProbability(encounterTable)
-
-  // monster = createMonster(...)
   const loot = createLoot(player, randomProbability(lootTable), randomProbability(materialTable))
 
   if (type === "monster") {
-    if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
+    if (fight(player, monster, playerClassHitChance) === "player") {
       console.log("monster loot:", loot)
     } else {
       console.log("you lost to the monster")
     }
   } else if (type === "treasureChest") {
     if (randomProbability(treasureChestTable) === "monster") {
-      if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
-        console.log("treasure monster loot:", loot)
+      if (fight(player, monster, playerClassHitChance) === "player") {
+        console.log("treasure chest monster loot:", loot)
       } else {
-        console.log("you lost to the treasure monster")
+        console.log("you lost to the treasure chest monster")
       }
     } else {
-      console.log("treasure loot:", loot)
+      console.log("treasure chest loot:", loot)
     }
   } else if (type === "trap") {
+    console.log("trap")
     // perception check if found
     // disarm with agility
     // loot?
@@ -389,6 +388,7 @@ fight
 */
 
 module.exports = {
+  encounter,
   fight,
   craftRecipe,
   learnRecipe,
