@@ -204,7 +204,7 @@ function craftRecipe(player, type, recipes) {
         player.materials[material] -= recipes[type].value
       }
 
-      player[recipes[type]["type"]][type].amount += (1 + Math.ceil(perception(player) / 10))
+      player[recipes[type]["type"]][type].amount += perception(player)
 
       return "crafted"
     } else return "not enough materials"
