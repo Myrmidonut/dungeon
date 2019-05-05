@@ -39,11 +39,7 @@ function playerDodge(player) {
 }
 
 function disarmTrap(player) {
-  // random roll
-  // check if higher than perception
-  // take damage or loot
-
-  randomRoll(round(log(player.stats.agility, 3, 0), 2) / 10)
+  return randomRoll(round(log(player.stats.agility, 3, 0), 2) / 10)
 }
 
 function getClassStat(player) {
