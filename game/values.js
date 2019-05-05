@@ -4,13 +4,52 @@ const monsterNames = [
   "orc"
 ]
 
+const weaponNames = {
+  first: [
+    "giant",
+    "massive",
+    "tiny",
+    "colorful",
+    "hilarious",
+    "amazing"
+  ],
+  second: [
+    "hammer",
+    "sword",
+    "dagger",
+    "axe",
+    "pole",
+    "tableleg"
+  ],
+  third: [
+    "awesomeness",
+    "hilarity",
+    "destruction",
+    "devastation",
+    "bloodbaths",
+    "slaughter"
+  ]
+}
+
 const playerEffects = [
   {
-    name: "weak",
+    name: "slow",
     description: "less strength",
     type: "strength",
     value: 0.8
-  }
+  },
+  {
+    name: "weak",
+    description: "less stamina",
+    type: "stamina",
+    value: 0.8
+  },
+  {
+    name: "blind",
+    description: "less agility",
+    type: "agility",
+    value: 0.8
+  },
 ]
 
 const monsterEffects = [
@@ -121,10 +160,13 @@ const probabilityTables = {
     treasure: 0.75
   },
   loot: {
-    gear: 0.2,
-    gold: 0.2,
-    material: 0.5,
-    empty: 0.1
+    tool: 0.1,
+    recipe: 0.1,
+    weapon: 0.1,
+    armor: 0.1,
+    empty: 0.1,
+    gold: 0.1,
+    material: 0.4
   }
 }
 
@@ -137,6 +179,21 @@ const playerClassHitChance = {
   class: 0.75,
   nonClass: 0.5
 }
+
+const playerClasses = [
+  {
+    type: "barbarian",
+    stat: "strength"
+  },
+  {
+    type: "paladin",
+    stat: "stamina"
+  },
+  {
+    type: "thief",
+    stat: "agility"
+  }
+]
 
 const recipes = {
   "basic potion": {
@@ -177,6 +234,8 @@ const tools = {
 }
 
 module.exports = {
+  weaponNames,
+  playerClasses,
   playerEffects,
   playerClassHitChance,
   tools,

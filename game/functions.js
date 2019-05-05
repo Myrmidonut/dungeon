@@ -173,11 +173,30 @@ function createMonster(names, type, effects, playerStatAverage, monsterRating, p
   }
 }
 
+function createGear() {
+  // tool
+  // recipe
+  // weapon
+  // armor
+}
+
 function createLoot(player, lootProbability, materialProbability) {
   let loot = lootProbability
 
-  if (loot === "gear") {
+  /*
+    tool: 0.1,
+    recipe: 0.1,
+    weapon: 0.1,
+    armor: 0.1,
+    empty: 0.1,
+    gold: 0.1,
+    material: 0.4
+  */
+
+  if (loot === "tool") {
     loot += ` quality ${perception(player)}`
+
+    // createGear()
   } else if (loot === "material") {
     loot = createMaterial(player, materialProbability)
   } else if (loot === "gold") {
@@ -371,47 +390,6 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
     console.log("empty")
   }
 }
-
-/*
-trap
-  disarm with perception
-    loot
-
-fight
-  strength vs stamina
-
-  weapon hit
-    if class weapon
-      75% + weapon bonus
-    50%
-
-  dodge
-    0% - 50%
-
-  weapon damage
-    left
-      if class weapon
-        if crit
-          damage x 2
-        damage
-      damage
-
-    if right
-      if class weapon
-        if crit
-          damage x 2
-        damage
-      damage
-
-    damage = left + right
-
-  weapon effect
-    if hit
-      chance to apply effect
-
-  health
-    health = health + armor - damage
-*/
 
 module.exports = {
   encounter,
