@@ -3,9 +3,7 @@ const player = {
   stats: {
     strength: 5,
     stamina: 8,
-    endurance: 9,
-    agility: 15,
-    perception: 3
+    agility: 15
   },
   weapons: {
     left: {

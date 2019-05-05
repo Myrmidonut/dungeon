@@ -65,7 +65,7 @@ function playerStatAverage(player) {
     average += player.stats[stat]
   }
 
-  return average / 4
+  return average / Object.keys(player.stats).length
 }
 
 function playerDamageAverage(player) {
@@ -164,7 +164,6 @@ function createMonster(names, type, effects, playerStatAverage, monsterRating, p
     stats: {
       strength: monsterStat(type, playerStatAverage, monsterRating),
       stamina: monsterStat(type, playerStatAverage, monsterRating),
-      endurance: monsterStat(type, playerStatAverage, monsterRating),
       agility: monsterStat(type, playerStatAverage, monsterRating)
     },
     weapons: monsterWeapons(player),
@@ -263,7 +262,7 @@ function fight(player, monster, playerClassHitChance) {
     name: "player",
     strength: player.stats.strength,
     stamina: player.stats.stamina,
-    health: player.stats.endurance * 10,
+    health: player.stats.stamina * 10,
     armor: armor(player),
     dodge: playerDodge(player),
     weapons: player.weapons,
@@ -277,7 +276,7 @@ function fight(player, monster, playerClassHitChance) {
     name: "monster",
     strength: monster.stats.strength,
     stamina: monster.stats.stamina,
-    health: monster.stats.endurance * 10,
+    health: monster.stats.stamina * 10,
     armor: monster.armor,
     dodge: monster.dodge,
     hit: {
