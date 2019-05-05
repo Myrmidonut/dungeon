@@ -8,6 +8,7 @@ const player = {
   weapons: {
     left: {
       class: "thief",
+      name: "",
       damage: {
         minimum: 10,
         maximum: 15
@@ -16,6 +17,7 @@ const player = {
     },
     right: {
       class: "paladin",
+      name: "",
       damage: {
         minimum: 5,
         maximum: 14

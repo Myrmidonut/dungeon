@@ -34,6 +34,15 @@ function monsterDodge() {
   return 0.2
 }
 
+function createWeaponName(names) {
+  const first = names.first[Math.floor(Math.random() * names.first.length)]
+  const second = names.second[Math.floor(Math.random() * names.second.length)]
+  const third = names.third[Math.floor(Math.random() * names.third.length)]
+
+  return `${first} ${second} of ${third}`
+}
+
+
 function playerDodge(player) {
   return round(log(player.stats.agility, 3, 1), 2) / 10
 }
