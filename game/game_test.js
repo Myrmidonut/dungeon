@@ -32,7 +32,8 @@ function game_test() {
     gameValues.probabilityTables.encounter,
     gameValues.probabilityTables.loot,
     gameValues.probabilityTables.material,
-    gameValues.probabilityTables.treasureChest
+    gameValues.probabilityTables.treasureChest,
+    gameValues.playerEffects
   ))
 
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))

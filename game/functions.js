@@ -121,7 +121,7 @@ function monsterName(names) {
   return names[Math.floor(Math.random() * names.length)]
 }
 
-function randomEffect(effects) {
+function randomEffects(effects) {
   let effectsCopy = effects.slice()
   let amount = Math.floor(Math.random() * 4)
   let result = []
@@ -140,7 +140,7 @@ function randomEffect(effects) {
 
 function applyEffects(player, effects) {
   effects.forEach(e => {
-
+    player.stats[e.type] = Math.floor(player.stats[e.type] * e.value)
   })
 }
 
@@ -160,7 +160,7 @@ function createMonster(names, type, effects, playerStatAverage, monsterRating, p
   return {
     name: monsterName(names),
     type: type,
-    adjectives: randomEffect(effects),
+    adjectives: randomEffects(effects),
     stats: {
       strength: monsterStat(type, playerStatAverage, monsterRating),
       stamina: monsterStat(type, playerStatAverage, monsterRating),
@@ -358,7 +358,7 @@ function fight(player, monster, playerClassHitChance) {
   return defender.name
 }
 
-function encounter(player, monster, playerClassHitChance, encounterTable, lootTable, materialTable, treasureChestTable) {
+function encounter(player, monster, playerClassHitChance, encounterTable, lootTable, materialTable, treasureChestTable, playerEffectsTable) {
   const type = randomProbability(encounterTable)
   const loot = createLoot(player, randomProbability(lootTable), randomProbability(materialTable))
 
@@ -384,11 +384,13 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
     } else {
       console.log("you lost to the trap")
 
-      // negative effect missing
+      applyEffects(player, randomEffects(playerEffectsTable))
     }
   } else {
     console.log("empty")
   }
+
+  console.log(player)
 }
 
 module.exports = {
