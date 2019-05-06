@@ -155,15 +155,16 @@ function applyEffects(player, effects) {
   })
 }
 
-function monsterStat(type, playerStatAverage, monsterRating) {
+function monsterStat(type, player, playerStatAverage, monsterRating) {
   let rating
 
   if (type === "normal") rating = monsterRating.normal
   else rating = monsterRating.elite
 
-  let max = rating * playerStatAverage
-  let min = (rating - 0.25) * playerStatAverage
-
+  let max = (monsterRating.scaling * player.level + rating) * playerStatAverage
+  let min = (monsterRating.scaling * player.level + (rating * 0.75)) * playerStatAverage
+  console.log("MAX:", max)
+  console.log("MIN:", min)
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
@@ -173,9 +174,9 @@ function createMonster(monsterNames, weaponNames, type, effects, playerStatAvera
     type: type,
     adjectives: randomEffects(effects),
     stats: {
-      strength: monsterStat(type, playerStatAverage, monsterRating),
-      stamina: monsterStat(type, playerStatAverage, monsterRating),
-      agility: monsterStat(type, playerStatAverage, monsterRating)
+      strength: monsterStat(type, player, playerStatAverage, monsterRating),
+      stamina: monsterStat(type, player, playerStatAverage, monsterRating),
+      agility: monsterStat(type, player, playerStatAverage, monsterRating)
     },
     weapons: monsterWeapons(player, weaponNames),
     dodge: monsterDodge(),

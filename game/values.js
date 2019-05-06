@@ -191,8 +191,9 @@ const probabilityTables = {
 }
 
 const monsterRating = {
-  normal: 0.5,
-  elite: 0.9
+  scaling: 0.05,
+  normal: 0.3,
+  elite: 0.7
 }
 
 const playerClassHitChance = {

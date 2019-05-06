@@ -1,5 +1,6 @@
 const player = {
   class: "thief",
+  level: 5,
   stats: {
     strength: 5,
     stamina: 8,
