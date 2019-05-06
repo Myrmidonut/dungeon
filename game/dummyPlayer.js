@@ -6,6 +6,14 @@ const player = {
     stamina: 8,
     agility: 15
   },
+  effects: [
+    {
+      name: "weak",
+      description: "less stamina",
+      type: "stamina",
+      value: 0.8
+    }
+  ],
   weapons: {
     left: {
       class: "thief",

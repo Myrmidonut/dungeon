@@ -151,6 +151,14 @@ function randomEffects(effects) {
   return result
 }
 
+function addEffects(player, effect) {
+  effect.forEach(e => {
+    if (!player.effects.some(f => f.name === e.name)) {
+      player.effects.push(e)
+    }
+  })
+}
+
 function applyEffects(player, effects) {
   effects.forEach(e => {
     player.stats[e.type] = Math.floor(player.stats[e.type] * e.value)
@@ -398,7 +406,7 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
     } else {
       console.log("you lost to the trap")
 
-      applyEffects(player, randomEffects(playerEffectsTable))
+      addEffects(player, randomEffects(playerEffectsTable))
     }
   } else {
     console.log("empty")
