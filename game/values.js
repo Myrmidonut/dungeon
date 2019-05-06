@@ -254,7 +254,90 @@ const tools = {
   }
 }
 
+const initialPlayer = {
+  class: "",
+  level: 1,
+  stats: {
+    strength: 1,
+    stamina: 1,
+    agility: 1
+  },
+  damageTaken: 0,
+  effects: [],
+  weapons: {
+    left: {
+      class: "",
+      name: "left hand",
+      damage: {
+        minimum: 1,
+        maximum: 5
+      },
+      critChance: 0.1
+    },
+    right: {
+      class: "",
+      name: "right hand",
+      damage: {
+        minimum: 1,
+        maximum: 5
+      },
+      critChance: 0.1
+    },
+  },
+  armor: {
+    helmet: 0,
+    chest: 0,
+    pants: 0,
+    boots: 0,
+    gloves: 0
+  },
+  toy: {
+    name: "",
+    value: 0
+  },
+  tools: {
+    cloth: {
+      name: "",
+      value: 0
+    },
+    bones: {
+      name: "",
+      value: 0
+    },
+    organs: {
+      name: "",
+      value: 0
+    },
+    metal: {
+      name: "",
+      value: 0
+    }
+  },
+  materials: {
+    cloth: 0,
+    bones: 0,
+    organs: 0,
+    metal: 0
+  },
+  potions: {
+    "basic potion": {
+      value: 1,
+      amount: 1
+    }
+  },
+  bandages: {
+    name: "basic bandage",
+    value: 1,
+    amount: 3
+  },
+  recipes: [
+    "basic potion",
+    "basic bandage"
+  ]
+}
+
 module.exports = {
+  initialPlayer,
   weaponNames,
   playerClasses,
   playerEffects,
