@@ -64,6 +64,8 @@ function levelUp(player, probability) {
       player.stats[stat] += 1
     }
   }
+
+  player.level += 1
 }
 
 function playerStatAverage(player) {
