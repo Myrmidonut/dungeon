@@ -384,6 +384,8 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
   const type = randomProbability(encounterTable)
   const loot = createLoot(player, randomProbability(lootTable), randomProbability(materialTable))
 
+  applyEffects(player, player.effects)
+
   if (type === "monster") {
     if (fight(player, monster, playerClassHitChance) === "player") {
       console.log("monster loot:", loot)

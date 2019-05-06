@@ -6,6 +6,7 @@ const player = {
     stamina: 8,
     agility: 15
   },
+  damageTaken: 0,
   effects: [
     {
       name: "weak",
