@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt")
 const jsonwebtoken = require("jsonwebtoken")
 
-const { User } = require('../models')
+const { User, Character } = require('../models')
 
 const root = {
   async me(args, { req, res }) {
@@ -60,6 +60,14 @@ const root = {
 
     res.cookie("token", token)
 
+    /*
+    await Character.create({
+      name: "jim",
+      UserId: user.id
+    })
+
+    await Character.findOne({ where: { name: "jim" } })
+    */
     return user.username
   }
 }

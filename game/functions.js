@@ -417,6 +417,18 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
   console.log(player)
 }
 
+function createPlayer(database) {
+
+}
+
+function removeEffects(player) {
+
+}
+
+function createPlayerCopy(player) {
+
+}
+
 module.exports = {
   encounter,
   fight,
@@ -430,3 +442,32 @@ module.exports = {
   randomProbability,
   levelUp
 }
+
+/*
+  - login
+    - receive user data
+    - receive characters
+
+  - select character
+    - reset health
+    - remove effects
+    - create copy of character
+    - load resting area
+      - crafting
+
+  - enter room
+    - load encounter
+      - use potions
+      - win
+        - clear room
+        - get loot
+        - crafting
+        - healing
+      - lose
+        - back to last save point
+        - load copy
+
+  - win map
+    - level up
+    - save to database
+*/
