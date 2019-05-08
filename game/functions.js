@@ -448,7 +448,16 @@ module.exports = {
     - receive user data
     - receive characters
 
+  - create character
+    - name
+    - class
+    - save to database
+
   - select character
+    - build player object from database
+    - show details
+
+  - play
     - reset health
     - remove effects
     - create copy of character
