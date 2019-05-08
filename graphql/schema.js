@@ -8,10 +8,10 @@ const schema = buildSchema(`
   }
 
   type UserWithCharacter {
-    id: Int!
-    username: String!
-    email: String!
-    characters: String
+    id: Int
+    username: String
+    email: String
+    characterName: String
   }
 
   type Query {
@@ -20,7 +20,7 @@ const schema = buildSchema(`
 
   type Mutation {
     signup (username: String!, email: String!, password: String!): String
-    login (email: String!, password: String!): String
+    login (email: String!, password: String!): UserWithCharacter
   }
 `)
 

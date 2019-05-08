@@ -17,7 +17,10 @@ const BackendTest = () => {
           login(
             email: "johndoe@example.com"
             password: "password"
-          )
+          ), {
+            username,
+            characterName
+          }
         }`
       })
     })
@@ -25,7 +28,7 @@ const BackendTest = () => {
     .then(data => {
       console.log("data: ", data)
 
-      setLoginname(data.data.login)
+      setLoginname(data.data.login.username)
     })
     .catch(() => {
       console.log("error")
