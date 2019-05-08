@@ -64,13 +64,8 @@ const root = {
     const character = await Character.findOne({ where: { UserId: user.id }});
     const characters = await Character.findAll();
 
-    //console.log(user.id, user.name, user.email)
-
     user.characterName = character.name
-
-    //return user.username;
-
-    console.log(user)
+    user.characters = characters
 
     return user
   }
