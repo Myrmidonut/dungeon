@@ -57,17 +57,12 @@ const root = {
 
     res.cookie("token", token)
 
-    const characters = await Character.findAll({ where: { UserId: user.id }})
-    const character = await Character.findOne({ where: { UserId: user.id, name: "jim" } })
-    
-    console.log(character)
+    await Character.create({ UserId: user.id, name: "jim" })
 
-    /*
-    await Character.create({
-      name: "jim",
-      UserId: user.id
-    })
-    */
+    const character = await Character.findOne({ where: { UserId: user.id }})
+    const characters = await Character.findAll()
+
+    console.log(characters)
 
     return user.username
   }
