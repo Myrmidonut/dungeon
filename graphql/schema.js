@@ -7,6 +7,13 @@ const schema = buildSchema(`
     email: String!
   }
 
+  type UserWithCharacter {
+    id: Int!
+    username: String!
+    email: String!
+    characters: String
+  }
+
   type Query {
     me: User
   }
