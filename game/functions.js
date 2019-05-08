@@ -426,32 +426,90 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
   console.log(player)
 }
 
-function createPlayer(database) {
-  return {
-
+function loadPlayer(database) {
+  const player = {
+    class: database.class,
+    level: database.level,
+    stats: {
+      strength: database.strength,
+      stamina: database.stamina,
+      agility: database.agility
+    },
+    health: database.stamina * 10,
+    effects: [],
+    weapons: {
+      left: {
+        class: database.weapons_left_class,
+        name: database.weapons_left_name,
+        damage: {
+          minimum: database.weapons_left_damage_maximum,
+          maximum: database.weapons_left_damage_minimum
+        },
+        critChance: database.weapons_left_critChance
+      },
+      right: {
+        class: database.weapons_right_class,
+        name: database.weapons_right_name,
+        damage: {
+          minimum: database.weapons_right_damage_maximum,
+          maximum: database.weapons_right_damage_minimum
+        },
+        critChance: database.weapons_right_critChance
+      },
+    },
+    armor: {
+      helmet: database.armor_helmet,
+      chest: database.armor_chest,
+      pants: database.armor_pants,
+      boots: database.armor_boots,
+      gloves: database.armor_gloves
+    },
+    toy: {
+      name: database.toy_name,
+      value: database.toy_value
+    },
+    tools: {
+      cloth: {
+        name: database.tools_cloth_name,
+        value: database.tools_cloth_value
+      },
+      bones: {
+        name: database.tools_bones_name,
+        value: database.tools_bones_value
+      },
+      organs: {
+        name: database.tools_organs_name,
+        value: database.tools_organs_value
+      },
+      metal: {
+        name: database.tools_metal_name,
+        value: database.tools_metal_value
+      }
+    },
+    materials: {
+      cloth: database.materials_cloth,
+      bones: database.materials_bones,
+      organs: database.materials_organs,
+      metal: database.materials_metal
+    },
+    potion: {
+      name: database.potion_name,
+      value: database.potion_value,
+      amount: database.potion_amount
+    },
+    bandage: {
+      name: database.bandage_name,
+      value: database.bandage_value,
+      amount: database.bandage_amount
+    },
+    //recipes: [
+    //  "basic potion",
+    //  "basic bandage"
+    //]
   }
+
+  return player
 }
-
-function removeEffects(player) {
-
-}
-
-function play(database) {
-  // reset health
-  // remove effects
-  // create copy of character
-  // load resting area
-  // crafting
-
-  let player = createPlayer(database);
-  const playerCopy = createPlayer(database);
-
-  player.health = player.stats.stamina * 10;
-  player.effects = [];
-
-
-}
-
 
 module.exports = {
   encounter,
@@ -479,12 +537,11 @@ module.exports = {
 
   - select character
     - build player object from database
+      - reset health
+      - remove effects
     - show details
 
   - play
-    - reset health
-    - remove effects
-    - create copy of character
     - load resting area
       - crafting
 
@@ -497,8 +554,7 @@ module.exports = {
         - crafting
         - healing
       - lose
-        - back to last save point
-        - load copy
+        - reset from database
 
   - win map
     - level up

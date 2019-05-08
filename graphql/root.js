@@ -5,9 +5,6 @@ const { User, Character } = require('../models')
 
 const root = {
   async me(args, { req, res }) {
-    //console.log(req.headers)
-    console.log(req.user)
-
     if (!req.user) {
       throw new Error('You are not authenticated.')
     }
@@ -60,14 +57,18 @@ const root = {
 
     res.cookie("token", token)
 
+    const characters = await Character.findAll({ where: { UserId: user.id }})
+    const character = await Character.findOne({ where: { UserId: user.id, name: "jim" } })
+    
+    console.log(character)
+
     /*
     await Character.create({
       name: "jim",
       UserId: user.id
     })
-
-    await Character.findOne({ where: { name: "jim" } })
     */
+
     return user.username
   }
 }
