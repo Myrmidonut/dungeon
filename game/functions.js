@@ -165,19 +165,18 @@ function addEffects(player, effect) {
 
 function applyEffects(player, effects) {
   effects.forEach(e => {
-    player.stats[e.type] = Math.floor(player.stats[e.type] * e.value);
+    player.modifiedStats[e.type] = Math.floor(player.stats[e.type] * e.value);
   })
 }
 
 function monsterStat(type, player, playerStatAverage, monsterRating) {
-  let rating = "normal";
+  let rating = monsterRating.normal;
 
   if (type === "elite") rating = monsterRating.elite;
 
   let max = (monsterRating.scaling * player.level + rating) * playerStatAverage;
   let min = (monsterRating.scaling * player.level + (rating * 0.75)) * playerStatAverage;
-  console.log("MAX:", max)
-  console.log("MIN:", min)
+
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
@@ -310,9 +309,9 @@ function armor(player) {
 function fight(player, monster, playerClassHitChance) {
   let currentPlayer = {
     name: "player",
-    strength: player.stats.strength,
-    stamina: player.stats.stamina,
-    health: player.stats.stamina * 10,
+    strength: player.modifiedStats.strength,
+    stamina: player.modifiedStats.stamina,
+    health: player.modifiedStats.stamina * 10,
     armor: armor(player),
     dodge: playerDodge(player),
     weapons: player.weapons,
@@ -426,6 +425,10 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
   console.log(player)
 }
 
+function roomCounter(player) {
+  player.room += 1
+}
+
 function loadPlayer(database) {
   const player = {
     class: database.class,
@@ -435,8 +438,14 @@ function loadPlayer(database) {
       stamina: database.stamina,
       agility: database.agility
     },
+    modifiedStats: {
+      strength: database.strength,
+      stamina: database.stamina,
+      agility: database.agility
+    },
     health: database.stamina * 10,
     effects: [],
+    room: 0,
     weapons: {
       left: {
         class: database.weapons_left_class,
@@ -502,16 +511,18 @@ function loadPlayer(database) {
       value: database.bandage_value,
       amount: database.bandage_amount
     },
-    //recipes: [
-    //  "basic potion",
-    //  "basic bandage"
-    //]
+    food: {
+      name: database.foot_name,
+      value: database.food_value,
+      amount: database.food_amount
+    }
   }
 
   return player
 }
 
 module.exports = {
+  loadPlayer,
   encounter,
   fight,
   craftRecipe,
@@ -539,11 +550,13 @@ module.exports = {
     - build player object from database
       - reset health
       - remove effects
-    - show details
+    - send object to frontend
+      - show details
 
   - play
-    - load resting area
+    - show empty room (frontend)
       - crafting
+        - save to player
 
   - enter room
     - load encounter
@@ -553,6 +566,8 @@ module.exports = {
         - get loot
         - crafting
         - healing
+        - save to player
+        - increase room counter
       - lose
         - reset from database
 
