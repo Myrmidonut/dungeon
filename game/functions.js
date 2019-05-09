@@ -388,8 +388,12 @@ function fight(player, monster, playerClassHitChance) {
   return defender.name;
 }
 
-function encounter(player, monster, playerClassHitChance, encounterTable, lootTable, materialTable, treasureChestTable, playerEffectsTable) {
-  if (player.room > 10) return "finished"
+function encounter(player, monster, levelUpTable, playerClassHitChance, encounterTable, lootTable, materialTable, treasureChestTable, playerEffectsTable) {
+  if (player.room > 10) {
+    levelUp(player, levelUpTable);
+
+    return "finished"
+  }
   
   const type = randomProbability(encounterTable);
   const loot = createLoot(player, randomProbability(lootTable), randomProbability(materialTable));

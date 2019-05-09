@@ -29,6 +29,7 @@ function game_test() {
   console.log("encounter:", gameFunctions.encounter(
     player,
     monster,
+    gameValues.probabilityTables.levelUp,
     gameValues.playerClassHitChance,
     gameValues.probabilityTables.encounter,
     gameValues.probabilityTables.loot,
