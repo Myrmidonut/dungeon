@@ -437,12 +437,9 @@ function encounter(player, monster, playerClassHitChance, encounterTable, lootTa
   console.log(player)
 }
 
-function roomCounter(player) {
-  player.room += 1
-}
-
-function loadPlayer(database) {
+function createPlayer(database) {
   const player = {
+    name: database.name,
     class: database.class,
     level: database.level,
     stats: {
@@ -534,7 +531,7 @@ function loadPlayer(database) {
 }
 
 module.exports = {
-  loadPlayer,
+  createPlayer,
   encounter,
   fight,
   craftRecipe,

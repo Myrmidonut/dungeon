@@ -1,6 +1,9 @@
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 
+const gameValues = require("../game/values")
+const gameFunctions = require("../game/functions")
+
 const { User, Character } = require('../models');
 
 const root = {
@@ -59,25 +62,32 @@ const root = {
 
     res.cookie("token", token);
 
-    // character test
-    // const characterClass = "paladin";
-    // await Character.create({ UserId: user.id, name: "jim", class: characterClass, weapons_left_class: characterClass, weapons_right_class: characterClass });
-
     const characters = await Character.findAll({ raw: true, where: { UserId: user.id }});
-
     const characterNames = characters.map(e => {
       return {
         name: e.name,
         class: e.class,
-        level: e.level
+        level: e.level,
+        id: e.id
       }
-    })
+    });
 
     console.log(characterNames)
 
-    user.characters = characterNames
+    user.characters = characterNames;
 
-    return user
+    return user;
+  },
+
+  async create_character(args, { req, res }) {
+    if (!req.user) throw new Error('You are not authenticated.');
+
+    const character = await Character.create({ raw: true, UserId: req.user.id, name: args.name, class: args.character_class, weapons_left_class: args.character_class, weapons_right_class: args.character_class });
+    const player = gameFunctions.createPlayer(character)
+
+    console.log(player)
+
+    return player;
   }
 }
 
