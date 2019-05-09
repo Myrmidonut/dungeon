@@ -463,7 +463,7 @@ function createPlayer(database) {
           minimum: database.weapons_left_damage_maximum,
           maximum: database.weapons_left_damage_minimum
         },
-        critChance: database.weapons_left_critChance
+        critChance: database.weapons_left_critchance
       },
       right: {
         class: database.weapons_right_class,
@@ -472,7 +472,7 @@ function createPlayer(database) {
           minimum: database.weapons_right_damage_maximum,
           maximum: database.weapons_right_damage_minimum
         },
-        critChance: database.weapons_right_critChance
+        critChance: database.weapons_right_critchance
       },
     },
     armor: {

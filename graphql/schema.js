@@ -29,6 +29,7 @@ const schema = buildSchema(`
     signup (username: String!, email: String!, password: String!): String
     login (email: String!, password: String!): User
     create_character (name: String!, character_class: String!): Player
+    select_character (id: Int!): Player
   }
 `)
 

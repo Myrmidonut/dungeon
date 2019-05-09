@@ -68,7 +68,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 1
     },
-    weapons_right_critChance: {
+    weapons_right_critchance: {
       type: DataTypes.FLOAT,
       defaultValue: 0.1
     },

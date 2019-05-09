@@ -83,7 +83,18 @@ const root = {
     if (!req.user) throw new Error('You are not authenticated.');
 
     const character = await Character.create({ raw: true, UserId: req.user.id, name: args.name, class: args.character_class, weapons_left_class: args.character_class, weapons_right_class: args.character_class });
-    const player = gameFunctions.createPlayer(character)
+    const player = gameFunctions.createPlayer(character);
+
+    console.log(player)
+
+    return player;
+  },
+
+  async select_character(args, { req, res }) {
+    if (!req.user) throw new Error('You are not authenticated.');
+
+    const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
+    const player = gameFunctions.createPlayer(character);
 
     console.log(player)
 
