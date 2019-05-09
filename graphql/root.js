@@ -59,13 +59,19 @@ const root = {
 
     res.cookie("token", token);
 
-    await Character.create({ UserId: user.id, name: "jim" });
+    // character test
+
+    const characterClass = "paladin";
+
+    await Character.create({ UserId: user.id, name: "jim", class: characterClass, weapons_left_class: characterClass, weapons_right_class: characterClass });
 
     const character = await Character.findOne({ where: { UserId: user.id }});
     const characters = await Character.findAll();
 
     user.characterName = character.name
     user.characters = characters
+
+    // end test
 
     return user
   }

@@ -28,6 +28,9 @@ module.exports = {
       level: {
         type: Sequelize.INTEGER
       },
+      room: {
+        type: Sequelize.INTEGER
+      },
 
       strength: {
         type: Sequelize.INTEGER
@@ -88,7 +91,7 @@ module.exports = {
       },
 
       toy_name: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       toy_value: {
         type: Sequelize.STRING
