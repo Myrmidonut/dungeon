@@ -60,18 +60,22 @@ const root = {
     res.cookie("token", token);
 
     // character test
+    // const characterClass = "paladin";
+    // await Character.create({ UserId: user.id, name: "jim", class: characterClass, weapons_left_class: characterClass, weapons_right_class: characterClass });
 
-    const characterClass = "paladin";
+    const characters = await Character.findAll({ raw: true, where: { UserId: user.id }});
 
-    await Character.create({ UserId: user.id, name: "jim", class: characterClass, weapons_left_class: characterClass, weapons_right_class: characterClass });
+    const characterNames = characters.map(e => {
+      return {
+        name: e.name,
+        class: e.class,
+        level: e.level
+      }
+    })
 
-    const character = await Character.findOne({ where: { UserId: user.id }});
-    const characters = await Character.findAll();
+    console.log(characterNames)
 
-    user.characterName = character.name
-    user.characters = characters
-
-    // end test
+    user.characters = characterNames
 
     return user
   }

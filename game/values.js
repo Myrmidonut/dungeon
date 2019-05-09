@@ -255,7 +255,6 @@ const tools = {
 }
 
 module.exports = {
-  initialPlayer,
   weaponNames,
   playerClasses,
   playerEffects,
