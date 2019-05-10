@@ -56,11 +56,11 @@ function getClassStat(player) {
   else return "stamina";
 }
 
-function levelUp(player, probability) {
+function levelUp(player, gameValues) {
   for (let stat in player.stats) {
-    if (stat === getClassStat(player) && Math.random() >= probability.classStat) {
+    if (stat === getClassStat(player) && Math.random() <= gameValues.probabilityTables.levelUp.classStat) {
       player.stats[stat] += 1;
-    } else if (stat !== getClassStat(player) && Math.random() >= probability.stat) {
+    } else if (stat !== getClassStat(player) && Math.random() <= gameValues.probabilityTables.levelUp.stat) {
       player.stats[stat] += 1;
     }
   }
@@ -393,12 +393,13 @@ function fight(player, monster, playerClassHitChance) {
 
 function room(player) {
   if (player.room > 10) {
-    levelUp(player, levelUpTable);
+    levelUp(player, gameValues);
 
     return "finished"
   } else {
-    createMonster(player, gameValues)
-    encounter(player, monster)
+    const monster = createMonster(player, gameValues)
+
+    encounter(player, monster, gameValues)
   }
 }
 

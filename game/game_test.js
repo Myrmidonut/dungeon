@@ -8,10 +8,10 @@ function game_test() {
   console.log("player: ", player)
   console.log("=============================")
 
-  //gameFunctions.levelUp(player, gameValues.probabilityTables.levelUp)
+  gameFunctions.levelUp(player, gameValues)
 
-  //console.log("level up: ", player)
-  //console.log("=============================")
+  console.log("level up: ", player)
+  console.log("=============================")
 
   const monster = gameFunctions.createMonster(
     player,

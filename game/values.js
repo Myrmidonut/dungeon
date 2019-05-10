@@ -155,7 +155,7 @@ const monsterEffects = [
 
 const probabilityTables = {
   levelUp: {
-    classStat: 0.1,
+    classStat: 0.9,
     stat: 0.5
   },
   encounter: {
