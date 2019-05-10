@@ -24,8 +24,7 @@ function game_test() {
   console.log("encounter:", gameFunctions.encounter(
     player,
     monster,
-    gameValues.playerClassHitChance,
-    gameValues.probabilityTables
+    gameValues
   ))
 
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))

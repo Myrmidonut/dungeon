@@ -397,22 +397,19 @@ function room(player) {
 
     return "finished"
   } else {
-
-
     createMonster(player, gameValues)
-
-    encounter(player)
+    encounter(player, monster)
   }
 }
 
-function encounter(player, monster, playerClassHitChance, probabilityTables) {
-  const type = randomProbability(probabilityTables.encounterTable);
-  const loot = createLoot(player, randomProbability(probabilityTables.lootTable), randomProbability(probabilityTables.materialTable));
+function encounter(player, monster, gameValues) {
+  const type = randomProbability(gameValues.probabilityTables.encounterTable);
+  const loot = createLoot(player, randomProbability(gameValues.probabilityTables.lootTable), randomProbability(gameValues.probabilityTables.materialTable));
 
   applyEffects(player, player.effects);
 
   if (type === "monster") {
-    if (fight(player, monster, playerClassHitChance) === "player") {
+    if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
       console.log("monster loot:", loot)
 
       player.room += 1;
@@ -420,8 +417,8 @@ function encounter(player, monster, playerClassHitChance, probabilityTables) {
       console.log("you lost to the monster")
     }
   } else if (type === "treasureChest") {
-    if (randomProbability(probabilityTables.treasureChestTable) === "monster") {
-      if (fight(player, monster, playerClassHitChance) === "player") {
+    if (randomProbability(gameValues.probabilityTables.treasureChestTable) === "monster") {
+      if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
         console.log("treasure chest monster loot:", loot)
 
         player.room += 1;
@@ -439,7 +436,7 @@ function encounter(player, monster, playerClassHitChance, probabilityTables) {
     } else {
       console.log("you lost to the trap")
 
-      addEffects(player, randomEffects(probabilityTables.playerEffectsTable));
+      addEffects(player, randomEffects(gameValues.probabilityTables.playerEffectsTable));
     }
 
     player.room += 1;
