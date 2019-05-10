@@ -180,26 +180,26 @@ function monsterStat(type, player, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function createMonster(monsterNames, weaponNames, probabilityTables, effects, monsterRating, player) {
-  const type = randomProbability(probabilityTables.monster);
+function createMonster(player, gameValues) {
+  const type = randomProbability(gameValues.probabilityTables.monster);
   const average = playerStatAverage(player);
 
-  return (
-    {
-      name: monsterName(monsterNames),
-      type: type,
-      adjectives: randomEffects(effects),
-      stats: {
-        strength: monsterStat(type, player, average, monsterRating),
-        stamina: monsterStat(type, player, average, monsterRating),
-        agility: monsterStat(type, player, average, monsterRating)
-      },
-      weapons: monsterWeapons(player, weaponNames),
-      dodge: monsterDodge(),
-      armor: Math.round(armor(player) * monsterRating[type]),
-      hitChance: monsterRating[type]
-    }
-  );
+  const monster = {
+    name: monsterName(gameValues.monsterNames),
+    type: type,
+    adjectives: randomEffects(gameValues.monsterEffects),
+    stats: {
+      strength: monsterStat(type, player, average, gameValues.monsterRating),
+      stamina: monsterStat(type, player, average, gameValues.monsterRating),
+      agility: monsterStat(type, player, average, gameValues.monsterRating)
+    },
+    weapons: monsterWeapons(player, gameValues.weaponNames),
+    dodge: monsterDodge(),
+    armor: Math.round(armor(player) * gameValues.monsterRating[type]),
+    hitChance: gameValues.monsterRating[type]
+  };
+
+  return monster;
 }
 
 function createGear() {
@@ -397,6 +397,10 @@ function room(player) {
 
     return "finished"
   } else {
+
+
+    createMonster(player, gameValues)
+
     encounter(player)
   }
 }

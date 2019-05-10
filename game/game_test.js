@@ -14,12 +14,8 @@ function game_test() {
   //console.log("=============================")
 
   const monster = gameFunctions.createMonster(
-    gameValues.monsterNames,
-    gameValues.weaponNames,
-    gameValues.probabilityTables,
-    gameValues.monsterEffects,
-    gameValues.monsterRating,
-    player
+    player,
+    gameValues
   )
 
   console.log("monster: ", monster)
