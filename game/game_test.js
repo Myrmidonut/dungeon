@@ -29,13 +29,8 @@ function game_test() {
   console.log("encounter:", gameFunctions.encounter(
     player,
     monster,
-    gameValues.probabilityTables.levelUp,
     gameValues.playerClassHitChance,
-    gameValues.probabilityTables.encounter,
-    gameValues.probabilityTables.loot,
-    gameValues.probabilityTables.material,
-    gameValues.probabilityTables.treasureChest,
-    gameValues.playerEffects
+    gameValues.probabilityTables
   ))
 
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
