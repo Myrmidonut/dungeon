@@ -180,16 +180,19 @@ function monsterStat(type, player, playerStatAverage, monsterRating) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function createMonster(monsterNames, weaponNames, type, effects, playerStatAverage, monsterRating, player) {
+function createMonster(monsterNames, weaponNames, probabilityTables, effects, monsterRating, player) {
+  const type = randomProbability(probabilityTables.monster);
+  const average = playerStatAverage(player);
+
   return (
     {
       name: monsterName(monsterNames),
       type: type,
       adjectives: randomEffects(effects),
       stats: {
-        strength: monsterStat(type, player, playerStatAverage, monsterRating),
-        stamina: monsterStat(type, player, playerStatAverage, monsterRating),
-        agility: monsterStat(type, player, playerStatAverage, monsterRating)
+        strength: monsterStat(type, player, average, monsterRating),
+        stamina: monsterStat(type, player, average, monsterRating),
+        agility: monsterStat(type, player, average, monsterRating)
       },
       weapons: monsterWeapons(player, weaponNames),
       dodge: monsterDodge(),
