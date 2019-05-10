@@ -196,6 +196,10 @@ const monsterRating = {
   elite: 0.7
 }
 
+const monsterDodge = {
+  value: 0.2
+}
+
 const playerClassHitChance = {
   class: 0.75,
   nonClass: 0.5
@@ -255,6 +259,7 @@ const tools = {
 }
 
 module.exports = {
+  monsterDodge,
   weaponNames,
   playerClasses,
   playerEffects,

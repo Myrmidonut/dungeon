@@ -30,8 +30,8 @@ function perception(player) {
   return Math.floor(log(player.stats.agility, 3, 1)) + player.toy.value;
 }
 
-function monsterDodge() {
-  return 0.2;
+function monsterDodge(gameValues) {
+  return gameValues.monsterDodge.value;
 }
 
 function createWeaponName(names) {
@@ -194,7 +194,7 @@ function createMonster(player, gameValues) {
       agility: monsterStat(type, player, average, gameValues.monsterRating)
     },
     weapons: monsterWeapons(player, gameValues.weaponNames),
-    dodge: monsterDodge(),
+    dodge: monsterDodge(gameValues),
     armor: Math.round(armor(player) * gameValues.monsterRating[type]),
     hitChance: gameValues.monsterRating[type]
   };
@@ -268,11 +268,11 @@ function learnRecipe(player, recipe) {
   }
 }
 
-function hitChance(player, hand, hitChance) {
+function hitChance(player, hand, gameValues) {
   if (player.class === player.weapons[hand].class) {
-    return hitChance.class;
+    return gameValues.playerClassHitChance.class;
   } else {
-    return hitChance.nonClass;
+    return gameValues.playerClassHitChance.nonClass;
   }
 }
 
@@ -309,7 +309,7 @@ function armor(player) {
   return Object.values(player.armor).reduce((total, e) => total + e);
 }
 
-function fight(player, monster, playerClassHitChance) {
+function fight(player, monster, gameValues) {
   let currentPlayer = {
     name: "player",
     strength: player.modifiedStats.strength,
@@ -319,8 +319,8 @@ function fight(player, monster, playerClassHitChance) {
     dodge: playerDodge(player),
     weapons: player.weapons,
     hit: {
-      left: hitChance(player, "left", playerClassHitChance),
-      right: hitChance(player, "right", playerClassHitChance)
+      left: hitChance(player, "left", gameValues),
+      right: hitChance(player, "right", gameValues)
     }
   };
 
@@ -392,10 +392,12 @@ function fight(player, monster, playerClassHitChance) {
 }
 
 function room(player) {
-  if (player.room > 10) {
+  if (player.room <= 0) {
+    return "room 0";
+  } else if (player.room > 10) {
     levelUp(player, gameValues);
 
-    return "finished"
+    return "leveled up"
   } else {
     const monster = createMonster(player, gameValues)
 
@@ -410,7 +412,7 @@ function encounter(player, monster, gameValues) {
   applyEffects(player, player.effects);
 
   if (type === "monster") {
-    if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
+    if (fight(player, monster, gameValues) === "player") {
       console.log("monster loot:", loot)
 
       player.room += 1;
@@ -419,7 +421,7 @@ function encounter(player, monster, gameValues) {
     }
   } else if (type === "treasureChest") {
     if (randomProbability(gameValues.probabilityTables.treasureChestTable) === "monster") {
-      if (fight(player, monster, gameValues.playerClassHitChance) === "player") {
+      if (fight(player, monster, gameValues) === "player") {
         console.log("treasure chest monster loot:", loot)
 
         player.room += 1;
@@ -453,7 +455,6 @@ function encounter(player, monster, gameValues) {
 function resetPlayer(player) {
   player.health = player.stats.stamina * 10;
   player. effects = [];
-  //player.room = 0;
 
   return player;
 }
