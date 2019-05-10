@@ -12,7 +12,6 @@ const player = {
     stamina: 8,
     agility: 15
   },
-  damageTaken: 0,
   effects: [
     {
       name: "weak",
@@ -48,7 +47,10 @@ const player = {
     boots: 1,
     gloves: 3
   },
-  toy: 3,
+  toy: {
+    name: "candle",
+    value: 3
+  },
   tools: {
     cloth: {
       name: "basic scissors",
@@ -74,10 +76,9 @@ const player = {
     metal: 1
   },
   potions: {
-    "basic potion": {
-      value: 1,
-      amount: 1
-    }
+    name: "basic potion",
+    value: 1,
+    amount: 1
   },
   bandages: {
     name: "basic bandage",

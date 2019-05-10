@@ -94,6 +94,18 @@ const root = {
     const player = gameFunctions.createPlayer(character);
 
     return player;
+  },
+
+  async next_room(args, { req, res }) {
+    if (!req.user) throw new Error('You are not authenticated.');
+
+    if (player.room === 0) {
+      // save player to db
+    } else {
+      // run encounter
+    }
+
+    // return player
   }
 }
 

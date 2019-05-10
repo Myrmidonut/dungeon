@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 0
     },
+    
     strength: {
       type: DataTypes.INTEGER,
       defaultValue: 1

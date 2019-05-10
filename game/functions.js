@@ -27,7 +27,7 @@ function log(value, base, min) {
 }
 
 function perception(player) {
-  return Math.floor(log(player.stats.agility, 3, 1)) + player.toy;
+  return Math.floor(log(player.stats.agility, 3, 1)) + player.toy.value;
 }
 
 function monsterDodge() {
@@ -441,6 +441,14 @@ function encounter(player, monster, levelUpTable, playerClassHitChance, encounte
   console.log(player)
 }
 
+function resetPlayer(player) {
+  player.health = player.stats.stamina * 10;
+  player. effects = [];
+  //player.room = 0;
+
+  return player;
+}
+
 function createPlayer(database) {
   const player = {
     name: database.name,
@@ -456,9 +464,7 @@ function createPlayer(database) {
       stamina: database.stamina,
       agility: database.agility
     },
-    health: database.stamina * 10,
-    effects: [],
-    room: 0,
+    room: database.room,
     weapons: {
       left: {
         class: database.weapons_left_class,
@@ -531,7 +537,7 @@ function createPlayer(database) {
     }
   }
 
-  return player
+  return resetPlayer(player)
 }
 
 module.exports = {
