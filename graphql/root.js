@@ -99,7 +99,12 @@ const root = {
   async next_room(args, { req, res }) {
     if (!req.user) throw new Error('You are not authenticated.');
 
-    if (player.room === 0) {
+    // current character has to stay the same
+    
+    const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
+    if (!character) throw new Error('Character not found.');
+
+    if (character.room === 0) {
       // save player to db
     } else {
       // run encounter
