@@ -209,8 +209,9 @@ function createGear() {
   // armor
 }
 
-function createLoot(player, lootProbability, materialProbability) {
-  let loot = lootProbability;
+function createLoot(player, gameValues) {
+  let loot = randomProbability(gameValues.probabilityTables.lootTable);
+  let material = randomProbability(gameValues.probabilityTables.materialTable);
 
   /*
     tool: 0.1,
@@ -227,7 +228,7 @@ function createLoot(player, lootProbability, materialProbability) {
 
     // createGear()
   } else if (loot === "material") {
-    loot = createMaterial(player, materialProbability);
+    loot = createMaterial(player, material);
   } else if (loot === "gold") {
     loot = `${perception(player)} gold`;
   }
@@ -407,7 +408,7 @@ function room(player) {
 
 function encounter(player, monster, gameValues) {
   const type = randomProbability(gameValues.probabilityTables.encounterTable);
-  const loot = createLoot(player, randomProbability(gameValues.probabilityTables.lootTable), randomProbability(gameValues.probabilityTables.materialTable));
+  const loot = createLoot(player, gameValues);
 
   applyEffects(player, player.effects);
 
@@ -551,6 +552,7 @@ function createPlayer(database) {
 }
 
 module.exports = {
+  room,
   createPlayer,
   encounter,
   fight,
