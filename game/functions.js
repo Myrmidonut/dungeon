@@ -202,11 +202,16 @@ function createMonster(player, gameValues) {
   return monster;
 }
 
-function createGear() {
-  // tool
-  // recipe
-  // weapon
-  // armor
+function upgradeWeapon(player) {
+
+}
+
+function upgradeArmor(player) {
+
+}
+
+function upgradeTool(player) {
+
 }
 
 function createLoot(player, gameValues) {
