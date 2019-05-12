@@ -30,11 +30,13 @@ function game_test() {
   ))*/
 
   /*console.log("=============================")
+  console.log(player.food)
   console.log("craft: ", gameFunctions.craft(
     player,
-    "potion",
+    "food",
     gameValues
-  ))*/
+  ))
+  console.log(player.food)*/
 
   /*console.log("=============================")
   console.log(player.health)
@@ -52,12 +54,12 @@ function game_test() {
   ))
   console.log(player.effects)*/
 
-  console.log("=============================")
+  /*console.log("=============================")
   console.log(player.health)
   console.log("potion: ", gameFunctions.useFood(
     player
   ))
-  console.log(player.health)
+  console.log(player.health)*/
 
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
   console.log("=============================")

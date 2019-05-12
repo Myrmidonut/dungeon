@@ -196,9 +196,9 @@ const probabilityTables = {
     stat: 0.5
   },
   encounter: {
-    monster: 0,//0.5,
+    monster: 1,//0.5,
     treasureChest: 0,//0.2,
-    trap: 1,//0.2,
+    trap: 0,//0.2,
     empty: 0//0.1
   },
   monster: {

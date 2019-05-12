@@ -452,6 +452,8 @@ function fight(player, monster, gameValues) {
   console.log("======================")
   console.log("winner:", defender.name, "health:", defender.health)
 
+  if (defender.name === "player") player.health = defender.health;
+
   return defender.name;
 }
 
@@ -520,7 +522,7 @@ function encounter(player, monster, gameValues) {
 
 function resetPlayer(player) {
   player.health = player.stats.stamina * 10;
-  player. effects = [];
+  player.effects = [];
 
   return player;
 }
