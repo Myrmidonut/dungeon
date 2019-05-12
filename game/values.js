@@ -51,7 +51,7 @@ const weaponNames = {
   ]
 }
 
-const tools = [
+const itemLevels = [
   {
     level: "",
     value: 0
@@ -210,8 +210,8 @@ const probabilityTables = {
   },
   loot: {
     weapon: 0,//0.2,
-    armor: 1,//0.2,
-    potion: 0,//0.2,
+    armor: 0,//0.2,
+    potion: 1,//0.2,
     bandage: 0,//0.2,
     tool: 0,//0.2
   },
@@ -282,13 +282,12 @@ const recipes = {
 }
 
 module.exports = {
-  tools,
+  itemLevels,
   monsterDodge,
   weaponNames,
   playerClasses,
   playerEffects,
   playerClassHitChance,
-  tools,
   recipes,
   monsterRating,
   monsterNames,

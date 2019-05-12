@@ -73,21 +73,16 @@ const player = {
     blood: 5,
     brains: 7
   },
-  potions: {
-    name: "basic potion",
+  potion: {
+    name: "basic",
     value: 1,
     amount: 1
   },
-  bandages: {
-    name: "basic bandage",
-    value: 1,
-    amount: 3
-  },
-  recipes: [
-    "basic potion",
-    "improved potion",
-    "basic bandage"
-  ]
+  bandage: {
+    name: "",
+    value: 0,
+    amount: 0
+  }
 }
 
 module.exports = player

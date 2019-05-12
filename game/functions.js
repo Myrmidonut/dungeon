@@ -228,7 +228,7 @@ function upgradeTool(player, gameValues) {
   const randomTool = randomProbability(gameValues.probabilityTables.bodyParts);
 
   player.tools[randomTool].value += 1;
-  player.tools[randomTool].level = gameValues.tools[player.tools[randomTool].value].level
+  player.tools[randomTool].level = gameValues.itemLevels[player.tools[randomTool].value].level
 
   return player.tools[randomTool]
 }
