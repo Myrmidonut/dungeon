@@ -4,7 +4,6 @@ const player = require("./dummyPlayer")
 
 function game_test() {
   console.log("=============================")
-
   console.log("player: ", player)
   console.log("=============================")
 
@@ -18,12 +17,22 @@ function game_test() {
     gameValues
   )
 
-  //console.log("monster: ", monster)
-  //console.log("=============================")
-
   console.log("encounter:", gameFunctions.encounter(
     player,
     monster,
+    gameValues
+  ))
+
+  /*console.log("=============================")
+  console.log("scavenge: ", gameFunctions.scavenge(
+    player,
+    gameValues
+  ))*/
+
+  console.log("=============================")
+  console.log("craft: ", gameFunctions.craft(
+    player,
+    "potion",
     gameValues
   ))
 

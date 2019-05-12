@@ -257,37 +257,33 @@ function createLoot(player, gameValues) {
   }
 }
 
-function createMaterial(player, material) {
-  if (material === "empty") return "empty";
-  else return `${player.tools[material].value + perception(player)} ${material}`;
+function scavenge(player, gameValues) {
+  const material = randomProbability(gameValues.probabilityTables.bodyParts);
+  const amount = (player.tools[material].value + perception(player))
+
+  player.bodyParts[material] += amount;
+
+  return `${amount} ${material}`;
 }
 
-function craftRecipe(player, type, recipes) {
-  if (player.recipes.indexOf(type) !== -1) {
-    let hasMaterial = true;
+function craft(player, type, gameValues) {
+  let enoughBodyParts = true;
 
-    for (let material in recipes[type].materials) {
-      if (player.materials[material] < recipes[type].value) {
-        hasMaterial = false;
-      }
+  Object.keys(gameValues.recipes[type]).forEach(e => {
+    if (player.bodyParts[e] < (gameValues.recipes[type][e] * player[type].value)) {
+      enoughBodyParts = false;
     }
+  })
 
-    if (hasMaterial) {
-      for (let material in recipes[type].materials) {
-        player.materials[material] -= recipes[type].value;
-      }
+  if (enoughBodyParts) {
+    Object.keys(gameValues.recipes[type]).forEach(e => {
+      player.bodyParts[e] -= (gameValues.recipes[type][e] * player[type].value);
+    })
 
-      player[recipes[type]["type"]][type].amount += perception(player);
-
-      return "crafted";
-    } else return "not enough materials";
-  } else return "unknown recipe";
-}
-
-function learnRecipe(player, recipe) {
-  if (player.recipes.indexOf(recipe) === -1) {
-    player.recipes.push(recipe);
-  }
+    player[type].amount += player[type].value;
+    
+    return `created a level ${player[type].value} ${type}`;
+  } else return "not enough body parts"
 }
 
 function hitChance(player, hand, gameValues) {
@@ -579,10 +575,9 @@ module.exports = {
   createPlayer,
   encounter,
   fight,
-  craftRecipe,
-  learnRecipe,
+  craft,
+  scavenge,
   createLoot,
-  createMaterial,
   createMonster,
   playerStatAverage,
   playerDamageAverage,

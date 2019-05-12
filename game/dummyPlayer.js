@@ -75,7 +75,7 @@ const player = {
   },
   potion: {
     level: "basic",
-    value: 1,
+    value: 5,
     amount: 1
   },
   bandage: {

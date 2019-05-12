@@ -255,29 +255,17 @@ const playerClasses = [
 ]
 
 const recipes = {
-  "basic potion": {
-    type: "potions",
-    value: 1,
-    materials: {
-      organs: 1,
-      metal: 1
-    }
+  potion: {
+    blood: 1,
+    brains: 1
   },
-  "improved potion" : {
-    type: "potions",
-    value: 2,
-    materials: {
-      organs: 2,
-      metal: 2
-    }
+  bandage: {
+    bones: 1,
+    blood: 1
   },
-  "basic bandage": {
-    type: "bandages",
-    value: 1,
-    materials: {
-      cloth: 1,
-      bones: 1
-    }
+  food: {
+    bones: 1,
+    brains: 1
   }
 }
 
