@@ -210,10 +210,17 @@ const probabilityTables = {
   },
   loot: {
     weapon: 0,//0.2,
-    armor: 0,//0.2,
+    armor: 1,//0.2,
     potion: 0,//0.2,
     bandage: 0,//0.2,
-    tool: 1,//0.2
+    tool: 0,//0.2
+  },
+  armor: {
+    helmet: 0.2,
+    chest: 0.2,
+    pants: 0.2,
+    boots: 0.2,
+    gloves: 0.2
   }
 }
 

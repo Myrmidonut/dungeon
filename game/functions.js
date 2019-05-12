@@ -47,6 +47,8 @@ function playerDodge(player) {
 }
 
 function disarmTrap(player) {
+  console.log("disarm:", round(log(player.stats.agility, 3, 0), 2) / 10)
+
   return randomRoll(round(log(player.stats.agility, 3, 0), 2) / 10);
 }
 
@@ -202,33 +204,49 @@ function createMonster(player, gameValues) {
   return monster;
 }
 
-function upgradeWeapon(player) {
+function upgradeWeapon(player, gameValues) {
 
 }
 
-function upgradeArmor(player) {
+function upgradeArmor(player, gameValues) {
+  const randomArmor = randomProbability(gameValues.probabilityTables.armor);
+
+  player.armor[randomArmor] += 1;
+
+  return randomArmor;
+}
+
+function upgradePotion(player, gameValues) {
 
 }
 
-function upgradeTool(player) {
+function upgradeBandage(player, gameValues) {
 
+}
+
+function upgradeTool(player, gameValues) {
+  const randomTool = randomProbability(gameValues.probabilityTables.bodyParts);
+
+  player.tools[randomTool].value += 1;
+  player.tools[randomTool].level = gameValues.tools[player.tools[randomTool].value].level
+
+  return player.tools[randomTool]
 }
 
 function createLoot(player, gameValues) {
   let type = randomProbability(gameValues.probabilityTables.loot);
 
-  if (type === "tool") {
-    const randomTool = randomProbability(gameValues.probabilityTables.bodyParts);
-
-    player.tools[randomTool].value += 1;
-    player.tools[randomTool].level = gameValues.tools[player.tools[randomTool].value].level
-  } else if (type === "material") {
-    type = createMaterial(player, material);
-  } else if (type === "gold") {
-    type = `${perception(player)} gold`;
+  if (type === "weapon") {
+    return upgradeWeapon(player, gameValues)
+  } else if (type === "armor") {
+    return upgradeArmor(player, gameValues)
+  } else if (type === "potion") {
+    return upgradePotion(player, gameValues)
+  } else if (type === "bandage") {
+    return upgradeBandage(player, gameValues)
+  } else if (type === "tool") {
+    return upgradeTool(player, gameValues)
   }
-
-  return type;
 }
 
 function createMaterial(player, material) {
@@ -432,7 +450,7 @@ function encounter(player, monster, gameValues) {
       player.room += 1;
     }
   } else if (type === "trap") {
-    if (true /*disarmTrap(player)*/) {
+    if (disarmTrap(player)) {
       console.log("trap loot:", loot)
     } else {
       console.log("you lost to the trap")

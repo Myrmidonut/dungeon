@@ -5,7 +5,7 @@ const player = {
   stats: {
     strength: 5,
     stamina: 8,
-    agility: 150
+    agility: 1500
   },
   modifiedStats: {
     strength: 5,
