@@ -74,12 +74,12 @@ const player = {
     brains: 7
   },
   potion: {
-    name: "basic",
+    level: "basic",
     value: 1,
     amount: 1
   },
   bandage: {
-    name: "",
+    level: "",
     value: 0,
     amount: 0
   }

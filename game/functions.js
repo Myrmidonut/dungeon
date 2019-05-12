@@ -217,11 +217,17 @@ function upgradeArmor(player, gameValues) {
 }
 
 function upgradePotion(player, gameValues) {
+  player.potion.value += 1;
+  player.potion.level = gameValues.itemLevels[player.potion.value].level;
 
+  return player.potion;
 }
 
 function upgradeBandage(player, gameValues) {
+  player.bandage.value += 1;
+  player.bandage.level = gameValues.itemLevels[player.bandage.value].level;
 
+  return player.bandage;
 }
 
 function upgradeTool(player, gameValues) {
