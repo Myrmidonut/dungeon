@@ -278,7 +278,13 @@ function useBandage(player, gameValues) {
 }
 
 function useFood(player, gameValues) {
-  // 1 ... 6 charges
+  if (player.food.amount <= 0) return "not enough food";
+
+  player.health = player.stats.stamina * 10;
+
+  player.food.amount -= 1;
+
+  return "healed full";
 }
 
 function createLoot(player, gameValues) {
