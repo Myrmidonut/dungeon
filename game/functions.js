@@ -257,6 +257,14 @@ function usePotion(player, gameValues) {
   return removedEffects;
 }
 
+function useBandage(player, gameValues) {
+  // 0.3 ... 0.8 x max hp back
+}
+
+function useFood(player, gameValues) {
+  // 1 ... 6 charges
+}
+
 function createLoot(player, gameValues) {
   let type = randomProbability(gameValues.probabilityTables.loot);
 
@@ -588,6 +596,8 @@ function createPlayer(database) {
 
 module.exports = {
   usePotion,
+  useBandage,
+  useFood,
   room,
   createPlayer,
   encounter,
