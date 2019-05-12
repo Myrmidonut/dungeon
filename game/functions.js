@@ -242,6 +242,8 @@ function upgradeTool(player, gameValues) {
 }
 
 function usePotion(player, gameValues) {
+  if (player.potion.amount <= 0) return "not enough potions";
+
   let removedEffects = [];
 
   for (let i = 0; i < gameValues.potion[player.potion.value]; i++) {
@@ -254,11 +256,13 @@ function usePotion(player, gameValues) {
     }
   }
 
+  player.potion.amount -= 1;
+
   return removedEffects;
 }
 
 function useBandage(player, gameValues) {
-  if (player.bandage.amount <= 0) return "not enough banadages";
+  if (player.bandage.amount <= 0) return "not enough bandages";
 
   const heal = gameValues.bandage[player.bandage.value] * player.health;
 

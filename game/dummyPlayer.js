@@ -76,12 +76,12 @@ const player = {
   potion: {
     level: "basic",
     value: 1,
-    amount: 1
+    amount: 0
   },
   bandage: {
     level: "basic",
     value: 1,
-    amount: 1
+    amount: 0
   },
   food: {
     level: "basic",
