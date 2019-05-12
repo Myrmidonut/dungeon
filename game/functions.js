@@ -258,7 +258,19 @@ function usePotion(player, gameValues) {
 }
 
 function useBandage(player, gameValues) {
-  // 0.3 ... 0.8 x max hp back
+  if (player.bandage.amount <= 0) return "not enough banadages";
+
+  const heal = gameValues.bandage[player.bandage.value] * player.health;
+
+  if ((player.health + heal) > (player.stats.stamina * 10)) {
+    player.health = player.stats.stamina * 10;
+  } else {
+    player.health += heal;
+  }
+
+  player.bandage.amount -= 1;
+
+  return heal;
 }
 
 function useFood(player, gameValues) {

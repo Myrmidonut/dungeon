@@ -36,6 +36,14 @@ function game_test() {
     gameValues
   ))
 
+  console.log("=============================")
+  console.log(player.health)
+  console.log("bandage: ", gameFunctions.useBandage(
+    player,
+    gameValues
+  ))
+  console.log(player.health)
+
   /*console.log("=============================")
   console.log(player.effects)
   console.log("potion: ", gameFunctions.usePotion(
