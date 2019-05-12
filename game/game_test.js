@@ -36,6 +36,14 @@ function game_test() {
     gameValues
   ))
 
+  /*console.log("=============================")
+  console.log(player.effects)
+  console.log("potion: ", gameFunctions.usePotion(
+    player,
+    gameValues
+  ))
+  console.log(player.effects)*/
+
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
   console.log("=============================")
 

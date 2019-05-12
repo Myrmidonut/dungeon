@@ -241,6 +241,22 @@ function upgradeTool(player, gameValues) {
   return player.tools[randomTool]
 }
 
+function usePotion(player, gameValues) {
+  let removedEffects = [];
+
+  for (let i = 0; i < gameValues.potion[player.potion.value]; i++) {
+    if (player.effects.length !== 0) {
+      const randomEffect = Math.floor(Math.random() * player.effects.length);
+
+      removedEffects.push(player.effects[randomEffect]);
+
+      player.effects.splice(randomEffect, 1);
+    }
+  }
+
+  return removedEffects;
+}
+
 function createLoot(player, gameValues) {
   let type = randomProbability(gameValues.probabilityTables.loot);
 
@@ -571,6 +587,7 @@ function createPlayer(database) {
 }
 
 module.exports = {
+  usePotion,
   room,
   createPlayer,
   encounter,

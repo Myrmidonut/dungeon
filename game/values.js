@@ -82,6 +82,12 @@ const itemLevels = [
   }
 ]
 
+const potion = [0, 1, 1, 2, 2, 3, 3]
+
+const bandage = [0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+
+const food = [0, 1, 2, 3, 4, 5, 6]
+
 const playerEffects = [
   {
     name: "slow",
@@ -270,6 +276,9 @@ const recipes = {
 }
 
 module.exports = {
+  potion,
+  bandage,
+  food,
   itemLevels,
   monsterDodge,
   weaponNames,
