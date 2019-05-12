@@ -215,20 +215,17 @@ function upgradeTool(player) {
 }
 
 function createLoot(player, gameValues) {
-  let loot = randomProbability(gameValues.probabilityTables.lootTable);
-  let material = randomProbability(gameValues.probabilityTables.materialTable);
+  let type = randomProbability(gameValues.probabilityTables.lootTable);
 
   /*
-    tool: 0.1,
-    recipe: 0.1,
-    weapon: 0.1,
-    armor: 0.1,
-    empty: 0.1,
-    gold: 0.1,
-    material: 0.4
+    weapon: 0.2,
+    armor: 0.2,
+    potion: 0.2,
+    bandage: 0.2,
+    tool: 0.2,
   */
 
-  if (loot === "tool") {
+  if (type === "tool") {
     loot += ` quality ${perception(player)}`;
 
     // createGear()

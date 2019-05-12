@@ -168,25 +168,21 @@ const probabilityTables = {
     normal: 0.9,
     elite: 0.1
   },
-  material: {
-    cloth: 0.225,
-    metal: 0.225,
-    bones: 0.225,
-    organs: 0.225,
-    empty: 0.1
+  bodyParts: {
+    blood: 0.333,
+    bones: 0.333,
+    brains: 0.334
   },
   treasureChest: {
     monster: 0.25,
     treasure: 0.75
   },
   loot: {
-    tool: 0.1,
-    recipe: 0.1,
-    weapon: 0.1,
-    armor: 0.1,
-    empty: 0.1,
-    gold: 0.1,
-    material: 0.4
+    weapon: 0.2,
+    armor: 0.2,
+    potion: 0.2,
+    bandage: 0.2,
+    tool: 0.2
   }
 }
 
