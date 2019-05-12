@@ -5,12 +5,12 @@ const player = {
   stats: {
     strength: 5,
     stamina: 8,
-    agility: 15
+    agility: 150
   },
   modifiedStats: {
     strength: 5,
     stamina: 8,
-    agility: 15
+    agility: 150
   },
   effects: [
     {
@@ -52,28 +52,26 @@ const player = {
     value: 3
   },
   tools: {
-    cloth: {
-      name: "basic scissors",
-      value: 2
-    },
     bones: {
-      name: "basic knife",
-      value: 5
-    },
-    organs: {
-      name: "basic spoon",
-      value: 7
-    },
-    metal: {
-      name: "basic hammer",
+      name: "saw",
+      level: "basic",
       value: 1
+    },
+    blood: {
+      name: "bucket",
+      level: "",
+      value: 0
+    },
+    brains: {
+      name: "spoon",
+      level: "improved",
+      value: 3
     }
   },
-  materials: {
-    cloth: 2,
-    bones: 5,
-    organs: 7,
-    metal: 1
+  bodyParts: {
+    bones: 2,
+    blood: 5,
+    brains: 7
   },
   potions: {
     name: "basic potion",

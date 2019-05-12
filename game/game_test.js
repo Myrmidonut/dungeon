@@ -18,8 +18,8 @@ function game_test() {
     gameValues
   )
 
-  console.log("monster: ", monster)
-  console.log("=============================")
+  //console.log("monster: ", monster)
+  //console.log("=============================")
 
   console.log("encounter:", gameFunctions.encounter(
     player,

@@ -51,6 +51,37 @@ const weaponNames = {
   ]
 }
 
+const tools = [
+  {
+    level: "",
+    value: 0
+  },
+  {
+    level: "basic",
+    value: 1
+  },
+  {
+    level: "average",
+    value: 2
+  },
+  {
+    level: "improved",
+    value: 3
+  },
+  {
+    level: "excellent",
+    value: 4
+  },
+  {
+    level: "perfect",
+    value: 5
+  },
+  {
+    level: "supreme",
+    value: 6
+  }
+]
+
 const playerEffects = [
   {
     name: "slow",
@@ -178,11 +209,11 @@ const probabilityTables = {
     treasure: 0.75
   },
   loot: {
-    weapon: 0.2,
-    armor: 0.2,
-    potion: 0.2,
-    bandage: 0.2,
-    tool: 0.2
+    weapon: 0,//0.2,
+    armor: 0,//0.2,
+    potion: 0,//0.2,
+    bandage: 0,//0.2,
+    tool: 1,//0.2
   }
 }
 
@@ -243,18 +274,8 @@ const recipes = {
   }
 }
 
-const tools = {
-  "basic hammer": {
-    type: "metal",
-    value: 1
-  },
-  "basic knife": {
-    type: "cloth",
-    value: 1
-  }
-}
-
 module.exports = {
+  tools,
   monsterDodge,
   weaponNames,
   playerClasses,

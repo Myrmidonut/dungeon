@@ -215,27 +215,20 @@ function upgradeTool(player) {
 }
 
 function createLoot(player, gameValues) {
-  let type = randomProbability(gameValues.probabilityTables.lootTable);
-
-  /*
-    weapon: 0.2,
-    armor: 0.2,
-    potion: 0.2,
-    bandage: 0.2,
-    tool: 0.2,
-  */
+  let type = randomProbability(gameValues.probabilityTables.loot);
 
   if (type === "tool") {
-    loot += ` quality ${perception(player)}`;
+    const randomTool = randomProbability(gameValues.probabilityTables.bodyParts);
 
-    // createGear()
-  } else if (loot === "material") {
-    loot = createMaterial(player, material);
-  } else if (loot === "gold") {
-    loot = `${perception(player)} gold`;
+    player.tools[randomTool].value += 1;
+    player.tools[randomTool].level = gameValues.tools[player.tools[randomTool].value].level
+  } else if (type === "material") {
+    type = createMaterial(player, material);
+  } else if (type === "gold") {
+    type = `${perception(player)} gold`;
   }
 
-  return loot;
+  return type;
 }
 
 function createMaterial(player, material) {
@@ -409,8 +402,10 @@ function room(player) {
 }
 
 function encounter(player, monster, gameValues) {
-  const type = randomProbability(gameValues.probabilityTables.encounterTable);
+  const type = randomProbability(gameValues.probabilityTables.encounter);
   const loot = createLoot(player, gameValues);
+
+  console.log("type:", type)
 
   applyEffects(player, player.effects);
 
@@ -423,7 +418,7 @@ function encounter(player, monster, gameValues) {
       console.log("you lost to the monster")
     }
   } else if (type === "treasureChest") {
-    if (randomProbability(gameValues.probabilityTables.treasureChestTable) === "monster") {
+    if (randomProbability(gameValues.probabilityTables.treasureChest) === "monster") {
       if (fight(player, monster, gameValues) === "player") {
         console.log("treasure chest monster loot:", loot)
 
@@ -437,12 +432,12 @@ function encounter(player, monster, gameValues) {
       player.room += 1;
     }
   } else if (type === "trap") {
-    if (disarmTrap(player)) {
+    if (true /*disarmTrap(player)*/) {
       console.log("trap loot:", loot)
     } else {
       console.log("you lost to the trap")
 
-      addEffects(player, randomEffects(gameValues.probabilityTables.playerEffectsTable));
+      addEffects(player, randomEffects(gameValues.playerEffects));
     }
 
     player.room += 1;
