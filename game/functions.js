@@ -157,8 +157,10 @@ function randomEffects(effects) {
   return result;
 }
 
-function addEffects(player, effect) {
-  effect.forEach(e => {
+function addEffects(player, gameValues) {
+  const effects = randomEffects(gameValues.playerEffects)
+
+  effects.forEach(e => {
     if (!player.effects.some(f => f.name === e.name)) {
       player.effects.push(e);
     }
@@ -461,7 +463,7 @@ function encounter(player, monster, gameValues) {
     } else {
       console.log("you lost to the trap")
 
-      addEffects(player, randomEffects(gameValues.playerEffects));
+      addEffects(player, gameValues);
     }
 
     player.room += 1;
