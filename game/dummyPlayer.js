@@ -2,15 +2,16 @@ const player = {
   class: "thief",
   level: 5,
   room: 10,
+  health: 10,
   stats: {
     strength: 5,
     stamina: 8,
-    agility: 1500
+    agility: 15
   },
   modifiedStats: {
     strength: 5,
     stamina: 8,
-    agility: 150
+    agility: 15
   },
   effects: [
     {
@@ -80,8 +81,8 @@ const player = {
   },
   bandage: {
     level: "basic",
-    value: 1,
-    amount: 0
+    value: 5,
+    amount: 2
   },
   food: {
     level: "basic",

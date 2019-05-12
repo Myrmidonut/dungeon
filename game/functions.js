@@ -264,7 +264,7 @@ function usePotion(player, gameValues) {
 function useBandage(player, gameValues) {
   if (player.bandage.amount <= 0) return "not enough bandages";
 
-  const heal = gameValues.bandage[player.bandage.value] * player.health;
+  const heal = Math.round(gameValues.bandage[player.bandage.value] * player.modifiedStats.stamina * 10);
 
   if ((player.health + heal) > (player.stats.stamina * 10)) {
     player.health = player.stats.stamina * 10;
@@ -277,7 +277,7 @@ function useBandage(player, gameValues) {
   return heal;
 }
 
-function useFood(player, gameValues) {
+function useFood(player) {
   if (player.food.amount <= 0) return "not enough food";
 
   player.health = player.stats.stamina * 10;
@@ -378,7 +378,7 @@ function fight(player, monster, gameValues) {
     name: "player",
     strength: player.modifiedStats.strength,
     stamina: player.modifiedStats.stamina,
-    health: player.modifiedStats.stamina * 10,
+    health: player.health,
     armor: armor(player),
     dodge: playerDodge(player),
     weapons: player.weapons,
@@ -530,6 +530,7 @@ function createPlayer(database) {
     name: database.name,
     class: database.class,
     level: database.level,
+    health: database.stamina * 10,
     stats: {
       strength: database.strength,
       stamina: database.stamina,

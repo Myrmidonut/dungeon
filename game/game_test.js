@@ -36,21 +36,28 @@ function game_test() {
     gameValues
   ))*/
 
-  console.log("=============================")
+  /*console.log("=============================")
   console.log(player.health)
   console.log("bandage: ", gameFunctions.useBandage(
     player,
     gameValues
   ))
-  console.log(player.health)
+  console.log(player.health)*/
 
-  console.log("=============================")
+  /*console.log("=============================")
   console.log(player.effects)
   console.log("potion: ", gameFunctions.usePotion(
     player,
     gameValues
   ))
-  console.log(player.effects)
+  console.log(player.effects)*/
+
+  console.log("=============================")
+  console.log(player.health)
+  console.log("potion: ", gameFunctions.useFood(
+    player
+  ))
+  console.log(player.health)
 
   /*console.log("create room: ", gameFunctions.randomProbability(gameValues.probabilityTables.encounter))
   console.log("=============================")
