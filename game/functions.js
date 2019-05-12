@@ -34,10 +34,10 @@ function monsterDodge(gameValues) {
   return gameValues.monsterDodge.value;
 }
 
-function createWeaponName(names) {
-  const first = names.first[Math.floor(Math.random() * names.first.length)];
-  const second = names.second[Math.floor(Math.random() * names.second.length)];
-  const third = names.third[Math.floor(Math.random() * names.third.length)];
+function createWeaponName(gameValues) {
+  const first = gameValues.weaponNames.first[Math.floor(Math.random() * gameValues.weaponNames.first.length)];
+  const second = gameValues.weaponNames.second[Math.floor(Math.random() * gameValues.weaponNames.second.length)];
+  const third = gameValues.weaponNames.third[Math.floor(Math.random() * gameValues.weaponNames.third.length)];
 
   return `${first} ${second} of ${third}`;
 }
@@ -89,7 +89,7 @@ function playerDamageAverage(player) {
   );
 }
 
-function monsterWeapons(player, names) {
+function monsterWeapons(player, gameValues) {
   const hands = Math.floor(Math.random() * 2 + 1);
 
   if (hands === 1) {
@@ -100,7 +100,7 @@ function monsterWeapons(player, names) {
             minimum: Math.round(playerDamageAverage(player) * 0.666),
             maximum: Math.round(playerDamageAverage(player) * 1.333)
           },
-          name: createWeaponName(names),
+          name: createWeaponName(gameValues),
           critChance: 0.2
         },
         right: {
@@ -120,7 +120,7 @@ function monsterWeapons(player, names) {
             minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
             maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
           },
-          name: createWeaponName(names),
+          name: createWeaponName(gameValues),
           critChance: 0.2
         },
         right: {
@@ -128,7 +128,7 @@ function monsterWeapons(player, names) {
             minimum: Math.round(playerDamageAverage(player) * 0.666 / 2),
             maximum: Math.round(playerDamageAverage(player) * 1.333 / 2)
           },
-          name: createWeaponName(names),
+          name: createWeaponName(gameValues),
           critChance: 0.2
         }
       }
@@ -197,7 +197,7 @@ function createMonster(player, gameValues) {
       stamina: monsterStat(type, player, average, gameValues.monsterRating),
       agility: monsterStat(type, player, average, gameValues.monsterRating)
     },
-    weapons: monsterWeapons(player, gameValues.weaponNames),
+    weapons: monsterWeapons(player, gameValues),
     dodge: monsterDodge(gameValues),
     armor: Math.round(armor(player) * gameValues.monsterRating[type]),
     hitChance: gameValues.monsterRating[type]
@@ -207,6 +207,10 @@ function createMonster(player, gameValues) {
 }
 
 function upgradeWeapon(player, gameValues) {
+  // thief -> two onehander
+  // barbarian -> one twohander
+  // paladin -> one onehander one shield
+
 
 }
 
