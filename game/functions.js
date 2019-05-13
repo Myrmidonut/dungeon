@@ -610,6 +610,8 @@ function createPlayer(database) {
     name: database.name,
     class: database.class,
     level: database.level,
+    maxLevel: database.max_level,
+    room: database.room,
     health: database.stamina * 10,
     stats: {
       strength: database.strength,
@@ -630,7 +632,8 @@ function createPlayer(database) {
           minimum: database.weapons_left_damage_maximum,
           maximum: database.weapons_left_damage_minimum
         },
-        critChance: database.weapons_left_critchance
+        critChance: database.weapons_left_critchance,
+        hitChance: database.weapons_left_hitchance
       },
       right: {
         class: database.weapons_right_class,
@@ -639,8 +642,13 @@ function createPlayer(database) {
           minimum: database.weapons_right_damage_maximum,
           maximum: database.weapons_right_damage_minimum
         },
-        critChance: database.weapons_right_critchance
+        critChance: database.weapons_right_critchance,
+        hitChance: database.weapons_right_hitchance
       },
+      shield: {
+        name: database.weapons_shield_name,
+        armor: database.weapons_shield_armor
+      }
     },
     armor: {
       helmet: database.armor_helmet,
