@@ -522,11 +522,19 @@ function room(player, gameValues) {
   console.log("player rooms:", player.room)
 
   if (player.room <= 0) {
-    return "room 0";
+    return {
+      win: true,
+      loot: null,
+      message: "room 0"
+    };
   } else if (player.room > 10 && player.level === player.maxLevel) {
     levelUp(player, gameValues);
 
-    return `finished map and leveled up to ${player.maxLevel}`;
+    return {
+      win: true,
+      loot: null,
+      message: `finished map and leveled up to ${player.maxLevel}`
+    };
   } else if (player.room > 10) {
     return "finished map";
   } else {
