@@ -393,6 +393,8 @@ function createLoot(player, gameValues) {
     return upgradeBandage(player, gameValues)
   } else if (type === "tool") {
     return upgradeTool(player, gameValues)
+  } else if (type === "toy") {
+    return upgradeToy(player, gameValues)
   }
 }
 

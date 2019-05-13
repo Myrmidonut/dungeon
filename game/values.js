@@ -55,14 +55,14 @@ const weaponNames = {
 }
 
 const toyNames = {
-  color: [
+  first: [
     "red",
     "green",
     "blue",
     "white",
     "black"
   ],
-  name: [
+  second: [
     "candle",
     "torch",
     "cat",
@@ -236,11 +236,12 @@ const probabilityTables = {
     treasure: 0.75
   },
   loot: {
-    weapon: 1,//0.2,
-    armor: 0,//0.2,
-    potion: 0,//0.2,
-    bandage: 0,//0.2,
-    tool: 0,//0.2
+    weapon: 0,//0.167,
+    armor: 0,//0.167,
+    potion: 0,//0.167,
+    bandage: 0,//0.167,
+    tool: 0,//0.167
+    toy: 1//0.165
   },
   armor: {
     helmet: 0.2,
