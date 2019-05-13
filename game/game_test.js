@@ -23,8 +23,11 @@ function game_test() {
     gameValues
   ))*/
 
-  console.log("running room:", gameFunctions.room(player, gameValues))
-  console.log("running room again:", gameFunctions.room(player, gameValues))
+  console.log("running room:")
+  console.log(gameFunctions.room(player, gameValues))
+  console.log("=============================")
+  console.log("running room again:")
+  console.log(gameFunctions.room(player, gameValues))
 
   /*console.log("=============================")
   console.log("scavenge: ", gameFunctions.scavenge(

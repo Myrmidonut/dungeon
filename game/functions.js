@@ -542,22 +542,31 @@ function fight(player, monster, gameValues) {
 }
 
 function room(player, gameValues) {
+  console.log("player rooms:", player.room)
+
   if (player.room <= 0) {
     return "room 0";
   } else if (player.room > 10 && player.level === player.maxLevel) {
     levelUp(player, gameValues);
 
-    return `leveled up to ${player.maxLevel}`
+    return `finished map and leveled up to ${player.maxLevel}`;
+  } else if (player.room > 10) {
+    return "finished map";
   } else {
-    const monster = createMonster(player, gameValues)
+    const monster = createMonster(player, gameValues);
 
-    encounter(player, monster, gameValues)
+    return encounter(player, monster, gameValues);
   }
 }
 
 function encounter(player, monster, gameValues) {
   const type = randomProbability(gameValues.probabilityTables.encounter);
   const loot = createLoot(player, gameValues);
+  const result = {
+    win: false,
+    loot: null,
+    message: ""
+  }
 
   console.log("encounter type:", type)
 
@@ -565,43 +574,52 @@ function encounter(player, monster, gameValues) {
 
   if (type === "monster") {
     if (fight(player, monster, gameValues) === "player") {
-      console.log("monster loot:", loot)
+      result.win = true;
+      result.loot = loot;
+      result.message = "win against monster"
 
       player.room += 1;
     } else {
-      console.log("you lost to the monster")
+      result.message = "you lost to the monster"
     }
   } else if (type === "treasureChest") {
     if (randomProbability(gameValues.probabilityTables.treasureChest) === "monster") {
       if (fight(player, monster, gameValues) === "player") {
-        console.log("treasure chest monster loot:", loot)
+        result.win = true;
+        result.loot = loot;
+        result.message = "win against treasure chest monster"
 
         player.room += 1;
       } else {
-        console.log("you lost to the treasure chest monster")
+        result.message = "you lost to the treasure chest monster"
       }
     } else {
-      console.log("treasure chest loot:", loot)
+      result.win = true;
+      result.loot = loot;
+      result.message = "found treasure chest"
 
       player.room += 1;
     }
   } else if (type === "trap") {
     if (disarmTrap(player)) {
-      console.log("trap loot:", loot)
+      result.win = true;
+      result.loot = loot;
+      result.message = "disarmed trap"
     } else {
-      console.log("you lost to the trap")
+      result.message = "you lost to the trap"
 
       addEffects(player, gameValues);
     }
 
     player.room += 1;
   } else {
-    console.log("empty room")
+    result.win = true;
+    result.message = "empty room"
 
     player.room += 1;
   }
 
-  console.log(player)
+  return result;
 }
 
 function resetPlayer(player) {
