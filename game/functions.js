@@ -232,7 +232,7 @@ function upgradeWeaponSlot(player, hand, gameValues) {
     weapon[updatedStat].maximum = Math.floor(weapon[updatedStat].maximum * gameValues.weaponIncrease[updatedStat]);
     weapon[updatedStat].minimum = Math.floor(player.weapons[hand][updatedStat].maximum * 0.6);
   } else {
-    weapon[updatedStat] += gameValues.weaponIncrease[updatedStat];
+    weapon[updatedStat] = round((weapon[updatedStat] + gameValues.weaponIncrease[updatedStat]), 1);
   }
 
   return weapon;
@@ -416,27 +416,11 @@ function craft(player, type, gameValues) {
   } else return "not enough body parts"
 }
 
-function hitChance(player, hand, gameValues) {
-  if (player.class === player.weapons[hand].class) {
-    return gameValues.playerClassHitChance.class;
-  } else {
-    return gameValues.playerClassHitChance.nonClass;
-  }
-}
-
-function critChance(player, hand) {
-  if (player.class === player.weapons[hand].class) {
-    return player.weapons[hand].critChance;
-  } else {
-    return 0;
-  }
-}
-
 function damage(player, hand) {
   const min = player.weapons[hand].damage.minimum;
   const max = player.weapons[hand].damage.maximum;
 
-  if (Math.random() >= critChance(player, hand)) {
+  if (Math.random() >= player.weapons[hand].critChance) {
     return (
       {
         crit: false,
@@ -467,8 +451,8 @@ function fight(player, monster, gameValues) {
     dodge: playerDodge(player),
     weapons: player.weapons,
     hit: {
-      left: hitChance(player, "left", gameValues),
-      right: hitChance(player, "right", gameValues)
+      left: player.weapons.left.hitChance,
+      right: player.weapons.right.hitChance
     }
   };
 
@@ -503,9 +487,8 @@ function fight(player, monster, gameValues) {
       if (!randomRoll(defender.dodge)) {
         console.log("hit left")
 
-        damageDealt += damage(attacker, "left", critChance(attacker, "left")).value;
+        damageDealt += damage(attacker, "left").value;
         damageDealt += attacker.strength;
-        // + effects
       } else console.log("dodge left")
     } else console.log("miss left")
 
@@ -513,9 +496,8 @@ function fight(player, monster, gameValues) {
       if (!randomRoll(defender.dodge)) {
         console.log("hit right")
 
-        damageDealt += damage(attacker, "right", critChance(attacker, "right")).value;
+        damageDealt += damage(attacker, "right").value;
         damageDealt += attacker.strength;
-        // + effects
       } else console.log("dodge right")
     } else console.log("miss right")
 

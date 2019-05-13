@@ -4,7 +4,7 @@ const player = require("./dummyPlayer")
 
 function game_test() {
   console.log("=============================")
-  console.log("player: ", player)
+  //console.log("player: ", player)
   console.log("=============================")
 
   /*gameFunctions.levelUp(player, gameValues)
