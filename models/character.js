@@ -14,6 +14,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       defaultValue: 1
     },
+    max_level: {
+      type: DataTypes.INTEGER,
+      defaultValue: 1
+    },
     room: {
       type: DataTypes.INTEGER,
       defaultValue: 0
@@ -52,6 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
       defaultValue: 0.1
     },
+    weapons_left_hitchance: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0.5
+    },
 
     weapons_right_class: {
       type: DataTypes.STRING,
@@ -72,6 +80,19 @@ module.exports = (sequelize, DataTypes) => {
     weapons_right_critchance: {
       type: DataTypes.FLOAT,
       defaultValue: 0.1
+    },
+    weapons_right_hitchance: {
+      type: DataTypes.FLOAT,
+      defaultValue: 0.5
+    },
+
+    weapons_shield_name: {
+      type: DataTypes.STRING,
+      defaultValue: ""
+    },
+    weapons_shield_armor: {
+      type: DataTypes.INTEGER,
+      defaultValue: 0
     },
 
     armor_helmet: {

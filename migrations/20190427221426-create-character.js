@@ -28,6 +28,9 @@ module.exports = {
       level: {
         type: Sequelize.INTEGER
       },
+      max_level: {
+        type: Sequelize.INTEGER
+      },
       room: {
         type: Sequelize.INTEGER
       },
@@ -57,6 +60,9 @@ module.exports = {
       weapons_left_critchance: {
         type: Sequelize.FLOAT
       },
+      weapons_left_hitchance: {
+        type: Sequelize.FLOAT
+      },
 
       weapons_right_class: {
         type: Sequelize.STRING
@@ -72,6 +78,16 @@ module.exports = {
       },
       weapons_right_critchance: {
         type: Sequelize.FLOAT
+      },
+      weapons_right_hitchance: {
+        type: Sequelize.FLOAT
+      },
+      
+      weapons_shield_name: {
+        type: Sequelize.STRING
+      },
+      weapons_shield_armor: {
+        type: Sequelize.INTEGER
       },
 
       armor_helmet: {
