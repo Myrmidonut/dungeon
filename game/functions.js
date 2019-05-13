@@ -206,45 +206,81 @@ function createMonster(player, gameValues) {
   return monster;
 }
 
-function upgradeWeapon(player, gameValues) {
+function upgradeWeaponSlot(player, hand, gameValues) {
+  const updatedStat = randomProbability(gameValues.probabilityTables.weaponUpdate);
 
-  // split into upgradeWeapon(player, hand, gameValues)
+  const weapon = {
+    class: player.class,
+    name: createWeaponName(gameValues),
+    damage: player.weapons[hand].damage,
+    critChance: player.weapons[hand].critChance,
+    hitChance: player.weapons[hand].hitChance
+  }
 
-  // thief -> two onehander
-  // barbarian -> one twohander
-  // paladin -> one onehander one shield
+  if (updatedStat === "damage") {
+    weapon[updatedStat].maximum *= gameValues.weaponIncrease[updatedStat];
+    weapon[updatedStat].minimum = player.weapons[hand][updatedStat].maximum * 0.6;
+  } else {
+    weapon[updatedStat] += gameValues.weaponIncrease[updatedStat];
+  }
 
-  // 2 weapons: upgrade random one
+  return weapon;
+}
 
-  // new name
-  // new crit
-  // new hit
-  // new damage
+function removeWeapon(shield) {
+  const removedWeapon = {
+    name: shield,
+    damage: {
+      maximum: 0,
+      minimum: 0
+    },
+    critChance: 0,
+    hitChance: 0
+  }
+
+  return removedWeapon;
+}
+
+/*function updateShield(player, gameValues) {
+  const shield = {
+    class: player.class,
+    name: createWeaponName(gameValues),
+    damage: 0,
+    critChance: 0,
+    hitChance: 0
+  }
+
+  // shield.armor
+
+  return weapon;
+}*/
+
+function upgradeWeapons(player, gameValues) {
+  let hand = randomProbability(gameValues.probabilityTables.weaponHand);
+  let newWeapon = upgradeWeaponSlot(player, hand, gameValues);
 
   if (player.class === "thief") {
-    player.weapons.left.name = createWeaponName(gameValues);
-    player.weapons.right.name = createWeaponName(gameValues);
-
-
+    player.weapons[hand] = newWeapon;
   } else if (player.class === "barbarian") {
-    player.weapons.left.name = createWeaponName(gameValues);
-    player.weapons.right.name = "";
+    hand = "left";
+    newWeapon = upgradeWeaponSlot(player, hand, gameValues);
+    player.weapons.left = newWeapon;
+    player.weapons.right = removeWeapon("");
   } else {
-    player.weapons.left.name = "shield";
-    player.weapons.right.name = createWeaponName(gameValues);
+    if (hand === "left") {
+      player.weapons.left = removeWeapon("shield");
+
+      // shield updates
+    } else {
+      newWeapon = upgradeWeaponSlot(player, "right", gameValues);
+      player.weapons.right = newWeapon;
+    }
   }
 
-  const update = randomProbability(gameValues.probabilityTables.weaponUpdate);
-
-  if (update === "damage") {
-    player.weapons.left[update].maximum *= gameValues.weaponIncrease[update];
-    player.weapons.left[update].minimum = player.weapons.left[update].maximum * 0.6;
-  } else {
-    player.weapons.left[update] += gameValues.weaponIncrease[update];
+  return {
+    hand: hand,
+    weapon: newWeapon
   }
-  
-
-
 }
 
 function upgradeArmor(player, gameValues) {
@@ -328,7 +364,7 @@ function createLoot(player, gameValues) {
   let type = randomProbability(gameValues.probabilityTables.loot);
 
   if (type === "weapon") {
-    return upgradeWeapon(player, gameValues)
+    return upgradeWeapons(player, gameValues)
   } else if (type === "armor") {
     return upgradeArmor(player, gameValues)
   } else if (type === "potion") {

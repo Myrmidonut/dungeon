@@ -218,10 +218,10 @@ const probabilityTables = {
     treasure: 0.75
   },
   loot: {
-    weapon: 0,//0.2,
+    weapon: 1,//0.2,
     armor: 0,//0.2,
     potion: 0,//0.2,
-    bandage: 1,//0.2,
+    bandage: 0,//0.2,
     tool: 0,//0.2
   },
   armor: {
@@ -235,6 +235,10 @@ const probabilityTables = {
     hitChance: 0.333,
     critChance: 0.333,
     damage: 0.334
+  },
+  weaponHand: {
+    left: 0.5,
+    right: 0.5
   }
 }
 
