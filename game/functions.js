@@ -42,6 +42,14 @@ function createWeaponName(gameValues) {
   return `${first} ${second} of ${third}`;
 }
 
+function createShieldName(gameValues) {
+  const first = gameValues.weaponNames.first[Math.floor(Math.random() * gameValues.weaponNames.first.length)];
+  const second = "shield";
+  const third = gameValues.weaponNames.third[Math.floor(Math.random() * gameValues.weaponNames.third.length)];
+
+  return `${first} ${second} of ${third}`;
+}
+
 function playerDodge(player) {
   return round(log(player.stats.agility, 3, 1), 2) / 10;
 }
@@ -252,20 +260,6 @@ function removeWeapon(shield) {
   return removedWeapon;
 }
 
-/*function updateShield(player, gameValues) {
-  const shield = {
-    class: player.class,
-    name: createWeaponName(gameValues),
-    damage: 0,
-    critChance: 0,
-    hitChance: 0
-  }
-
-  // shield.armor
-
-  return weapon;
-}*/
-
 function upgradeWeapons(player, gameValues) {
   let hand = randomProbability(gameValues.probabilityTables.weaponHand);
   let newWeapon = upgradeWeaponSlot(player, hand, gameValues);
@@ -280,8 +274,9 @@ function upgradeWeapons(player, gameValues) {
   } else {
     if (hand === "left") {
       player.weapons.left = removeWeapon("shield");
-
-      // shield updates
+      player.weapons.shield.armor += 1;
+      player.weapons.shield.name = createShieldName(gameValues);
+      newWeapon = player.weapons.shield;
     } else {
       newWeapon = upgradeWeaponSlot(player, "right", gameValues);
       player.weapons.right = newWeapon;

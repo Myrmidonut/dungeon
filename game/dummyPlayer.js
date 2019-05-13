@@ -1,5 +1,5 @@
 const player = {
-  class: "thief",
+  class: "paladin",
   level: 5,
   maxLevel: 5,
   room: 10,
@@ -43,6 +43,10 @@ const player = {
       critChance: 0.3,
       hitChance: 0.5
     },
+    shield: {
+      name: "",
+      armor: 0
+    }
   },
   armor: {
     helmet: 2,
