@@ -3,7 +3,10 @@ const monsterNames = [
   "goblin",
   "orc",
   "shield maiden",
-  "dragon"
+  "dragon",
+  "lizard",
+  "giant",
+  "rat"
 ]
 
 const weaponNames = {
@@ -227,7 +230,18 @@ const probabilityTables = {
     pants: 0.2,
     boots: 0.2,
     gloves: 0.2
+  },
+  weaponUpdate: {
+    hitChance: 0.333,
+    critChance: 0.333,
+    damage: 0.334
   }
+}
+
+const weaponIncrease = {
+  damage: 0.5,
+  critChance: 0.5,
+  hitChance: 0.5
 }
 
 const monsterRating = {
@@ -276,6 +290,7 @@ const recipes = {
 }
 
 module.exports = {
+  weaponIncrease,
   potion,
   bandage,
   food,

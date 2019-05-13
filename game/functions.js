@@ -207,9 +207,42 @@ function createMonster(player, gameValues) {
 }
 
 function upgradeWeapon(player, gameValues) {
+
+  // split into upgradeWeapon(player, hand, gameValues)
+
   // thief -> two onehander
   // barbarian -> one twohander
   // paladin -> one onehander one shield
+
+  // 2 weapons: upgrade random one
+
+  // new name
+  // new crit
+  // new hit
+  // new damage
+
+  if (player.class === "thief") {
+    player.weapons.left.name = createWeaponName(gameValues);
+    player.weapons.right.name = createWeaponName(gameValues);
+
+
+  } else if (player.class === "barbarian") {
+    player.weapons.left.name = createWeaponName(gameValues);
+    player.weapons.right.name = "";
+  } else {
+    player.weapons.left.name = "shield";
+    player.weapons.right.name = createWeaponName(gameValues);
+  }
+
+  const update = randomProbability(gameValues.probabilityTables.weaponUpdate);
+
+  if (update === "damage") {
+    player.weapons.left[update].maximum *= gameValues.weaponIncrease[update];
+    player.weapons.left[update].minimum = player.weapons.left[update].maximum * 0.6;
+  } else {
+    player.weapons.left[update] += gameValues.weaponIncrease[update];
+  }
+  
 
 
 }

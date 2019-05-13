@@ -29,7 +29,8 @@ const player = {
         minimum: 10,
         maximum: 15
       },
-      critChance: 0.2
+      critChance: 0.2,
+      hitChance: 0.6
     },
     right: {
       class: "paladin",
@@ -38,7 +39,8 @@ const player = {
         minimum: 5,
         maximum: 14
       },
-      critChance: 0.3
+      critChance: 0.3,
+      hitChance: 0.5
     },
   },
   armor: {
