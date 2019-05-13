@@ -76,6 +76,9 @@ function levelUp(player, gameValues) {
   }
 
   player.level += 1;
+  player.maxLevel += 1;
+
+  return player.maxLevel;
 }
 
 function playerStatAverage(player) {
@@ -538,13 +541,13 @@ function fight(player, monster, gameValues) {
   return defender.name;
 }
 
-function room(player) {
+function room(player, gameValues) {
   if (player.room <= 0) {
     return "room 0";
-  } else if (player.room > 10) {
+  } else if (player.room > 10 && player.level === player.maxLevel) {
     levelUp(player, gameValues);
 
-    return "leveled up"
+    return `leveled up to ${player.maxLevel}`
   } else {
     const monster = createMonster(player, gameValues)
 
@@ -556,7 +559,7 @@ function encounter(player, monster, gameValues) {
   const type = randomProbability(gameValues.probabilityTables.encounter);
   const loot = createLoot(player, gameValues);
 
-  console.log("type:", type)
+  console.log("encounter type:", type)
 
   applyEffects(player, player.effects);
 
@@ -593,7 +596,7 @@ function encounter(player, monster, gameValues) {
 
     player.room += 1;
   } else {
-    console.log("empty")
+    console.log("empty room")
 
     player.room += 1;
   }
@@ -715,6 +718,5 @@ module.exports = {
   createMonster,
   playerStatAverage,
   playerDamageAverage,
-  randomProbability,
-  levelUp
+  randomProbability
 }

@@ -7,12 +7,12 @@ function game_test() {
   console.log("player: ", player)
   console.log("=============================")
 
-  //gameFunctions.levelUp(player, gameValues)
+  /*gameFunctions.levelUp(player, gameValues)
 
-  //console.log("level up: ", player)
-  //console.log("=============================")
+  console.log("level up: ", player)
+  console.log("=============================")*/
 
-  const monster = gameFunctions.createMonster(
+  /*const monster = gameFunctions.createMonster(
     player,
     gameValues
   )
@@ -21,7 +21,10 @@ function game_test() {
     player,
     monster,
     gameValues
-  ))
+  ))*/
+
+  console.log("running room:", gameFunctions.room(player, gameValues))
+  console.log("running room again:", gameFunctions.room(player, gameValues))
 
   /*console.log("=============================")
   console.log("scavenge: ", gameFunctions.scavenge(
