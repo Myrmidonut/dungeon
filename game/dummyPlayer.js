@@ -44,8 +44,8 @@ const player = {
       hitChance: 0.5
     },
     shield: {
-      name: "",
-      armor: 0
+      name: "shield",
+      armor: 1
     }
   },
   armor: {

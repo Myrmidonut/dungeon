@@ -433,7 +433,7 @@ function damage(player, hand) {
 }
 
 function armor(player) {
-  return Object.values(player.armor).reduce((total, e) => total + e);
+  return Object.values(player.armor).reduce((total, e) => total + e) + player.weapons.shield.armor;
 }
 
 function fight(player, monster, gameValues) {
