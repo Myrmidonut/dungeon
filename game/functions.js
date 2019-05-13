@@ -34,6 +34,13 @@ function monsterDodge(gameValues) {
   return gameValues.monsterDodge.value;
 }
 
+function createToyName(gameValues) {
+  const first = gameValues.toyNames.first[Math.floor(Math.random() * gameValues.toyNames.first.length)];
+  const second = gameValues.toyNames.second[Math.floor(Math.random() * gameValues.toyNames.second.length)];
+  
+  return `${first} ${second}`;
+}
+
 function createWeaponName(gameValues) {
   const first = gameValues.weaponNames.first[Math.floor(Math.random() * gameValues.weaponNames.first.length)];
   const second = gameValues.weaponNames.second[Math.floor(Math.random() * gameValues.weaponNames.second.length)];
@@ -720,13 +727,6 @@ module.exports = {
   useFood,
   room,
   createPlayer,
-  encounter,
-  fight,
   craft,
-  scavenge,
-  createLoot,
-  createMonster,
-  playerStatAverage,
-  playerDamageAverage,
-  randomProbability
+  scavenge
 }

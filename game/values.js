@@ -54,6 +54,24 @@ const weaponNames = {
   ]
 }
 
+const toyNames = {
+  color: [
+    "red",
+    "green",
+    "blue",
+    "white",
+    "black"
+  ],
+  name: [
+    "candle",
+    "torch",
+    "cat",
+    "bat",
+    "fairy",
+    "glasses"
+  ]
+}
+
 const itemLevels = [
   {
     level: "",
@@ -294,6 +312,7 @@ const recipes = {
 }
 
 module.exports = {
+  toyNames,
   weaponIncrease,
   potion,
   bandage,

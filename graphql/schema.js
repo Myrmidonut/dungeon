@@ -30,7 +30,7 @@ const schema = buildSchema(`
     login (email: String!, password: String!): User
     create_character (name: String!, character_class: String!): Player
     select_character (id: Int!): Player
-    next_room (id: Int!): Player
+    play (id: Int!): Player
   }
 `)
 

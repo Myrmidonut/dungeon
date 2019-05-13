@@ -96,21 +96,19 @@ const root = {
     return player;
   },
 
-  async next_room(args, { req, res }) {
+  async play(args, { req, res }) {
     if (!req.user) throw new Error('You are not authenticated.');
 
     // current character has to stay the same
+    // room(player, gameValues)
+    // returns result object
     
-    const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
-    if (!character) throw new Error('Character not found.');
+    //const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
+    //if (!character) throw new Error('Character not found.');
 
-    if (character.room === 0) {
-      // save player to db
-    } else {
-      // run encounter
-    }
+    const result = gameFunctions.room(player, gameValues)
 
-    // return player
+    return result;
   }
 }
 
