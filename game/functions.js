@@ -304,6 +304,13 @@ function upgradeArmor(player, gameValues) {
   return randomArmor;
 }
 
+function upgradeToy(player, gameValues) {
+  player.toy.value += 1;
+  player.toy.name = createToyName(gameValues);
+
+  return player.toy;
+}
+
 function upgradePotion(player, gameValues) {
   player.potion.value += 1;
   player.potion.level = gameValues.itemLevels[player.potion.value].level;
