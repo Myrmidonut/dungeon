@@ -543,7 +543,6 @@ function room(player, gameValues) {
 
 function encounter(player, monster, gameValues) {
   const type = randomProbability(gameValues.probabilityTables.encounter);
-  const loot = createLoot(player, gameValues);
   const result = {
     win: false,
     loot: null,
@@ -557,7 +556,7 @@ function encounter(player, monster, gameValues) {
   if (type === "monster") {
     if (fight(player, monster, gameValues) === "player") {
       result.win = true;
-      result.loot = loot;
+      result.loot = createLoot(player, gameValues);
       result.message = "win against monster"
 
       player.room += 1;
@@ -568,7 +567,7 @@ function encounter(player, monster, gameValues) {
     if (randomProbability(gameValues.probabilityTables.treasureChest) === "monster") {
       if (fight(player, monster, gameValues) === "player") {
         result.win = true;
-        result.loot = loot;
+        result.loot = createLoot(player, gameValues);
         result.message = "win against treasure chest monster"
 
         player.room += 1;
@@ -577,7 +576,7 @@ function encounter(player, monster, gameValues) {
       }
     } else {
       result.win = true;
-      result.loot = loot;
+      result.loot = createLoot(player, gameValues);
       result.message = "found treasure chest"
 
       player.room += 1;
@@ -585,7 +584,7 @@ function encounter(player, monster, gameValues) {
   } else if (type === "trap") {
     if (disarmTrap(player)) {
       result.win = true;
-      result.loot = loot;
+      result.loot = createLoot(player, gameValues);
       result.message = "disarmed trap"
     } else {
       result.message = "you lost to the trap"
