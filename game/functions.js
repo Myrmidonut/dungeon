@@ -58,6 +58,14 @@ function getClassStat(player) {
   else return "stamina";
 }
 
+function selectLevel(player, level) {
+  if (level > 0 && level <= player.maxLevel) {
+    player.level = level;
+
+    return level;
+  } else return "selected level outside character range"
+}
+
 function levelUp(player, gameValues) {
   for (let stat in player.stats) {
     if (stat === getClassStat(player) && Math.random() <= gameValues.probabilityTables.levelUp.classStat) {
@@ -693,6 +701,7 @@ function createPlayer(database) {
 }
 
 module.exports = {
+  selectLevel,
   usePotion,
   useBandage,
   useFood,
