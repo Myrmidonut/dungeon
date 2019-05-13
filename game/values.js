@@ -243,9 +243,9 @@ const probabilityTables = {
 }
 
 const weaponIncrease = {
-  damage: 0.5,
-  critChance: 0.5,
-  hitChance: 0.5
+  damage: 1.5,
+  critChance: 0.1,
+  hitChance: 0.1
 }
 
 const monsterRating = {

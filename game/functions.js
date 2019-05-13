@@ -218,8 +218,8 @@ function upgradeWeaponSlot(player, hand, gameValues) {
   }
 
   if (updatedStat === "damage") {
-    weapon[updatedStat].maximum *= gameValues.weaponIncrease[updatedStat];
-    weapon[updatedStat].minimum = player.weapons[hand][updatedStat].maximum * 0.6;
+    weapon[updatedStat].maximum = Math.floor(weapon[updatedStat].maximum * gameValues.weaponIncrease[updatedStat]);
+    weapon[updatedStat].minimum = Math.floor(player.weapons[hand][updatedStat].maximum * 0.6);
   } else {
     weapon[updatedStat] += gameValues.weaponIncrease[updatedStat];
   }
