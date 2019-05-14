@@ -384,17 +384,19 @@ function createLoot(player, gameValues) {
   let type = randomProbability(gameValues.probabilityTables.loot);
 
   if (type === "weapon") {
-    return upgradeWeapons(player, gameValues)
+    return upgradeWeapons(player, gameValues);
   } else if (type === "armor") {
-    return upgradeArmor(player, gameValues)
+    return upgradeArmor(player, gameValues);
   } else if (type === "potion") {
-    return upgradePotion(player, gameValues)
+    if (player.potion.value >= 6) return upgradeWeapons(player, gameValues);
+    else return upgradePotion(player, gameValues);
   } else if (type === "bandage") {
-    return upgradeBandage(player, gameValues)
+    if (player.bandage.value >= 6) return upgradeWeapons(player, gameValues);
+    else return upgradeBandage(player, gameValues);
   } else if (type === "tool") {
-    return upgradeTool(player, gameValues)
+    return upgradeTool(player, gameValues);
   } else if (type === "toy") {
-    return upgradeToy(player, gameValues)
+    return upgradeToy(player, gameValues);
   }
 }
 
