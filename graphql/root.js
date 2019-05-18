@@ -94,7 +94,7 @@ const root = {
     if (!character) throw new Error('Character not found.');
 
     await User.update({currentCharacter: args.id}, {where: {id: req.user.id}})
-    
+
     const player = gameFunctions.createPlayer(character);
 
     return player;
@@ -106,11 +106,18 @@ const root = {
     // current character has to stay the same
     // room(player, gameValues)
     // returns result object
-    
-    //const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
+
+    const user = await User.findOne({ raw: true, where: {id: req.user.id} });
+
+    //console.log(currentCharacterId)
+
+    const character = await Character.findOne({ raw: true, where: {id: user.currentCharacter} });
     //if (!character) throw new Error('Character not found.');
 
-    const result = gameFunctions.room(player, gameValues)
+    const player = gameFunctions.createPlayer(character);
+    const result = gameFunctions.room(player, gameValues);
+
+    console.log(result)
 
     return result;
   }

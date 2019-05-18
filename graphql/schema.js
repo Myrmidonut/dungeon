@@ -24,6 +24,7 @@ const schema = buildSchema(`
 
   type Query {
     me: User
+    play: Player
   }
 
   type Mutation {
@@ -31,7 +32,6 @@ const schema = buildSchema(`
     login (email: String!, password: String!): User
     create_character (name: String!, character_class: String!): Player
     select_character (id: Int!): Player
-    play (id: Int!): Player
   }
 `)
 
