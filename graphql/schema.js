@@ -6,6 +6,7 @@ const schema = buildSchema(`
     username: String!
     email: String
     characters: [Character]!
+    currentCharacter: Int
   }
 
   type Character {

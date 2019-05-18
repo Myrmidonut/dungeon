@@ -16,6 +16,8 @@ const root = {
   },
 
   async signup({ username, email, password }, { req, res }) {
+    // findOrCreate
+
     const old_user = await User.findOne({ where: { email } });
 
     if (old_user) throw new Error('Email already registered.');
@@ -91,6 +93,8 @@ const root = {
     const character = await Character.findOne({ raw: true, where: {id: args.id, UserId: req.user.id} });
     if (!character) throw new Error('Character not found.');
 
+    await User.update({currentCharacter: args.id}, {where: {id: req.user.id}})
+    
     const player = gameFunctions.createPlayer(character);
 
     return player;
