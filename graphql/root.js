@@ -119,6 +119,8 @@ const root = {
 
     console.log(result)
 
+    // { win: true, loot: null, message: 'room 0' }
+
     return result;
   }
 }
