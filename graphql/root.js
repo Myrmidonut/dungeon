@@ -109,10 +109,14 @@ const root = {
 
     const user = await User.findOne({ raw: true, where: {id: req.user.id} });
 
-    //console.log(currentCharacterId)
+    // console.log(currentCharacterId)
 
     const character = await Character.findOne({ raw: true, where: {id: user.currentCharacter} });
-    //if (!character) throw new Error('Character not found.');
+    // if (!character) throw new Error('Character not found.');
+
+    // needs a persistent copy of the character, probably in select_character?
+    // copy resets if level is cleared
+    // stays active if level still in progress
 
     const player = gameFunctions.createPlayer(character);
     const result = gameFunctions.room(player, gameValues);
