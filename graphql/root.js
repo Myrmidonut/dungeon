@@ -122,6 +122,15 @@ const root = {
     // { win: true, loot: null, message: 'room 0' }
 
     return result;
+  },
+
+  async scavenge(args, { req, res }) {
+    if (!req.user) throw new Error('You are not authenticated.');
+
+    const user = await User.findOne({ raw: true, where: {id: req.user.id} });
+    const character = await Character.findOne({ raw: true, where: {id: user.currentCharacter} });
+
+    return true;
   }
 }
 
